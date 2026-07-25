@@ -43,7 +43,23 @@ public class StateMachine extends SubsystemBase {
   }
 
   public enum RobotState {
-    NONE
+    NONE,
+    INTAKING,
+    EJECTING,
+    RETRACTINGINTAKE,
+    SHOOTINGONPRESET,
+    REVERSINGSHOOTER,
+    SHOOTINGONFLY,
+    PREPPINGTRENCH,
+    PREPPINGOSIDE,
+    PREPPINGDSIDE,
+    PREPPINGTOWER,
+    PREPPINGHUB,
+    PREPPINGNEUTRALTOALLIANCE,
+    PREPPINGOPPOSINGTOALLIANCE,
+    PREPPINGCLIMB,
+    CLIMBING,
+    UNCLIMBING,
     // TODO: Add other robot states as needed
   }
 
