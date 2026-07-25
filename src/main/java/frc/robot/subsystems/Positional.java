@@ -4,11 +4,17 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.DeviceIDs;
 
 @Logged
 public class Positional extends SubsystemBase {
+
+  final TalonFX inakeSlide = TalonFX(DeviceIDs.positionalIDs.INTAKE_SLIDE_CAN);
+
   public Positional() {
   }
 
