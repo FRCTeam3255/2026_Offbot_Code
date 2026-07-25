@@ -7,9 +7,9 @@ package frc.robot.commands.states;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class None extends Command {
-  /** Creates a new None. */
-  public None() {
+public class PreppingClimb extends Command {
+  /** Creates a new PreppingClimb. */
+  public PreppingClimb() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
