@@ -38,6 +38,14 @@ public class DeviceIDs {
 
   // FreeSpin IDs: 10~29
   public static class freeSpinIDs {
+    public static final int INTAKE_ROLLERS_WEST_CAN = 10;
+    public static final int INTAKE_ROLLERS_EAST_CAN = 11;
+    public static final int HOTDOG_ROLLERS_CAN = 12;
+    public static final int TRANSFER_BELT_CAN = 13;
+    public static final int AGITATOR_CAN = 14;
+    public static final int EAST_FLYWHEEL_CAN = 15;
+    public static final int WEST_FLYWHEEL_CAN = 16;
+    public static final int TRANSFER_RAMP_CAN = 17;
 
   }
 

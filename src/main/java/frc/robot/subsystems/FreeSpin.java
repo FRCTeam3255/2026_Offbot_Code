@@ -4,12 +4,85 @@
 
 package frc.robot.subsystems;
 
+import java.security.PublicKey;
+import java.util.function.ToLongBiFunction;
+
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
+import com.ctre.phoenix6.signals.MotorArrangementValue;
+
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.DeviceIDs;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstSystem.constControllers;
 
 @Logged
 public class FreeSpin extends SubsystemBase {
+  final TalonFX intakeRollerWestLeader = new TalonFX(DeviceIDs.freeSpinIDs.INTAKE_ROLLERS_WEST_CAN);
+  final TalonFX intakeRollerEastFollower = new TalonFX(DeviceIDs.freeSpinIDs.INTAKE_ROLLERS_EAST_CAN);
+
+  final TalonFX hotdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.HOTDOG_ROLLERS_CAN);
+  final TalonFX transferBelt = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_BELT_CAN);
+
+  final TalonFX westFlywheelLeader = new TalonFX(DeviceIDs.freeSpinIDs.WEST_FLYWHEEL_CAN);
+  final TalonFX eastFlywheelFollower = new TalonFX(DeviceIDs.freeSpinIDs.EAST_FLYWHEEL_CAN);
+
+  final TalonFX agitator = new TalonFX(DeviceIDs.freeSpinIDs.AGITATOR_CAN);
+  final TalonFX transferRamp = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_RAMP_CAN);
+
+  Follower flywheelEastFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Aligned);
+  Follower flywheelWestFollower = new Follower(eastFlywheelFollower.getDeviceID(), MotorAlignmentValue.Opposed);
+
+  Follower intakeEastFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Aligned);
+  Follower intakeWestFollow = new Follower(intakeRollerEastFollower.getDeviceID(), MotorAlignmentValue.Opposed);
+
   public FreeSpin() {
+
+    intakeRollerWestLeader.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);
+    intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_EAST_CONFIGURATION);
+    hotdogRollers.getConfigurator().apply(ConstFreeSpin.HOTDOG_ROLLERS_CONFIGURATION);
+    transferBelt.getConfigurator().apply(ConstFreeSpin.TRANSFER_BELT_CONFIGURATION);
+    westFlywheelLeader.getConfigurator().apply(ConstFreeSpin.WEST_FLYWHEEL_CONFIGURATION);
+    eastFlywheelFollower.getConfigurator().apply(ConstFreeSpin.EAST_FLYWHEEL_CONFIGURATION);
+    agitator.getConfigurator().apply(ConstFreeSpin.AGITATOR_CONFIGURATION);
+    transferRamp.getConfigurator().apply(ConstFreeSpin.TRANSFER_RAMP_CONFIGURATION);
+
+  }
+
+  final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
+
+  public void setIntakeRollersSpeed(double speed) {
+    intakeRollerWestLeader.set(speed);
+    intakeRollerEastFollower.setControl(intakeEastFollower);
+  }
+
+  public void setFlywheelSpeed(double speed) {
+    westFlywheelLeader.set(speed);
+    eastFlywheelFollower.setControl(flywheelEastFollower);
+  }
+
+  public AngularVelocity getTransferBeltSpeed() {
+    return transferBelt.getVelocity().getValue();
+  }
+
+  public void setHotdogRollersSpeed(double speed) {
+    hotdogRollers.set(speed);
+  }
+
+  public void setTransferBelt(double speed) {
+    transferBelt.set(speed);
+  }
+
+  public void agitator(double speed) {
+    agitator.set(speed);
+  }
+
+  public void setTransferRamp(double speed) {
+    transferRamp.set(speed);
   }
 
   @Override
