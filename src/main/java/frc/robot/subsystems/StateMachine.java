@@ -47,11 +47,191 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
           case PREPPINGCLIMB:
-          case CLIMBING:
           case UNCLIMBING:
             return new None();
         }
         break;
+      case INTAKING:
+        switch (currentRobotState) {
+          case NONE:
+          case INTAKING:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new command();
+        }
+        break;
+      case EJECTING:
+        switch (currentRobotState) {
+          case NONE:
+          case EJECTING:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case RETRACTINGINTAKE:
+        switch (currentRobotState) {
+          case NONE:
+          case RETRACTINGINTAKE:
+            return new Command();
+        }
+        break;
+      case SHOOTINGONPRESET:
+        switch (currentRobotState) {
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case REVERSINGSHOOTER:
+        switch (currentRobotState) {
+          case NONE:
+          case REVERSINGSHOOTER:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case SHOOTINGONFLY:
+        switch (currentRobotState) {
+          case NONE:
+          case SHOOTINGONFLY:
+            return new Command();
+        }
+        break;
+      case PREPPINGTRENCH:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGOSIDE:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGDSIDE:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGTOWER:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGHUB:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGNEUTRALTOALLIANCE:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGOPPOSINGTOALLIANCE:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGTRENCH:
+          case PREPPINGOSIDE:
+          case PREPPINGDSIDE:
+          case PREPPINGTOWER:
+          case PREPPINGHUB:
+          case PREPPINGNEUTRALTOALLIANCE:
+          case PREPPINGOPPOSINGTOALLIANCE:
+            return new Command();
+        }
+        break;
+      case PREPPINGCLIMB:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPINGCLIMB:
+            return new Command();
+        }
+        break;
+      case CLIMBING:
+        switch (currentRobotState) {
+          case PREPPINGCLIMB:
+          case CLIMBING:
+            return new Command();
+        }
+        break;
+      case UNCLIMBING:
+        switch (currentRobotState) {
+          case UNCLIMBING:
+          case CLIMBING:
+            return new Command();
+        }
+        break;
+
     }
     return Commands
         .print("ITS SO OVER D: Invalid State Provided, Blame Eli. Attempted to go to: " + desiredState.toString()
