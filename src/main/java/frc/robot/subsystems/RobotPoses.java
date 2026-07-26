@@ -9,7 +9,6 @@ import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.units.Units;
-import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,14 +26,11 @@ public class RobotPoses extends SubsystemBase {
   Pose3d model1Turret = Pose3d.kZero;
   Pose3d model2Hood = Pose3d.kZero;
 
-  Distance placeHolder = Units.Inches.of(0);
-
   Transform3d intakeTransform3d = new Transform3d();
   Rotation3d turretRotation3d = Rotation3d.kZero;
   Rotation3d hoodRotation3d = Rotation3d.kZero;
 
   Transform3d turretPivotPoint = Transform3d.kZero;
-
   Transform3d hoodPivotPoint = Transform3d.kZero;
 
   public RobotPoses() {
