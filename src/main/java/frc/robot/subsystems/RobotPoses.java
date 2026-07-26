@@ -38,6 +38,7 @@ public class RobotPoses extends SubsystemBase {
   Transform3d hoodPivotPoint = Transform3d.kZero;
 
   public RobotPoses() {
+    SmartDashboard.putData("Field", field2d);
   }
 
   @Override
@@ -57,8 +58,6 @@ public class RobotPoses extends SubsystemBase {
         Units.Degrees.zero(),
         RobotContainer.positionalInstance.lastDesiredHoodPivotAngle,
         Units.Degrees.zero());
-
-    SmartDashboard.putData("Field", field2d);
 
     robotObject.setPose(RobotContainer.drivetrainInstance.getPose());
     // This method will be called once per scheduler run
