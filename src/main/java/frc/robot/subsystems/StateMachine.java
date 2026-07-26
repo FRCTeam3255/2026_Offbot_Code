@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.states.*;
 
@@ -48,7 +49,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGOPPOSINGTOALLIANCE:
           case PREPPINGCLIMB:
           case UNCLIMBING:
-            return new None();
+            return new InstantCommand();
         }
         break;
       case INTAKING:
@@ -62,7 +63,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new command();
+            return new InstantCommand();
         }
         break;
       case EJECTING:
@@ -76,14 +77,14 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case RETRACTINGINTAKE:
         switch (currentRobotState) {
           case NONE:
           case RETRACTINGINTAKE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case SHOOTINGONPRESET:
@@ -95,7 +96,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case REVERSINGSHOOTER:
@@ -109,14 +110,14 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case SHOOTINGONFLY:
         switch (currentRobotState) {
           case NONE:
           case SHOOTINGONFLY:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGTRENCH:
@@ -129,7 +130,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGOSIDE:
@@ -142,7 +143,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGDSIDE:
@@ -155,7 +156,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGTOWER:
@@ -168,7 +169,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGHUB:
@@ -181,7 +182,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGNEUTRALTOALLIANCE:
@@ -194,7 +195,7 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGOPPOSINGTOALLIANCE:
@@ -207,28 +208,28 @@ public class StateMachine extends SubsystemBase {
           case PREPPINGHUB:
           case PREPPINGNEUTRALTOALLIANCE:
           case PREPPINGOPPOSINGTOALLIANCE:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case PREPPINGCLIMB:
         switch (currentRobotState) {
           case NONE:
           case PREPPINGCLIMB:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case CLIMBING:
         switch (currentRobotState) {
           case PREPPINGCLIMB:
           case CLIMBING:
-            return new Command();
+            return new InstantCommand();
         }
         break;
       case UNCLIMBING:
         switch (currentRobotState) {
           case UNCLIMBING:
           case CLIMBING:
-            return new Command();
+            return new InstantCommand();
         }
         break;
 
