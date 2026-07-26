@@ -4,20 +4,25 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.RPM;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
+import edu.wpi.first.units.measure.AngularVelocity;
 
 /** Add your docs here. */
 public class ConstFreeSpin {
 
   public static final double STOP = 0;
-  public static final double INTAKE_ROLLERS_WEST = 1.0;
-  public static final double INTAKE_ROLLERS_EAST = 1.0;
-  public static final double EAST_FLYWHEEL = 1.0;
-  public static final double WEST_FLYWHEEL = 1.0;
-  public static final double HOTDOG_ROLLERS = 1.0;
-  public static final double TRANSFER_BELT = 1.0;
-  public static final double AGITATOR = 1.0;
-  public static final double TRANSFER_RAMP = 1.0;
+
+  public static final AngularVelocity INTAKE_ROLLERS_WEST_PERCENTOUTPUT = RPM.of(4000);
+  public static final AngularVelocity INTAKE_ROLLERS_EAST_PERCENTOUTPUT = RPM.of(4250);
+  public static final AngularVelocity EAST_FLYWHEEL_PERCENTOUTPUT = RPM.of(4100);
+  public static final AngularVelocity WEST_FLYWHEEL_PERCENTOUTPUT = RPM.of(4000);
+  public static final AngularVelocity HOTDOG_ROLLERS_PERCENTOUTPUT = RPM.of(4000);
+  public static final AngularVelocity TRANSFER_BELT_PERCENTOUTPUT = RPM.of(4100);
+  public static final AngularVelocity AGITATOR_PERCENTOUTPUT = RPM.of(4100);
+  public static final AngularVelocity TRANSFER_RAMP_PERCENTOUTPUT = RPM.of(4100);
 
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();

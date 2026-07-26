@@ -49,14 +49,15 @@ public class FreeSpin extends SubsystemBase {
   }
 
   final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public void setIntakeRollersSpeed(double speed) {
     intakeRollerWestLeader.set(speed);
     intakeRollerEastFollower.setControl(intakeEastFollower);
   }
 
-  public void setFlywheelSpeed(double speed) {
-    westFlywheelLeader.set(speed);
+  public void setFlywheelSpeed(AngularVelocity speed) {
+    westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(speed));
     eastFlywheelFollower.setControl(flywheelEastFollower);
   }
 
@@ -68,15 +69,15 @@ public class FreeSpin extends SubsystemBase {
     hotdogRollers.set(speed);
   }
 
-  public void setTransferBelt(double speed) {
+  public void setTransferBeltSpeed(double speed) {
     transferBelt.set(speed);
   }
 
-  public void setAgitator(double speed) {
+  public void setAgitatorSpeed(double speed) {
     agitator.set(speed);
   }
 
-  public void setTransferRamp(double speed) {
+  public void setTransferRampSpeed(double speed) {
     transferRamp.set(speed);
   }
 
