@@ -36,18 +36,18 @@ public class StateMachine extends SubsystemBase {
           case NONE:
           case INTAKING:
           case EJECTING:
-          case RETRACTINGINTAKE:
-          case SHOOTINGONPRESET:
-          case REVERSINGSHOOTER:
-          case SHOOTINGONFLY:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
-          case PREPPINGCLIMB:
+          case RETRACTING_INTAKE:
+          case SHOOTING_ON_PRESET:
+          case REVERSING_SHOOTER:
+          case SHOOTING_ON_FLY:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
+          case PREPPING_CLIMB:
           case UNCLIMBING:
             return new InstantCommand();
         }
@@ -56,13 +56,13 @@ public class StateMachine extends SubsystemBase {
         switch (currentRobotState) {
           case NONE:
           case INTAKING:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
@@ -70,157 +70,157 @@ public class StateMachine extends SubsystemBase {
         switch (currentRobotState) {
           case NONE:
           case EJECTING:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case RETRACTINGINTAKE:
+      case RETRACTING_INTAKE:
         switch (currentRobotState) {
           case NONE:
-          case RETRACTINGINTAKE:
+          case RETRACTING_INTAKE:
             return new InstantCommand();
         }
         break;
-      case SHOOTINGONPRESET:
+      case SHOOTING_ON_PRESET:
         switch (currentRobotState) {
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case REVERSINGSHOOTER:
-        switch (currentRobotState) {
-          case NONE:
-          case REVERSINGSHOOTER:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
-            return new InstantCommand();
-        }
-        break;
-      case SHOOTINGONFLY:
+      case REVERSING_SHOOTER:
         switch (currentRobotState) {
           case NONE:
-          case SHOOTINGONFLY:
+          case REVERSING_SHOOTER:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGTRENCH:
+      case SHOOTING_ON_FLY:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case SHOOTING_ON_FLY:
             return new InstantCommand();
         }
         break;
-      case PREPPINGOSIDE:
+      case PREPPING_TRENCH:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGDSIDE:
+      case PREPPING_OSIDE:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGTOWER:
+      case PREPPING_DSIDE:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGHUB:
+      case PREPPING_TOWER:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGNEUTRALTOALLIANCE:
+      case PREPPING_HUB:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGOPPOSINGTOALLIANCE:
+      case PREPPING_NEUTRAL_TO_ALLIANCE:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGTRENCH:
-          case PREPPINGOSIDE:
-          case PREPPINGDSIDE:
-          case PREPPINGTOWER:
-          case PREPPINGHUB:
-          case PREPPINGNEUTRALTOALLIANCE:
-          case PREPPINGOPPOSINGTOALLIANCE:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
             return new InstantCommand();
         }
         break;
-      case PREPPINGCLIMB:
+      case PREPPING_OPPOSING_TO_ALLIANCE:
         switch (currentRobotState) {
           case NONE:
-          case PREPPINGCLIMB:
+          case PREPPING_TRENCH:
+          case PREPPING_OSIDE:
+          case PREPPING_DSIDE:
+          case PREPPING_TOWER:
+          case PREPPING_HUB:
+          case PREPPING_NEUTRAL_TO_ALLIANCE:
+          case PREPPING_OPPOSING_TO_ALLIANCE:
+            return new InstantCommand();
+        }
+        break;
+      case PREPPING_CLIMB:
+        switch (currentRobotState) {
+          case NONE:
+          case PREPPING_CLIMB:
             return new InstantCommand();
         }
         break;
       case CLIMBING:
         switch (currentRobotState) {
-          case PREPPINGCLIMB:
+          case PREPPING_CLIMB:
           case CLIMBING:
             return new InstantCommand();
         }
@@ -243,18 +243,18 @@ public class StateMachine extends SubsystemBase {
     NONE,
     INTAKING,
     EJECTING,
-    RETRACTINGINTAKE,
-    SHOOTINGONPRESET,
-    REVERSINGSHOOTER,
-    SHOOTINGONFLY,
-    PREPPINGTRENCH,
-    PREPPINGOSIDE,
-    PREPPINGDSIDE,
-    PREPPINGTOWER,
-    PREPPINGHUB,
-    PREPPINGNEUTRALTOALLIANCE,
-    PREPPINGOPPOSINGTOALLIANCE,
-    PREPPINGCLIMB,
+    RETRACTING_INTAKE,
+    SHOOTING_ON_PRESET,
+    REVERSING_SHOOTER,
+    SHOOTING_ON_FLY,
+    PREPPING_TRENCH,
+    PREPPING_OSIDE,
+    PREPPING_DSIDE,
+    PREPPING_TOWER,
+    PREPPING_HUB,
+    PREPPING_NEUTRAL_TO_ALLIANCE,
+    PREPPING_OPPOSING_TO_ALLIANCE,
+    PREPPING_CLIMB,
     CLIMBING,
     UNCLIMBING,
     // TODO: Add other robot states as needed
