@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
-import frc.robot.commands.states.climbStates.Unclimbing;
 import frc.robot.constants.ChoreoTraj;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
@@ -102,7 +101,7 @@ public class RobotContainer {
   Command TRY_PREPPING_HUB = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.PREPPING_HUB));
 
-  Command TRY_PREPPING_NUETRAL_TO_ALLIANCE = Commands.deferredProxy(
+  Command TRY_PREPPING_NEUTRAL_TO_ALLIANCE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.PREPPING_NEUTRAL_TO_ALLIANCE));
 
   Command TRY_PREPPING_OPPOSING_TO_ALLIANCE = Commands.deferredProxy(
@@ -163,7 +162,7 @@ public class RobotContainer {
         .onFalse(TRY_NONE);
 
     conDriver.btn_RightStick
-        .onTrue(TRY_PREPPING_NUETRAL_TO_ALLIANCE)
+        .onTrue(TRY_PREPPING_NEUTRAL_TO_ALLIANCE)
         .onFalse(TRY_NONE);
     conDriver.btn_North
         .whileTrue(new ResetPose());
