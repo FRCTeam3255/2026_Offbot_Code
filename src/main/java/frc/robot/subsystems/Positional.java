@@ -23,16 +23,16 @@ import frc.robot.constants.ConstPositional;
 public class Positional extends SubsystemBase {
 
   final TalonFX intakeSlide = new TalonFX(DeviceIDs.positionalIDs.INTAKE_SLIDE_CAN);
-  final TalonFX hoodPivot = new TalonFX(DeviceIDs.positionalIDs.INTAKE_SLIDE_CAN);
-  final TalonFX turret = new TalonFX(DeviceIDs.positionalIDs.INTAKE_SLIDE_CAN);
-  final TalonFX climber = new TalonFX(DeviceIDs.positionalIDs.INTAKE_SLIDE_CAN);
+  final TalonFX hoodPivot = new TalonFX(DeviceIDs.positionalIDs.HOOD_PIVOT_CAN);
+  final TalonFX turret = new TalonFX(DeviceIDs.positionalIDs.TURRET_CAN);
+  final TalonFX climber = new TalonFX(DeviceIDs.positionalIDs.CLIMBER_CAN);
 
   MotionMagicExpoVoltage intakeSlideMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage hoodPivotMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage turretMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage climberMotionRequest = new MotionMagicExpoVoltage(0);
 
-  Angle lastDesiredHoodAngle = Degrees.zero();
+  Angle lastDesiredHoodPivotAngle = Degrees.zero();
   Angle lastDesiredTurretAngle = Degrees.zero();
   Distance lastDesiredIntakePosition = Inches.zero();
   Distance lastDesiredClimberPosition = Inches.zero();
@@ -63,7 +63,7 @@ public class Positional extends SubsystemBase {
 
   public Angle getHoodPivotAngle() {
     if (Robot.isSimulation()) {
-      return lastDesiredHoodAngle;
+      return lastDesiredHoodPivotAngle;
     }
     return hoodPivot.getPosition().getValue();
   }
