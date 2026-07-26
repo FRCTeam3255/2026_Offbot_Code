@@ -158,12 +158,11 @@ public class RobotContainer {
         .onFalse(TRY_NONE);
 
     conDriver.btn_LeftStick
-        .onTrue(TRY_PREPPING_OPPOSING_TO_ALLIANCE)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_OPPOSING_TO_ALLIANCE);
 
     conDriver.btn_RightStick
-        .onTrue(TRY_PREPPING_NEUTRAL_TO_ALLIANCE)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_NEUTRAL_TO_ALLIANCE);
+
     conDriver.btn_North
         .whileTrue(new ResetPose());
 
@@ -176,24 +175,19 @@ public class RobotContainer {
         .onFalse(TRY_NONE);
 
     conDriver.btn_West
-        .onTrue(TRY_PREPPING_TRENCH)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_TRENCH);
 
     conDriver.btn_Y
-        .onTrue(TRY_PREPPING_HUB)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_HUB);
 
     conDriver.btn_X
-        .onTrue(TRY_PREPPING_DSIDE)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_DSIDE);
 
     conDriver.btn_B
-        .onTrue(TRY_PREPPING_OSIDE)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_OSIDE);
 
     conDriver.btn_A
-        .onTrue(TRY_PREPPING_TOWER)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_PREPPING_TOWER);
 
     conDriver.btn_Start
         .onTrue(TRY_RETRACTING_INTAKE)
