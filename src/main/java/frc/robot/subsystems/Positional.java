@@ -17,6 +17,7 @@ import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
+import frc.robot.constants.ConstPositional;
 
 @Logged
 public class Positional extends SubsystemBase {
@@ -37,6 +38,11 @@ public class Positional extends SubsystemBase {
   Distance lastDesiredClimberPosition = Inches.zero();
 
   public Positional() {
+    intakeSlide.getConfigurator().apply(ConstPositional.INTAKE_SLIDE_CONFIGURATION);
+    hoodPivot.getConfigurator().apply(ConstPositional.HOOD_PIVOT_CONFIGURATION);
+    turret.getConfigurator().apply(ConstPositional.TURRET_CONFIGURATION);
+    climber.getConfigurator().apply(ConstPositional.CLIMBER_CONFIGURATION);
+
   }
 
   public void setIntakePosition(Distance setPoint, int slot) {
