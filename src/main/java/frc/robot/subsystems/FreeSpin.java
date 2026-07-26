@@ -29,10 +29,10 @@ public class FreeSpin extends SubsystemBase {
   final TalonFX agitator = new TalonFX(DeviceIDs.freeSpinIDs.AGITATOR_CAN);
   final TalonFX transferRamp = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_RAMP_CAN);
 
-  Follower flywheelEastFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Aligned);
+  Follower flywheelEastFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Opposed);
   Follower flywheelWestFollower = new Follower(eastFlywheelFollower.getDeviceID(), MotorAlignmentValue.Opposed);
 
-  Follower intakeEastFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Aligned);
+  Follower intakeEastFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Opposed);
   Follower intakeWestFollow = new Follower(intakeRollerEastFollower.getDeviceID(), MotorAlignmentValue.Opposed);
 
   public FreeSpin() {
