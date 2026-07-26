@@ -47,18 +47,22 @@ public class Positional extends SubsystemBase {
 
   public void setIntakePosition(Distance setPoint, int slot) {
     intakeSlide.setControl(intakeSlideMotionRequest.withPosition(setPoint.in(Units.Inches)).withSlot(slot));
+    lastDesiredIntakePosition = setPoint;
   }
 
   public void setClimberPosition(Distance setPoint, int slot) {
     climber.setControl(intakeSlideMotionRequest.withPosition(setPoint.in(Units.Inches)).withSlot(slot));
+    lastDesiredClimberPosition = setPoint;
   }
 
   public void setHoodPivotAngle(Angle setPoint) {
     hoodPivot.setControl(climberMotionRequest.withPosition(setPoint));
+    lastDesiredHoodPivotAngle = setPoint;
   }
 
   public void setTurretAngle(Angle setPoint) {
     turret.setControl(climberMotionRequest.withPosition(setPoint));
+    lastDesiredTurretAngle = setPoint;
   }
 
   public Angle getHoodPivotAngle() {
