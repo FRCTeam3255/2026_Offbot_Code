@@ -43,6 +43,10 @@ public class DeviceIDs {
 
   // Positional IDs: 30~49
   public static class positionalIDs {
+    public static final int INTAKE_SLIDE_CAN = 30;
+    public static final int HOOD_PIVOT_CAN = 31;
+    public static final int TURRET_CAN = 32;
+    public static final int CLIMBER_CAN = 33;
 
   }
 }
