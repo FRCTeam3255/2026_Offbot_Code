@@ -4,21 +4,16 @@
 
 package frc.robot.subsystems;
 
-import java.security.PublicKey;
-import java.util.function.ToLongBiFunction;
-
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
-import com.ctre.phoenix6.signals.MotorArrangementValue;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.constants.ConstFreeSpin;
-import frc.robot.constants.ConstSystem.constControllers;
 
 @Logged
 public class FreeSpin extends SubsystemBase {
@@ -28,8 +23,8 @@ public class FreeSpin extends SubsystemBase {
   final TalonFX hotdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.HOTDOG_ROLLERS_CAN);
   final TalonFX transferBelt = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_BELT_CAN);
 
-  final TalonFX westFlywheelLeader = new TalonFX(DeviceIDs.freeSpinIDs.WEST_FLYWHEEL_CAN);
-  final TalonFX eastFlywheelFollower = new TalonFX(DeviceIDs.freeSpinIDs.EAST_FLYWHEEL_CAN);
+  final TalonFX westFlywheelLeader = new TalonFX(DeviceIDs.freeSpinIDs.FLYWHEEL_WEST_CAN);
+  final TalonFX eastFlywheelFollower = new TalonFX(DeviceIDs.freeSpinIDs.FLYWHEEL_EAST_CAN);
 
   final TalonFX agitator = new TalonFX(DeviceIDs.freeSpinIDs.AGITATOR_CAN);
   final TalonFX transferRamp = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_RAMP_CAN);
@@ -46,8 +41,8 @@ public class FreeSpin extends SubsystemBase {
     intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_EAST_CONFIGURATION);
     hotdogRollers.getConfigurator().apply(ConstFreeSpin.HOTDOG_ROLLERS_CONFIGURATION);
     transferBelt.getConfigurator().apply(ConstFreeSpin.TRANSFER_BELT_CONFIGURATION);
-    westFlywheelLeader.getConfigurator().apply(ConstFreeSpin.WEST_FLYWHEEL_CONFIGURATION);
-    eastFlywheelFollower.getConfigurator().apply(ConstFreeSpin.EAST_FLYWHEEL_CONFIGURATION);
+    westFlywheelLeader.getConfigurator().apply(ConstFreeSpin.FLYWHEEL_WEST_CONFIGURATION);
+    eastFlywheelFollower.getConfigurator().apply(ConstFreeSpin.FLYWHEEL_EAST_CONFIGURATION);
     agitator.getConfigurator().apply(ConstFreeSpin.AGITATOR_CONFIGURATION);
     transferRamp.getConfigurator().apply(ConstFreeSpin.TRANSFER_RAMP_CONFIGURATION);
 
@@ -77,7 +72,7 @@ public class FreeSpin extends SubsystemBase {
     transferBelt.set(speed);
   }
 
-  public void agitator(double speed) {
+  public void setAgitator(double speed) {
     agitator.set(speed);
   }
 
