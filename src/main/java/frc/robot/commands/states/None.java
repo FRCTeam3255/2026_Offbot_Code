@@ -6,6 +6,8 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstPositional;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -20,6 +22,17 @@ public class None extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.NONE);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.positionalInstance.setHoodPivotAngle(ConstPositional.HOOD_ANGLE_ZERO);
+    RobotContainer.positionalInstance.setTurretAngle(ConstPositional.TURRET_ANGLE_ZERO);
+    RobotContainer.positionalInstance.setClimberPosition(ConstPositional.RETRACT_CLIMBER_DISTANCE,
+        ConstPositional.FAST_CLIMBER_PID);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
