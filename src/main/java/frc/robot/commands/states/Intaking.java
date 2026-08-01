@@ -22,9 +22,9 @@ public class Intaking extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.INTAKING);
-    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_POSITION,
-        ConstPositional.SLOW_INTAKE_SLIDE_PID);
-    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_SPEED);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_SLIDE_DISTANCE,
+        ConstPositional.FAST_INTAKE_SLIDE_PID);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_VELOCITY);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
