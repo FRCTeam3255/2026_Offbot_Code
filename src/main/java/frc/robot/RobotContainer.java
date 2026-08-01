@@ -197,7 +197,6 @@ public class RobotContainer {
         .onTrue(TRY_PREPPING_CLIMB)
         .onTrue(TRY_CLIMBING)
         .onTrue(TRY_UNCLIMBING)
-        .onTrue(TRY_NONE);
 
     // Example Pose Drive
 
