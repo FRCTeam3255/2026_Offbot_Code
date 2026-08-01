@@ -29,11 +29,9 @@ public class FreeSpin extends SubsystemBase {
   final TalonFX agitator = new TalonFX(DeviceIDs.freeSpinIDs.AGITATOR_CAN);
   final TalonFX transferRamp = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_RAMP_CAN);
 
-  Follower flywheelEastFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Opposed);
-  Follower flywheelWestFollower = new Follower(eastFlywheelFollower.getDeviceID(), MotorAlignmentValue.Opposed);
+  Follower flywheelFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Opposed);
 
-  Follower intakeEastFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Opposed);
-  Follower intakeWestFollow = new Follower(intakeRollerEastFollower.getDeviceID(), MotorAlignmentValue.Opposed);
+  Follower intakeFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Opposed);
 
   public FreeSpin() {
 
@@ -52,12 +50,12 @@ public class FreeSpin extends SubsystemBase {
 
   public void setIntakeRollersSpeed(double speed) {
     intakeRollerWestLeader.set(speed);
-    intakeRollerEastFollower.setControl(intakeEastFollower);
+    intakeRollerEastFollower.setControl(intakeFollower);
   }
 
   public void setFlywheelSpeed(AngularVelocity speed) {
     westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(speed));
-    eastFlywheelFollower.setControl(flywheelEastFollower);
+    eastFlywheelFollower.setControl(flywheelFollower);
   }
 
   public AngularVelocity getFlywheelSpeed() {

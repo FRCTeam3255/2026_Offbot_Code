@@ -15,14 +15,14 @@ public class ConstFreeSpin {
 
   public static final double STOP = 0;
 
-  public static final AngularVelocity INTAKE_ROLLERS_WEST_PERCENTOUTPUT = RPM.of(4000);
-  public static final AngularVelocity INTAKE_ROLLERS_EAST_PERCENTOUTPUT = RPM.of(4250);
-  public static final AngularVelocity EAST_FLYWHEEL_PERCENTOUTPUT = RPM.of(4100);
-  public static final AngularVelocity WEST_FLYWHEEL_PERCENTOUTPUT = RPM.of(4000);
-  public static final AngularVelocity HOTDOG_ROLLERS_PERCENTOUTPUT = RPM.of(4000);
-  public static final AngularVelocity TRANSFER_BELT_PERCENTOUTPUT = RPM.of(4100);
-  public static final AngularVelocity AGITATOR_PERCENTOUTPUT = RPM.of(4100);
-  public static final AngularVelocity TRANSFER_RAMP_PERCENTOUTPUT = RPM.of(4100);
+  public static final AngularVelocity INTAKE_ROLLERS_WEST_TARGET_VELOCITY = RPM.of(4000);
+  public static final AngularVelocity INTAKE_ROLLERS_EAST_TARGET_VELOCITY = RPM.of(4250);
+  public static final AngularVelocity EAST_FLYWHEEL_TARGET_VELOCITY = RPM.of(4100);
+  public static final AngularVelocity WEST_FLYWHEEL_TARGET_VELOCITY = RPM.of(4000);
+  public static final AngularVelocity HOTDOG_ROLLERS_TARGET_VELOCITY = RPM.of(4000);
+  public static final AngularVelocity TRANSFER_BELT_TARGET_VELOCITY = RPM.of(4100);
+  public static final AngularVelocity AGITATOR_TARGET_VELOCITY = RPM.of(4100);
+  public static final AngularVelocity TRANSFER_RAMP_TARGET_VELOCITY = RPM.of(4100);
 
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
