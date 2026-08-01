@@ -38,8 +38,15 @@ public void initialize() {
 
 ## `isFinished()` Return Value
 
-- State commands that represent ongoing robot modes (intaking, prepping, climbing) should return `false` from `isFinished()` — they run until interrupted by a new state.
-- Only return `true` if the state is truly a one-shot action that completes on its own.
+- Can return `true` if the state is truly a one-shot action that completes on its own.
+- Commands can also return true if they are setting positions and the motors reach their positions (using .isNear)
+```java
+@Override
+public boolean isFinished() {
+  return RobotContainer.positionalInstance.getClimberPosition()
+      .isNear(RobotContainer.positionalInstance.lastDesiredClimberPosition, ConstPositional.CLIMBER_TOLERANCE);
+}
+```
 
 ## No Hardcoded Numbers
 
