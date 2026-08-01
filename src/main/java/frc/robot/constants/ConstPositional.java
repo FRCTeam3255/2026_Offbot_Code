@@ -18,26 +18,26 @@ public class ConstPositional {
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
 
-  public static final Angle PREP_D_SIDE_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_D_SIDE_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_D_SIDE_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_D_SIDE_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_O_SIDE_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_O_SIDE_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_O_SIDE_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_O_SIDE_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_HUB_SIDE_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_HUB_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_HUB_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_HUB_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_NEUTRAL_SIDE_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_NEUTRAL_SIDE_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_NEUTRAL_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_NEUTRAL_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_OPPOSING_TO_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_OPPOSING_TO_ALLIANCE_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_OPPOSING_TO_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_OPPOSING_TO_ALLIANCE_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_TOWER_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_TOWER_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_TOWER_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_TOWER_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_TRENCH_HOOD = Degrees.of(1);// TODO: find actual tolerance
-  public static final Angle PREP_TRENCH_TURRET = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle PREP_TRENCH_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_TRENCH_TURRET = Degrees.of(1);// TODO: find actual value
 
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();

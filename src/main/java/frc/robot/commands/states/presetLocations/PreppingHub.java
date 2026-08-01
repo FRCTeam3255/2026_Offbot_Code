@@ -13,8 +13,8 @@ public class PreppingHub extends BasePreps {
   /** Creates a new PreppingHub. */
   public PreppingHub() {
     super(ConstPositional.PREP_HUB_TURRET,
-        ConstPositional.PREP_HUB_SIDE_HOOD,
-        ConstFreeSpin.PREP_HUB_SIDE_FLYWHEEL,
+        ConstPositional.PREP_HUB_HOOD,
+        ConstFreeSpin.PREP_HUB_FLYWHEEL,
         StateMachine.RobotState.PREPPING_HUB);
     // Use addRequirements() here to declare subsystem dependencies.
 
