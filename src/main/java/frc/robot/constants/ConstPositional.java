@@ -14,7 +14,12 @@ import edu.wpi.first.units.measure.Distance;
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
+
+  // TODO value will be set later after testing
   public static final Distance DEPLOY_INTAKE_POSITION = Inches.of(1);
+
+  // TODO add other slots later
+  public static final int DEPLOY_INTAKE_PID_SLOT = 0;
 
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();

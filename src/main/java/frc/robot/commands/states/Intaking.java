@@ -22,7 +22,8 @@ public class Intaking extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.INTAKING);
-    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_POSITION, 1);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_POSITION,
+        ConstPositional.DEPLOY_INTAKE_PID_SLOT);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_SPEED);
   }
 
