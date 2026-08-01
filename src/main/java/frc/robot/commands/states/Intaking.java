@@ -4,8 +4,15 @@
 
 package frc.robot.commands.states;
 
+import org.ejml.dense.row.decomposition.chol.CholeskyDecompositionBlock_MT_DDRM;
+
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstPositional;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -20,6 +27,8 @@ public class Intaking extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.INTAKING);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_POSITION, 1);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
