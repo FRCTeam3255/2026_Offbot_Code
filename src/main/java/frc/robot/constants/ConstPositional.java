@@ -18,6 +18,8 @@ public class ConstPositional {
   public static final double STOP = 0;
 
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
+
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
   public static final Distance DEPLOY_CLIMBER_DISTANCE = Units.Inches.of(10);
   public static final Distance CLIMBER_TOLERANCE = Units.Inches.of(0.5);
@@ -27,8 +29,6 @@ public class ConstPositional {
 
   public static final int SLOW_INTAKE_SLIDE_PID = 0;
   public static final int FAST_INTAKE_SLIDE_PID = 1;
-
-  public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
 
   public static final Angle PREP_D_SIDE_HOOD = Degrees.of(1);// TODO: find actual value
   public static final Angle PREP_D_SIDE_TURRET = Degrees.of(1);// TODO: find actual value
