@@ -42,25 +42,13 @@ public class ConstFreeSpin {
 ## Grouping with Inner Classes
 
 - Use nested `public static class` blocks to group related constants (e.g. hardware variants, tuning sets).
-- Inner class names use `SCREAMING_SNAKE_CASE` for logical groups (e.g. `PRACTICE_BOT`, `AUTO_ALIGN`).
-- Exception: `ConstSystem.constControllers` uses `lowerCamelCase` by established convention.
 
-```java
-public class ConstDrivetrain {
-    public static class PRACTICE_BOT {
-        public static final Angle FRONT_LEFT_ENCODER_OFFSET = Rotations.of(-0.19);
-    }
-    public static class AUTO_ALIGN {
-        public static final PIDController CONTROLLER = new PIDController(3, 0, 0);
-    }
-}
-```
 
 ## Naming Rules
 
 - Constant names follow `PURPOSE_DESCRIPTION` — what it is used for + minimum detail to remove ambiguity.
 - Do **not** repeat the subsystem name inside a constant's name — it is already implied by the class context.
-- Valid examples: `FLYWHEEL_CORNER_SPEED`, `INTAKE_PERCENT_OUTPUT`, `OUTTAKE_TOLERANCE`, `CURRENT_LIMIT_FLOOR`.
+- Valid examples: `FLYWHEEL_CORNER_SPEED`, `INTAKE_ROLLER_PERCENT_OUTPUT`, `OUTTAKE_TOLERANCE`, `CURRENT_LIMIT_FLOOR`.
 - Avoid: `FREESPIN_FLYWHEEL_CORNER_SPEED` (subsystem name is redundant).
 
 ## Unit Conversions
@@ -81,4 +69,3 @@ public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER.in(Units.Meters)
 - Missing `TalonFXConfiguration` for any motor that exists in `DeviceIDs`.
 - Physical quantity stored as `double` instead of a WPILib typed measure.
 - Configuration logic placed in the subsystem constructor rather than a `static {}` block here.
-- Inner class name that doesn't match convention (should be `SCREAMING_SNAKE_CASE` except `constControllers`).
