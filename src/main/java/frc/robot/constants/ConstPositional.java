@@ -28,6 +28,8 @@ public class ConstPositional {
 
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle HOOD_ANGLE_ZERO = Degrees.of(0);
+  public static final Angle TURRET_ANGLE_ZERO = Degrees.of(0);
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
