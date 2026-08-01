@@ -24,9 +24,9 @@ public class Ejecting extends Command {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.EJECTING);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.REVERSE_INTAKE_PERCENT_OUTPUT);
     RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.REVERSE_AGITATOR_PERCENT_OUTPUT);
-    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.REVERSE_HOTDOGROLLERS_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_SLIDE_DISTANCE,
-        ConstPositional.FAST_INTAKE_PID);
+        ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

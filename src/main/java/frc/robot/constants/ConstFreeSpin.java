@@ -11,7 +11,7 @@ public class ConstFreeSpin {
 
   public static final double STOP = 0;
   public static final double REVERSE_INTAKE_PERCENT_OUTPUT = -1;
-  public static final double REVERSE_HOTDOGROLLERS_PERCENT_OUTPUT = -1;
+  public static final double REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT = -1;
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
 
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
