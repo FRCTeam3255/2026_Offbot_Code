@@ -14,10 +14,10 @@ import edu.wpi.first.units.measure.AngularVelocity;
 public class ConstFreeSpin {
 
   public static final double STOP = 0;
-  public static final AngularVelocity REVERSING_FLYWHEEL_SPEED = RPM.of(-100);
-  public static final AngularVelocity REVERSING_TRANSFER_BELT_SPEED = RPM.of(-100);
-  public static final AngularVelocity REVERSING_TRANSFER_RAMP_SPEED = RPM.of(-100);
-  // TODO ADD ALL ACTUAL VALUES AFTER TESTING
+  public static final AngularVelocity REVERSING_FLYWHEEL_SPEED = RPM.of(-100); // TODO FIND ACTUAL VALUE
+  public static final double REVERSING_TRANSFER_BELT_SPEED = -1;
+  public static final double REVERSING_TRANSFER_RAMP_SPEED = -1;
+
   public static final double REVERSE_INTAKE_PERCENT_OUTPUT = -1;
   public static final double REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT = -1;
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
