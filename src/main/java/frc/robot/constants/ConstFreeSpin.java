@@ -4,13 +4,18 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.RPM;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
+import edu.wpi.first.units.measure.AngularVelocity;
 
 /** Add your docs here. */
 public class ConstFreeSpin {
 
   public static final double STOP = 0;
   public static final double INTAKE_ROLLER_SPEED = 1;
+  public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
