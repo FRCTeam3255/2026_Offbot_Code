@@ -4,10 +4,13 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.Degrees;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Angle;
 
 /** Add your docs here. */
 public class ConstPositional {
@@ -18,6 +21,8 @@ public class ConstPositional {
   public static final int SLOW_INTAKE_SLIDE_PID = 0;
   public static final int FAST_INTAKE_SLIDE_PID = 1;
 
+  public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
