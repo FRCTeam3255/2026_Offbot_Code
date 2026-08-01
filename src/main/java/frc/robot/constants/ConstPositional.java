@@ -4,7 +4,6 @@
 
 package frc.robot.constants;
 
-import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
