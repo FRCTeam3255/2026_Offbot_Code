@@ -38,6 +38,7 @@ public class Climbing extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return RobotContainer.positionalInstance.getClimberPosition()
+        .isNear(RobotContainer.positionalInstance.lastDesiredClimberPosition, ConstPositional.CLIMBER_TOLLARANCE);
   }
 }
