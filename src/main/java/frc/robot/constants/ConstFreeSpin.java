@@ -19,6 +19,11 @@ public class ConstFreeSpin {
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
   public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
+  public static final double TRANFER_BELT_PERCENT_OUTPUT = 1;
+  public static final double TRANFER_RAMP_PERCENT_OUTPUT = 1;
+  public static final double HOTDOG_ROLLERS_PERCENT_OUTPUT = 1;
+  public static final double AGITATOR_PERCENT_OUTPUT = 1;
+
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOTDOG_ROLLERS_CONFIGURATION = new TalonFXConfiguration();
