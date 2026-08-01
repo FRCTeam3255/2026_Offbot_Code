@@ -8,6 +8,9 @@ import static edu.wpi.first.units.Units.Inches;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
+
+import edu.wpi.first.units.Units;
+
 import edu.wpi.first.units.measure.Angle;
 
 /** Add your docs here. */
@@ -17,7 +20,10 @@ public class ConstPositional {
 
   public static final Distance DEPLOY_INTAKE_POSITION = Inches.of(1);// TODO find actual distance
 
-  public static final int DEPLOY_INTAKE_PID_SLOT = 0;// TODO add other slots later
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
+
+  public static final int SLOW_INTAKE_SLIDE_PID = 0;
+  public static final int FAST_INTAKE_SLIDE_PID = 1;
 
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
