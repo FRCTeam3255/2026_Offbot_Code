@@ -12,13 +12,13 @@ Each subsystem must be declared as a `public static final` instance with an `*In
 
 ```java
 public static final FreeSpin freeSpinInstance = new FreeSpin();
-private final FreeSpin loggedFreeSpinInstance = freeSpinInstance;
+private final FreeSpin loggedFreeSpin = freeSpinInstance;
 
 public static final Positional positionalInstance = new Positional();
-private final Positional loggedPositionalInstance = positionalInstance;
+private final Positional loggedPositional = positionalInstance;
 ```
 
-- The `loggedXxxInstance` field enables Epilogue's `@Logged` annotation on `RobotContainer` to automatically log subsystem state.
+- The `loggedXxx` field enables Epilogue's `@Logged` annotation on `RobotContainer` to automatically log subsystem state.
 - Do not add `@NotLogged` to the logged reference fields — that would defeat their purpose.
 - Do not instantiate subsystems anywhere else in the codebase.
 
@@ -62,7 +62,7 @@ The constructor must call these methods in order:
 3. `configDriverBindings()`
 4. `configOperatorBindings()`
 5. `configAutonomous()`
-6. Any global hardware setup (e.g. `RobotController.setBrownoutVoltage(5.5)`)
+6. Any global hardware setup (e.g. `RobotController.setBrownoutVoltage(ConstSystem.BROWNOUT_VOLTAGE)`)
 
 ## Binding Methods
 
@@ -86,7 +86,7 @@ Never define bindings inline in the constructor.
 
 ## Common Review Flags
 
-- Subsystem declared without the paired `loggedXxxInstance` field.
+- Subsystem declared without the paired `loggedXxx` field.
 - Subsystem declared without `public static final`.
 - Controller declared with a raw integer port instead of `controllerIDs.*`.
 - State transition command not using `Commands.deferredProxy()`.
