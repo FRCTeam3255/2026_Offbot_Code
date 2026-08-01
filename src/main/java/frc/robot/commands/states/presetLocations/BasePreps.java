@@ -13,17 +13,18 @@ import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class BasePreps extends Command {
-  Angle globalTurretAngle;
-  Angle globalHoodAngle;
-  AngularVelocity globalFlywheelVelocity;
-  RobotState globalState;
+  Angle commandTurretAngle;
+  Angle commandHoodAngle;
+  AngularVelocity commandFlywheelVelocity;
+  RobotState commandState;
 
   /** Creates a new BasePreps. */
-  public BasePreps(Angle turretAngle, Angle hoodAngle, AngularVelocity flywheelVelocity, RobotState state) {
-    globalTurretAngle = turretAngle;
-    globalHoodAngle = hoodAngle;
-    globalFlywheelVelocity = flywheelVelocity;
-    globalState = state;
+  public BasePreps(Angle inputTurretAngle, Angle inputHoodAngle, AngularVelocity inputFlywheelVelocity,
+      RobotState inputState) {
+    commandTurretAngle = inputTurretAngle;
+    commandHoodAngle = inputHoodAngle;
+    commandFlywheelVelocity = inputFlywheelVelocity;
+    commandState = inputState;
     addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -31,10 +32,10 @@ public class BasePreps extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.positionalInstance.setTurretAngle(globalTurretAngle);
-    RobotContainer.positionalInstance.setHoodPivotAngle(globalHoodAngle);
-    RobotContainer.freeSpinInstance.setFlywheelVelocity(globalFlywheelVelocity);
-    RobotContainer.stateMachineInstance.setRobotState(globalState);
+    RobotContainer.positionalInstance.setTurretAngle(commandTurretAngle);
+    RobotContainer.positionalInstance.setHoodPivotAngle(commandHoodAngle);
+    RobotContainer.freeSpinInstance.setFlywheelVelocity(commandFlywheelVelocity);
+    RobotContainer.stateMachineInstance.setRobotState(commandState);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
