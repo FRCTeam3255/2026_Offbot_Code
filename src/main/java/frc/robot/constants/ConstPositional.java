@@ -16,6 +16,11 @@ import edu.wpi.first.units.measure.Angle;
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
+  public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
+  public static final Distance DEPLOY_CLIMBER_DISTANCE = Units.Inches.of(10);
+  public static final Distance CLIMBER_TOLERANCE = Units.Inches.of(0.5);
+  public static final int SLOW_CLIMBER_PID = 0;
+  public static final int FAST_CLIMBER_PID = 1;
   public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
 
   public static final int SLOW_INTAKE_SLIDE_PID = 0;
