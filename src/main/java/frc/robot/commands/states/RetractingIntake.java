@@ -4,6 +4,8 @@
 
 package frc.robot.commands.states;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstFreeSpin;
@@ -23,7 +25,7 @@ public class RetractingIntake extends Command {
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.RETRACTING_INTAKE);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
-    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.INTAKE_SLIDE_CONFIGURATION, 1);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_POSITION, 1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

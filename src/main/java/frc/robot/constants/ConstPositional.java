@@ -4,12 +4,17 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.Inches;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
+import edu.wpi.first.units.measure.Distance;
 
 /** Add your docs here. */
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
+  public static final Distance RETRACTING_INTAKE_POSITION = Inches.of(1);
 
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
