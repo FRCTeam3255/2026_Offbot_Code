@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class ShootingOnPreset extends Command {
   /** Creates a new ShootingOnPreset. */
   public ShootingOnPreset() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

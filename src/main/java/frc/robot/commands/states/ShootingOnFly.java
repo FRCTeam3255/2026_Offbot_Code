@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class ShootingOnFly extends Command {
   /** Creates a new ShootingOnFly. */
   public ShootingOnFly() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

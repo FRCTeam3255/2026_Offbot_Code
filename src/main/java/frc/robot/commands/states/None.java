@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class None extends Command {
   /** Creates a new None. */
   public None() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class PreppingHub extends Command {
   /** Creates a new PreppingHub. */
   public PreppingHub() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class PreppingTower extends Command {
   /** Creates a new PreppingTower. */
   public PreppingTower() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

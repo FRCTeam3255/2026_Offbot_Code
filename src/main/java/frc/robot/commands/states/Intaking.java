@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class Intaking extends Command {
   /** Creates a new Intaking. */
   public Intaking() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

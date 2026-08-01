@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class RetractingIntake extends Command {
   /** Creates a new RetractingIntake. */
   public RetractingIntake() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

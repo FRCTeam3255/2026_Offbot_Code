@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class PreppingOpposingToAlliance extends Command {
   /** Creates a new PreppingOpposingToAlliance. */
   public PreppingOpposingToAlliance() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

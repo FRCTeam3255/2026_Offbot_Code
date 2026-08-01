@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class Ejecting extends Command {
   /** Creates a new Ejecting. */
   public Ejecting() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

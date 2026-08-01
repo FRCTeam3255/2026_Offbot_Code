@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class Unclimbing extends Command {
   /** Creates a new Unclimbing. */
   public Unclimbing() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

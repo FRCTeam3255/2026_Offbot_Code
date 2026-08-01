@@ -12,6 +12,7 @@ import frc.robot.subsystems.StateMachine.RobotState;
 public class ReversingShooter extends Command {
   /** Creates a new ReversingShooter. */
   public ReversingShooter() {
+    addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
