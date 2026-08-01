@@ -27,8 +27,8 @@ public class ConstPositional {
   public static final Angle PREP_HUB_HOOD = Degrees.of(1);// TODO: find actual value
   public static final Angle PREP_HUB_TURRET = Degrees.of(1);// TODO: find actual value
 
-  public static final Angle PREP_NEUTRAL_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual value
-  public static final Angle PREP_NEUTRAL_TURRET = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_NEUTRAL_TO_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual value
+  public static final Angle PREP_NEUTRAL_TO_ALLIANCE_TURRET = Degrees.of(1);// TODO: find actual value
 
   public static final Angle PREP_OPPOSING_TO_ALLIANCE_HOOD = Degrees.of(1);// TODO: find actual value
   public static final Angle PREP_OPPOSING_TO_ALLIANCE_TURRET = Degrees.of(1);// TODO: find actual value

@@ -19,7 +19,7 @@ public class ConstFreeSpin {
   public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_NEUTRAL_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(100);// TODO:find actual value
