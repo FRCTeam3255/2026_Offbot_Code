@@ -10,7 +10,8 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
-
+  public static final double TURRET_TOLERANCE = 1;
+  public static final double HOOD_TOLERANCE = 1;
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
