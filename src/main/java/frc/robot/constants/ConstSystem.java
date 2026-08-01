@@ -4,10 +4,6 @@
 
 package frc.robot.constants;
 
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.units.Units;
-
 public final class ConstSystem {
 
   public static final String PRACTICE_BOT_RIO_SERIAL_NUMBER = ""; // TODO: Replace with actual RIO serial number
