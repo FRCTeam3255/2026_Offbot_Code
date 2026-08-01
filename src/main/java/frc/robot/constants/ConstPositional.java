@@ -21,6 +21,10 @@ public class ConstPositional {
   public static final Distance CLIMBER_TOLERANCE = Units.Inches.of(0.5);
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
+
+  public static final int SLOW_INTAKE_SLIDE_PID = 0;
+  public static final int FAST_INTAKE_SLIDE_PID = 1;
 
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
