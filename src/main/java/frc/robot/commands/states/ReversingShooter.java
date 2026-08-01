@@ -21,9 +21,9 @@ public class ReversingShooter extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.REVERSING_SHOOTER);
-    RobotContainer.freeSpinInstance.setFlywheelVelocity(ConstFreeSpin.REVERSING_FLYWHEEL_SPEED);
-    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_BELT_SPEED);
-    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_RAMP_SPEED);
+    RobotContainer.freeSpinInstance.setFlywheelVelocity(ConstFreeSpin.REVERSING_FLYWHEEL_VELOCITY);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_BELT_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_RAMP_PERCENT_OUTPUT);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
