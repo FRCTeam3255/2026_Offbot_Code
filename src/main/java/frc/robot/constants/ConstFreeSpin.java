@@ -18,6 +18,7 @@ public class ConstFreeSpin {
   public static final double REVERSING_TRANSFER_BELT_PERCENT_OUTPUT = -1;
   public static final double REVERSING_TRANSFER_RAMP_PERCENT_OUTPUT = -1;
 
+  public static final double INTAKE_ROLLER_PERCENT_OUTPUT = 1;
   public static final double REVERSE_INTAKE_PERCENT_OUTPUT = -1;
   public static final double REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT = -1;
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
