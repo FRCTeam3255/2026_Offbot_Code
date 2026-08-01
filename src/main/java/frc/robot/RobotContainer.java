@@ -196,7 +196,7 @@ public class RobotContainer {
     conDriver.btn_Back
         .onTrue(TRY_PREPPING_CLIMB)
         .onTrue(TRY_CLIMBING)
-        .onTrue(TRY_UNCLIMBING)
+        .onTrue(TRY_UNCLIMBING);
 
     // Example Pose Drive
 
