@@ -40,8 +40,8 @@ public class RetractingIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // RobotContainer.positionalInstance.getTurretAngle().isNear(commandTurretAngle,
-    // tolerance)
+    RobotContainer.positionalInstance.getIntakeSlidePosition().isNear(ConstPositional.RETRACTING_INTAKE_POSITION,
+        ConstPositional.INTAKE_TOLERANCE);
     return false;
   }
 }
