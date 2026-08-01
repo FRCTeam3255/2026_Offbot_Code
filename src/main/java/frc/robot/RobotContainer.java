@@ -64,9 +64,57 @@ public class RobotContainer {
   private final Vision loggedVisionInstance = visionInstance;
   public static final Telemetry telemetryInstance = new Telemetry();
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
-
+  // states
   Command TRY_NONE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.NONE));
+
+  Command TRY_INTAKING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.INTAKING));
+
+  Command TRY_EJECTING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.EJECTING));
+
+  Command TRY_RETRACTING_INTAKE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.RETRACTING_INTAKE));
+
+  Command TRY_SHOOTING_ON_PRESET = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.SHOOTING_ON_PRESET));
+
+  Command TRY_REVERSING_SHOOTER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.REVERSING_SHOOTER));
+
+  Command TRY_SHOOTING_ON_FLY = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.SHOOTING_ON_FLY));
+
+  Command TRY_PREPPING_TRENCH = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_TRENCH));
+
+  Command TRY_PREPPING_OSIDE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_OSIDE));
+
+  Command TRY_PREPPING_DSIDE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_DSIDE));
+
+  Command TRY_PREPPING_TOWER = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_TOWER));
+
+  Command TRY_PREPPING_HUB = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_HUB));
+
+  Command TRY_PREPPING_NEUTRAL_TO_ALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_NEUTRAL_TO_ALLIANCE));
+
+  Command TRY_PREPPING_OPPOSING_TO_ALLIANCE = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_OPPOSING_TO_ALLIANCE));
+
+  Command TRY_PREPPING_CLIMB = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_CLIMB));
+
+  Command TRY_CLIMBING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.CLIMBING));
+
+  Command TRY_UNCLIMBING = Commands.deferredProxy(
+      () -> stateMachineInstance.tryState(RobotState.UNCLIMBING));
 
   Command MANUAL = new DeferredCommand(
       driverStateMachineInstance.tryState(
@@ -100,11 +148,58 @@ public class RobotContainer {
   }
 
   private void configDriverBindings() {
-    conDriver.btn_North.whileTrue(new ResetPose());
-    // Example Pose Drive
+    conDriver.btn_LeftTrigger
+        .onTrue(TRY_INTAKING)
+        .onFalse(TRY_NONE);
+
+    conDriver.btn_RightTrigger
+        .onTrue(TRY_SHOOTING_ON_FLY)
+        .onTrue(TRY_SHOOTING_ON_PRESET)
+        .onFalse(TRY_NONE);
+
+    conDriver.btn_LeftStick
+        .onTrue(TRY_PREPPING_OPPOSING_TO_ALLIANCE);
+
+    conDriver.btn_RightStick
+        .onTrue(TRY_PREPPING_NEUTRAL_TO_ALLIANCE);
+
+    conDriver.btn_North
+        .whileTrue(new ResetPose());
+
+    conDriver.btn_East
+        .onTrue(TRY_REVERSING_SHOOTER)
+        .onFalse(TRY_NONE);
+
+    conDriver.btn_South
+        .onTrue(TRY_EJECTING)
+        .onFalse(TRY_NONE);
+
+    conDriver.btn_West
+        .onTrue(TRY_PREPPING_TRENCH);
+
+    conDriver.btn_Y
+        .onTrue(TRY_PREPPING_HUB);
+
     conDriver.btn_X
-        .whileTrue(EXAMPLE_POSE_DRIVE)
-        .onFalse(Commands.runOnce(() -> driverStateMachineInstance.setDriverState(DriverState.MANUAL)));
+        .onTrue(TRY_PREPPING_DSIDE);
+
+    conDriver.btn_B
+        .onTrue(TRY_PREPPING_OSIDE);
+
+    conDriver.btn_A
+        .onTrue(TRY_PREPPING_TOWER);
+
+    conDriver.btn_Start
+        .onTrue(TRY_RETRACTING_INTAKE)
+        .onFalse(TRY_NONE);
+
+    conDriver.btn_Back
+        .onTrue(TRY_PREPPING_CLIMB)
+        .onTrue(TRY_CLIMBING)
+        .onTrue(TRY_UNCLIMBING);
+
+    // Example Pose Drive
+
   }
 
   private void configOperatorBindings() {
