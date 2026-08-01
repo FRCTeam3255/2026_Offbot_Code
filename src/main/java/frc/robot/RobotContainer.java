@@ -157,6 +157,10 @@ public class RobotContainer {
         .onTrue(TRY_SHOOTING_ON_PRESET)
         .onFalse(TRY_NONE);
 
+    conDriver.btn_RightBumper
+        .onTrue(TRY_RETRACTING_INTAKE)
+        .onFalse(TRY_NONE);
+
     conDriver.btn_LeftStick
         .onTrue(TRY_PREPPING_OPPOSING_TO_ALLIANCE);
 
@@ -190,7 +194,6 @@ public class RobotContainer {
         .onTrue(TRY_PREPPING_TOWER);
 
     conDriver.btn_Start
-        .onTrue(TRY_RETRACTING_INTAKE)
         .onFalse(TRY_NONE);
 
     conDriver.btn_Back
