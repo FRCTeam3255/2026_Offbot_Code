@@ -48,34 +48,59 @@ public class FreeSpin extends SubsystemBase {
 
   final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
 
-  public void setIntakeRollersSpeed(double PercentOutput) {
-    intakeRollerWestLeader.set(PercentOutput);
+  public void setIntakeRollersPercentOutput(double percentOutput) {
+    intakeRollerWestLeader.set(percentOutput);
     intakeRollerEastFollower.setControl(intakeFollower);
   }
 
-  public void setFlywheelSpeed(AngularVelocity speed) {
-    westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(speed));
+  public AngularVelocity getIntakeRollersVelocity() {
+    return intakeRollerWestLeader.getVelocity().getValue();
+  }
+
+  public void setFlywheelVelocity(AngularVelocity velocity) {
+    westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(velocity));
     eastFlywheelFollower.setControl(flywheelFollower);
   }
 
-  public AngularVelocity getFlywheelSpeed() {
+  public void setFlywheelPercentOutput(double percentOutput) {
+    westFlywheelLeader.set(percentOutput);
+    eastFlywheelFollower.setControl(flywheelFollower);
+  }
+
+  public AngularVelocity getFlywheelVelocity() {
     return westFlywheelLeader.getVelocity().getValue();
   }
 
-  public void setHotdogRollersSpeed(double PercentOutput) {
-    hotdogRollers.set(PercentOutput);
+  public void setHotdogRollersPercentOutput(double percentOutput) {
+    hotdogRollers.set(percentOutput);
   }
 
-  public void setTransferBeltSpeed(double PercentOutput) {
-    transferBelt.set(PercentOutput);
+  public AngularVelocity getHotdogRollersVelocity() {
+    return hotdogRollers.getVelocity().getValue();
   }
 
-  public void setAgitatorSpeed(double PercentOutput) {
-    agitator.set(PercentOutput);
+  public void setTransferBeltPercentOutput(double percentOutput) {
+    transferBelt.set(percentOutput);
   }
 
-  public void setTransferRampSpeed(double PercentOutput) {
-    transferRamp.set(PercentOutput);
+  public AngularVelocity getTransferBeltVelocity() {
+    return transferBelt.getVelocity().getValue();
+  }
+
+  public void setAgitatorPercentOutput(double percentOutput) {
+    agitator.set(percentOutput);
+  }
+
+  public AngularVelocity getAgitatorVelocity() {
+    return agitator.getVelocity().getValue();
+  }
+
+  public void setTransferRampPercentOutput(double percentOutput) {
+    transferRamp.set(percentOutput);
+  }
+
+  public AngularVelocity getTransferRampVelocity() {
+    return transferRamp.getVelocity().getValue();
   }
 
   @Override
