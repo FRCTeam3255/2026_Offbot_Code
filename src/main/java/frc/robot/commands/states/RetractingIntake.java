@@ -24,7 +24,7 @@ public class RetractingIntake extends Command {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.RETRACTING_INTAKE);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_POSITION,
-        ConstPositional.SLOW_INTAKE_SLIDE_PID);
+        ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
