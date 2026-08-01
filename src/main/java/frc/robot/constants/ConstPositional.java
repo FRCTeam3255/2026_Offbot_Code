@@ -27,6 +27,7 @@ public class ConstPositional {
   public static final int FAST_CLIMBER_PID = 1;
   public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
 
+  public static final Distance RETRACT_INTAKE_SLIDE_DISTANCE = Units.Inches.of(0);// TODO: Get actual value
   public static final int SLOW_INTAKE_SLIDE_PID = 0;
   public static final int FAST_INTAKE_SLIDE_PID = 1;
 

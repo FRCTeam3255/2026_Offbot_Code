@@ -6,19 +6,32 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstPositional;
+import frc.robot.subsystems.FreeSpin;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class ShootingOnPreset extends Command {
+
   /** Creates a new ShootingOnPreset. */
   public ShootingOnPreset() {
+
     addRequirements(RobotContainer.stateMachineInstance);
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.TRANFER_BELT_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANFER_RAMP_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACT_INTAKE_SLIDE_DISTANCE,
+        ConstPositional.SLOW_INTAKE_SLIDE_PID);
+
     RobotContainer.stateMachineInstance.setRobotState(RobotState.SHOOTING_ON_PRESET);
   }
 
