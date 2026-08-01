@@ -19,6 +19,14 @@ public class ConstFreeSpin {
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
   public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
+  public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(100);// TODO: find actual value
+  public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(100);// TODO:find actual value
+
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOTDOG_ROLLERS_CONFIGURATION = new TalonFXConfiguration();
