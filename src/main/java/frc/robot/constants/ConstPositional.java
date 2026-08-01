@@ -14,7 +14,8 @@ import edu.wpi.first.units.measure.Distance;
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
-  public static final Distance RETRACTING_INTAKE_POSITION = Inches.of(1);
+  public static final Distance RETRACTING_INTAKE_POSITION = Inches.of(1); //TODO ADD ACTUAL VALUES DURING TESTING
+  public static final int RETRACT_INTAKE_PID_SLOT = 0; //TODO ADD ACTUAL VALUE DURING TESTING
 
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
