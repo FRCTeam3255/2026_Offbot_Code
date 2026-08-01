@@ -33,7 +33,7 @@ All subsystem instances are declared as `public static` fields in `RobotContaine
 | State commands | `TRY_` prefix + `SCREAMING_SNAKE_CASE` | `TRY_INTAKING` |
 | Controller fields | `con` prefix | `conDriver`, `conOperator` |
 | Subsystem instances | `*Instance` suffix | `freeSpinInstance`, `drivetrainInstance` |
-| Logged subsystem refs | `logged*Instance` | `loggedFreeSpinInstance` |
+| Logged subsystem refs | `logged*` | `loggedFreeSpin` |
 
 ---
 
