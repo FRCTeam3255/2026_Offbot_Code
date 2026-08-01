@@ -6,10 +6,17 @@ package frc.robot.constants;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
+import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Distance;
+
 /** Add your docs here. */
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
+
+  public static final int SLOW_INTAKE_PID = 0;
+  public static final int FAST_INTAKE_PID = 1;
 
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
