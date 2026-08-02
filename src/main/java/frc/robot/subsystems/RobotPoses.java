@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
@@ -14,10 +15,13 @@ import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstField;
 
 @Logged
 public class RobotPoses extends SubsystemBase {
   /** Creates a new RobotPoses. */
+  boolean isOurShift = false;
+  Pose2d target = Pose2d.kZero;
   Field2d field2d = new Field2d();
   FieldObject2d robotObject = field2d.getObject("Robot");
 
@@ -65,5 +69,19 @@ public class RobotPoses extends SubsystemBase {
         Pose3d.kZero.plus(turretPivotPoint).getTranslation(), turretRotation3d);
     model2Hood = Pose3d.kZero
         .rotateAround(Pose3d.kZero.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
+
+    target = isOurShift ? getHub() : getPass();
+  }
+
+  public Pose2d getHub() {
+    return ConstField.FieldElementGroups.HUB_POSE_SET.getAlliancePoses().get(0);
+  }
+
+  public Pose2d getPass() {
+    return ConstField.FieldElementGroups.PASS_TO_CORNER_POSE.getAlliancePoses().get(0);
+  }
+
+  public Pose2d getTarget() {
+    return target;
   }
 }

@@ -4,6 +4,7 @@
 
 package frc.robot.commands.states;
 
+import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Seconds;
@@ -36,13 +37,13 @@ public class ShootingOnFly extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    target = RobotContainer.robotPose.getTarget();
     estimatedPoseOverTime = RobotContainer.drivetrainInstance.estimatedPoseOverTime;
     distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
-    // TODO: replace with hub
     RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
-        .snapToTarget(estimatedPoseOverTime, Pose2d.kZero));
+        .snapToTarget(estimatedPoseOverTime, Pose2d.kZero).minus(Degrees.of(180)));
     RobotContainer.positionalInstance
         .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));
     RobotContainer.freeSpinInstance
