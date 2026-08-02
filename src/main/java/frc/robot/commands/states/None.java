@@ -28,8 +28,6 @@ public class None extends Command {
     RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.STOP);
     RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.STOP);
     RobotContainer.freeSpinInstance.setFlywheelPercentOutput(ConstFreeSpin.STOP);
-    RobotContainer.positionalInstance.setHoodPivotAngle(ConstPositional.HOOD_ANGLE_ZERO);
-    RobotContainer.positionalInstance.setTurretAngle(ConstPositional.TURRET_ANGLE_ZERO);
     RobotContainer.positionalInstance.setClimberPosition(ConstPositional.RETRACT_CLIMBER_DISTANCE,
         ConstPositional.FAST_CLIMBER_PID);
 
