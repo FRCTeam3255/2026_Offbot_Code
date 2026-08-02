@@ -4,12 +4,12 @@
 
 package frc.robot.constants;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
 
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-
 import edu.wpi.first.units.Units;
-import edu.wpi.first.units.measure.Distance;
+
 import edu.wpi.first.units.measure.Angle;
 
 /** Add your docs here. */
