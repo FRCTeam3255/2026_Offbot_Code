@@ -23,7 +23,7 @@ public class RetractingIntake extends Command {
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.RETRACTING_INTAKE);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
-    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_DISTANCE,
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE,
         ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
 
@@ -40,7 +40,7 @@ public class RetractingIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.positionalInstance.getIntakeSlidePosition().isNear(ConstPositional.RETRACTING_INTAKE_DISTANCE,
-        ConstPositional.INTAKE_SLIDE_TOLERANCE);
+    return RobotContainer.positionalInstance.getIntakeSlidePosition()
+        .isNear(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE, ConstPositional.INTAKE_SLIDE_TOLERANCE);
   }
 }
