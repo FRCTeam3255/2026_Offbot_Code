@@ -30,13 +30,13 @@ public class ConstFreeSpin {
   public static final AngularVelocity HOTDOG_ROLLERS_VELOCITY = RPM.of(6000);// TODO: replace with actual values
   
 
-  public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(100);// TODO: find actual value
-  public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(100);// TODO:find actual value
+  public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(4100);// TODO: find actual value
+  public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(4100);// TODO: find actual value
+  public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(3700);// TODO: find actual value
+  public static final AngularVelocity PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL = RPM.of(3700);// TODO: find actual value
+  public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(3700);// TODO: find actual value
+  public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(4300);// TODO: find actual value
+  public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(4100);// TODO:find actual value
 
 
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
