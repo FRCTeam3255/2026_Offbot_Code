@@ -34,11 +34,11 @@ public class Positional extends SubsystemBase {
   MotionMagicExpoVoltage turretMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage climberMotionRequest = new MotionMagicExpoVoltage(0);
 
-  Angle lastDesiredHoodPivotAngle = Degrees.zero();
-  Angle lastDesiredTurretAngle = Degrees.zero();
-  Distance lastDesiredIntakePosition = Inches.zero();
-  Distance lastDesiredClimberPosition = Inches.zero();
   public Time timeOfFlight = Seconds.zero();
+  public Angle lastDesiredHoodPivotAngle = Degrees.zero();
+  public Angle lastDesiredTurretAngle = Degrees.zero();
+  public Distance lastDesiredIntakePosition = Inches.zero();
+  public Distance lastDesiredClimberPosition = Inches.zero();
 
   public Positional() {
     intakeSlide.getConfigurator().apply(ConstPositional.INTAKE_SLIDE_CONFIGURATION);
@@ -54,7 +54,7 @@ public class Positional extends SubsystemBase {
   }
 
   public void setClimberPosition(Distance setPoint, int slot) {
-    climber.setControl(intakeSlideMotionRequest.withPosition(setPoint.in(Units.Inches)).withSlot(slot));
+    climber.setControl(climberMotionRequest.withPosition(setPoint.in(Units.Inches)).withSlot(slot));
     lastDesiredClimberPosition = setPoint;
   }
 

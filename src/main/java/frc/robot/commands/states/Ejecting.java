@@ -6,6 +6,8 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstPositional;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -19,8 +21,12 @@ public class Ejecting extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
     RobotContainer.stateMachineInstance.setRobotState(RobotState.EJECTING);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.REVERSE_INTAKE_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.REVERSE_AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_SLIDE_DISTANCE,
+        ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
