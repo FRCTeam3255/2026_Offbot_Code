@@ -47,6 +47,8 @@ public class FreeSpin extends SubsystemBase {
   }
 
   final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage transferRampVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public void setIntakeRollersPercentOutput(double percentOutput) {
     intakeRollerWestLeader.set(percentOutput);
