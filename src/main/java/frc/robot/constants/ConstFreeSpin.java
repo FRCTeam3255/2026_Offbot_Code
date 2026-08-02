@@ -20,9 +20,9 @@ public class ConstFreeSpin {
   public static final double REVERSE_AGITATOR_PERCENT_OUTPUT = -1;
   public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
-  public static final AngularVelocity TRANSFER_BELT_PERCENT_VELOCITY = RPM.of(1);
-  public static final AngularVelocity TRANSFER_RAMP_PERCENT_VELOCITY = RPM.of(1);
-  public static final AngularVelocity HOTDOG_ROLLERS_PERCENT_VELOCITY = RPM.of(1);
+  public static final AngularVelocity TRANSFER_BELT_PERCENT_VELOCITY = RPM.of(6000);// TODO: replace with actual values
+  public static final AngularVelocity TRANSFER_RAMP_PERCENT_VELOCITY = RPM.of(6000);// TODO: replace with actual values
+  public static final AngularVelocity HOTDOG_ROLLERS_PERCENT_VELOCITY = RPM.of(6000);// TODO: replace with actual values
   public static final AngularVelocity AGITATOR_PERCENT_VELOCITY = RPM.of(1);
   public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value
   public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(100);// TODO: find actual value

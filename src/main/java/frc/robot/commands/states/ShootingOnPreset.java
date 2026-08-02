@@ -24,14 +24,14 @@ public class ShootingOnPreset extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    RobotContainer.stateMachineInstance.setRobotState(RobotState.SHOOTING_ON_PRESET);
     RobotContainer.freeSpinInstance.setTransferBeltVelocity(ConstFreeSpin.TRANSFER_BELT_PERCENT_VELOCITY);
     RobotContainer.freeSpinInstance.setTransferRampVelocity(ConstFreeSpin.TRANSFER_RAMP_PERCENT_VELOCITY);
     RobotContainer.freeSpinInstance.setAgitatorVelocity(ConstFreeSpin.AGITATOR_PERCENT_VELOCITY);
     RobotContainer.freeSpinInstance.setHotdogRollersVelocity(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_VELOCITY);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACT_INTAKE_SLIDE_DISTANCE,
         ConstPositional.SLOW_INTAKE_SLIDE_PID);
-
-    RobotContainer.stateMachineInstance.setRobotState(RobotState.SHOOTING_ON_PRESET);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
