@@ -15,7 +15,6 @@ import frc.robot.RobotContainer;
 import frc.robot.constants.ConstDrivetrain;
 import frc.robot.constants.ConstField;
 import frc.robot.subsystems.DriverStateMachine.DriverState;
-import frc.robot.subsystems.Drivetrain;
 
 public class DriveManual extends Command {
   DoubleSupplier xAxis, yAxis, rotationXAxis;
