@@ -51,6 +51,8 @@ public class ConstPositional {
   public static final Angle PREP_TRENCH_HOOD = Degrees.of(1);// TODO: find actual value
   public static final Angle PREP_TRENCH_TURRET = Degrees.of(1);// TODO: find actual value
 
+  public static final Angle HOOD_ANGLE_RETRACT = Degrees.of(0);
+  public static final Angle TURRET_ANGLE_HOME = Degrees.of(0);
   // configuration
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();

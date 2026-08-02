@@ -56,12 +56,12 @@ public class Positional extends SubsystemBase {
   }
 
   public void setHoodPivotAngle(Angle setPoint) {
-    hoodPivot.setControl(climberMotionRequest.withPosition(setPoint));
+    hoodPivot.setControl(hoodPivotMotionRequest.withPosition(setPoint));
     lastDesiredHoodPivotAngle = setPoint;
   }
 
   public void setTurretAngle(Angle setPoint) {
-    turret.setControl(climberMotionRequest.withPosition(setPoint));
+    turret.setControl(turretMotionRequest.withPosition(setPoint));
     lastDesiredTurretAngle = setPoint;
   }
 
