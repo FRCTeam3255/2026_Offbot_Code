@@ -5,12 +5,9 @@
 package frc.robot.constants;
 
 import static edu.wpi.first.units.Units.Inches;
-
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-
 import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
-
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 
@@ -18,7 +15,7 @@ import edu.wpi.first.units.measure.Angle;
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
-  public static final Distance RETRACTING_INTAKE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
+  public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
   public static final Distance DEPLOY_CLIMBER_DISTANCE = Units.Inches.of(10);
