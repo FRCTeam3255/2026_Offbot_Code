@@ -13,7 +13,7 @@ import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.StateMachine.RobotState;/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
+import frc.robot.subsystems.StateMachine.RobotState;
 
 public class ShootingOnFly extends Command {
   /** Creates a new ShootingOnFly. */

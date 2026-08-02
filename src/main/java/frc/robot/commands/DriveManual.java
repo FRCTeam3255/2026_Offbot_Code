@@ -27,6 +27,7 @@ public class DriveManual extends Command {
   boolean isOpenLoop;
   BooleanSupplier slowMode;
   Timer delayTimer = new Timer();
+  Pose2d estimatedPoseOverTime = RobotContainer.drivetrainInstance.estimatedPoseOverTime;
 
   public DriveManual(DoubleSupplier xAxis, DoubleSupplier yAxis,
       DoubleSupplier rotationAxis, BooleanSupplier slowMode) {
@@ -64,9 +65,11 @@ public class DriveManual extends Command {
 
     driveWithSticks(velocities);
     updateXbrake();
-    if (RobotContainer.positionalInstance.timeOfFlight.equals(Seconds.zero())) {
-      RobotContainer.drivetrainInstance.estimatedPoseOverTime = estimatePoseOverTime(
+    if (!RobotContainer.positionalInstance.timeOfFlight.equals(Seconds.zero())) {
+      estimatedPoseOverTime = estimatePoseOverTime(
           RobotContainer.positionalInstance.timeOfFlight, velocities);
+    } else {
+      estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
     }
   }
 
@@ -120,9 +123,9 @@ public class DriveManual extends Command {
 
   public Pose2d estimatePoseOverTime(Time time, ChassisSpeeds velocities) {
     return RobotContainer.drivetrainInstance.getPose().plus(new Transform2d(
-        velocities.vxMetersPerSecond * time.magnitude(),
-        velocities.vyMetersPerSecond * time.magnitude(),
-        new Rotation2d(velocities.omegaRadiansPerSecond * time.magnitude())));
+        velocities.vxMetersPerSecond * time.in(Seconds),
+        velocities.vyMetersPerSecond * time.in(Seconds),
+        new Rotation2d(velocities.omegaRadiansPerSecond * time.in(Seconds))));
   }
 
   @Override
