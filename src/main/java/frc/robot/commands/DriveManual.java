@@ -4,10 +4,16 @@
 
 package frc.robot.commands;
 
+import static edu.wpi.first.units.Units.Seconds;
+
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -15,7 +21,6 @@ import frc.robot.RobotContainer;
 import frc.robot.constants.ConstDrivetrain;
 import frc.robot.constants.ConstField;
 import frc.robot.subsystems.DriverStateMachine.DriverState;
-import frc.robot.subsystems.Drivetrain;
 
 public class DriveManual extends Command {
   DoubleSupplier xAxis, yAxis, rotationXAxis;
@@ -59,6 +64,10 @@ public class DriveManual extends Command {
 
     driveWithSticks(velocities);
     updateXbrake();
+    if (RobotContainer.positionalInstance.timeOfFlight.equals(Seconds.zero())) {
+      RobotContainer.drivetrainInstance.estimatedPoseOverTime = estimatePoseOverTime(
+          RobotContainer.positionalInstance.timeOfFlight, velocities);
+    }
   }
 
   private void driveWithSticks(ChassisSpeeds velocities) {
@@ -107,6 +116,13 @@ public class DriveManual extends Command {
         ConstDrivetrain.ROTATION_STICK_DEADBAND)
         || RobotContainer.drivetrainInstance.isStickHit(rotationXAxis, ConstDrivetrain.ROTATION_STICK_DEADBAND);
     RobotContainer.drivetrainInstance.setXbrakeAllowed(!isStickHit);
+  }
+
+  public Pose2d estimatePoseOverTime(Time time, ChassisSpeeds velocities) {
+    return RobotContainer.drivetrainInstance.getPose().plus(new Transform2d(
+        velocities.vxMetersPerSecond * time.magnitude(),
+        velocities.vyMetersPerSecond * time.magnitude(),
+        new Rotation2d(velocities.omegaRadiansPerSecond * time.magnitude())));
   }
 
   @Override

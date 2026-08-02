@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Seconds;
 
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -14,6 +15,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
@@ -36,6 +38,7 @@ public class Positional extends SubsystemBase {
   Angle lastDesiredTurretAngle = Degrees.zero();
   Distance lastDesiredIntakePosition = Inches.zero();
   Distance lastDesiredClimberPosition = Inches.zero();
+  public Time timeOfFlight = Seconds.zero();
 
   public Positional() {
     intakeSlide.getConfigurator().apply(ConstPositional.INTAKE_SLIDE_CONFIGURATION);
@@ -91,6 +94,14 @@ public class Positional extends SubsystemBase {
       return lastDesiredClimberPosition;
     }
     return Units.Inches.of(climber.getPosition().getValueAsDouble());
+  }
+
+  public Angle getMappedHoodAngle(Distance distance) {
+    return Degrees.of(ConstPositional.hoodAngleMap.get(distance.in(Inches)));
+  }
+
+  public Time getMappedTOF(Distance distance) {
+    return Seconds.of(ConstPositional.timeOfFlightMap.get(distance.in(Inches)));
   }
 
   @Override
