@@ -30,7 +30,7 @@ public class ShootingOnPreset extends Command {
     RobotContainer.freeSpinInstance.setTransferRampVelocity(ConstFreeSpin.TRANSFER_RAMP_VELOCITY);
     RobotContainer.freeSpinInstance.setAgitatorVelocity(ConstFreeSpin.AGITATOR_VELOCITY);
     RobotContainer.freeSpinInstance.setHotdogRollersVelocity(ConstFreeSpin.HOTDOG_ROLLERS_VELOCITY);
-    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACT_INTAKE_SLIDE_DISTANCE,
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE,
         ConstPositional.SLOW_INTAKE_SLIDE_PID);
   }
 

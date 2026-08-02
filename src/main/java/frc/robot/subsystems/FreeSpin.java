@@ -88,7 +88,7 @@ public class FreeSpin extends SubsystemBase {
   }
 
   public void setTransferBeltVelocity(AngularVelocity velocity) {
-    hotdogRollers.setControl(transferBeltVelocityRequest.withVelocity(velocity));
+    transferBelt.setControl(transferBeltVelocityRequest.withVelocity(velocity));
   }
 
   public void setTransferBeltPercentOutput(double percentOutput) {
@@ -100,7 +100,7 @@ public class FreeSpin extends SubsystemBase {
   }
 
   public void setAgitatorVelocity(AngularVelocity velocity) {
-    hotdogRollers.setControl(agitatorVelocityRequest.withVelocity(velocity));
+    agitator.setControl(agitatorVelocityRequest.withVelocity(velocity));
   }
 
   public void setAgitatorPercentOutput(double percentOutput) {
@@ -112,7 +112,7 @@ public class FreeSpin extends SubsystemBase {
   }
 
   public void setTransferRampVelocity(AngularVelocity velocity) {
-    hotdogRollers.setControl(transferRampVelocityRequest.withVelocity(velocity));
+    transferRamp.setControl(transferRampVelocityRequest.withVelocity(velocity));
   }
 
   public void setTransferRampPercentOutput(double percentOutput) {
