@@ -16,7 +16,7 @@ public class ConstPositional {
   // outputs
   public static final double STOP = 0;
 
-  // CLIMBER DISNTANCES
+  // CLIMBER DISTANCES
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
   public static final Distance DEPLOY_CLIMBER_DISTANCE = Units.Inches.of(10);
 
@@ -31,7 +31,7 @@ public class ConstPositional {
   public static final int FAST_INTAKE_SLIDE_PID = 1;
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
-  // INTAKE DISTNACES
+  // INTAKE DISTANCES
   public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(0); // TODO ADD ACTUAL VALUES DURING TESTING
 
@@ -60,7 +60,7 @@ public class ConstPositional {
   public static final Angle HOOD_ANGLE_RETRACT = Degrees.of(0);
   public static final Angle TURRET_ANGLE_HOME = Degrees.of(0);
 
-  // POSITIONAL MECHINISM COFIGURATIONS
+  // POSITIONAL MECHANISM CONFIGURATIONS
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TURRET_CONFIGURATION = new TalonFXConfiguration();
