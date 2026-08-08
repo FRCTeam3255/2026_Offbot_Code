@@ -202,6 +202,34 @@
      "val":1.5707963267948966
     }
    },
+   "depot":{
+    "x":{
+     "exp":"dside_bump.x",
+     "val":3.744417905807495
+    },
+    "y":{
+     "exp":"dside_bump.y",
+     "val":5.959388732910156
+    },
+    "heading":{
+     "exp":"dside_bump.heading",
+     "val":0.0
+    }
+   },
+   "dside_bump":{
+    "x":{
+     "exp":"3.744417905807495 m",
+     "val":3.744417905807495
+    },
+    "y":{
+     "exp":"5.959388732910156 m",
+     "val":5.959388732910156
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
    "o_side_alliance_bump":{
     "x":{
      "exp":"d_side_alliance_bump.x",

@@ -28,6 +28,8 @@ public final class ChoreoVars {
         public static final Pose2d d_side_neutral_middle = new Pose2d(7.8437409, 4.5358677, Rotation2d.fromRadians(1.5707963));
         public static final Pose2d d_side_neutral_wall = new Pose2d(7.8437409, 7.6582813, Rotation2d.fromRadians(1.5707963));
         public static final Pose2d d_side_trench = new Pose2d(4.1270618, 7.6582813, Rotation2d.fromRadians(1.5707963));
+        public static final Pose2d depot = new Pose2d(3.7444179, 5.9593887, Rotation2d.fromRadians(0));
+        public static final Pose2d dside_bump = new Pose2d(3.7444179, 5.9593887, Rotation2d.fromRadians(0));
         public static final Pose2d o_side_alliance_bump = new Pose2d(3.3140977, 2.6981319, Rotation2d.fromRadians(-0.5235988));
         public static final Pose2d o_side_neutral_bump = new Pose2d(5.859498, 2.6981319, Rotation2d.fromRadians(-0.5235988));
         public static final Pose2d o_side_neutral_middle = new Pose2d(7.8437409, 3.5341323, Rotation2d.fromRadians(-1.5707963));
