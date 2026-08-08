@@ -43,7 +43,8 @@ public class ShootingOnFly extends Command {
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
     RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
-        .snapToTarget(estimatedPoseOverTime, Pose2d.kZero).minus(Degrees.of(180)));
+        .snapToTarget(estimatedPoseOverTime, Pose2d.kZero).minus(Degrees.of(180))
+        .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
     RobotContainer.positionalInstance
         .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));
     RobotContainer.freeSpinInstance
