@@ -44,9 +44,9 @@ public class RobotPoses extends SubsystemBase {
   @Override
   public void periodic() {
     intakeTransform3d = new Transform3d(
-        Units.Inches.zero(),
-        Units.Inches.zero(),
         RobotContainer.positionalInstance.lastDesiredIntakePosition,
+        Units.Inches.zero(),
+        Units.Inches.zero(),
         Rotation3d.kZero);
 
     turretRotation3d = new Rotation3d(

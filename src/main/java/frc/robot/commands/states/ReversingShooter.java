@@ -6,6 +6,7 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -20,6 +21,9 @@ public class ReversingShooter extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.REVERSING_SHOOTER);
+    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(ConstFreeSpin.REVERSING_FLYWHEEL_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_BELT_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_RAMP_PERCENT_OUTPUT);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -49,6 +49,10 @@ public class FreeSpin extends SubsystemBase {
   }
 
   final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage hotdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage agitatorVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage transferRampVelocityRequest = new MotionMagicVelocityVoltage(0);
 
   public void setIntakeRollersPercentOutput(double percentOutput) {
     intakeRollerWestLeader.set(percentOutput);
@@ -73,12 +77,20 @@ public class FreeSpin extends SubsystemBase {
     return westFlywheelLeader.getVelocity().getValue();
   }
 
+  public void setHotdogRollersVelocity(AngularVelocity velocity) {
+    hotdogRollers.setControl(hotdogRollersVelocityRequest.withVelocity(velocity));
+  }
+
   public void setHotdogRollersPercentOutput(double percentOutput) {
     hotdogRollers.set(percentOutput);
   }
 
   public AngularVelocity getHotdogRollersVelocity() {
     return hotdogRollers.getVelocity().getValue();
+  }
+
+  public void setTransferBeltVelocity(AngularVelocity velocity) {
+    transferBelt.setControl(transferBeltVelocityRequest.withVelocity(velocity));
   }
 
   public void setTransferBeltPercentOutput(double percentOutput) {
@@ -89,12 +101,20 @@ public class FreeSpin extends SubsystemBase {
     return transferBelt.getVelocity().getValue();
   }
 
+  public void setAgitatorVelocity(AngularVelocity velocity) {
+    agitator.setControl(agitatorVelocityRequest.withVelocity(velocity));
+  }
+
   public void setAgitatorPercentOutput(double percentOutput) {
     agitator.set(percentOutput);
   }
 
   public AngularVelocity getAgitatorVelocity() {
     return agitator.getVelocity().getValue();
+  }
+
+  public void setTransferRampVelocity(AngularVelocity velocity) {
+    transferRamp.setControl(transferRampVelocityRequest.withVelocity(velocity));
   }
 
   public void setTransferRampPercentOutput(double percentOutput) {

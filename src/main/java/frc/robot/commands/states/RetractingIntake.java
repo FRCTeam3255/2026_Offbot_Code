@@ -6,6 +6,8 @@ package frc.robot.commands.states;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
+import frc.robot.constants.ConstPositional;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
@@ -20,6 +22,9 @@ public class RetractingIntake extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.RETRACTING_INTAKE);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE,
+        ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,6 +40,7 @@ public class RetractingIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return RobotContainer.positionalInstance.getIntakeSlidePosition()
+        .isNear(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE, ConstPositional.INTAKE_SLIDE_TOLERANCE);
   }
 }
