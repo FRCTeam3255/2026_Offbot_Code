@@ -16,21 +16,26 @@ public class ConstPositional {
   // outputs
   public static final double STOP = 0;
 
+  // CLIMBER DISNTANCES
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
   public static final Distance DEPLOY_CLIMBER_DISTANCE = Units.Inches.of(10);
+
+  // POSITIONAL MECHANISM TOLERANCES
   public static final Distance CLIMBER_TOLERANCE = Units.Inches.of(0.5);
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Distance INTAKE_SLIDE_TOLERANCE = Inches.of(1);// TODO ADD ACTUAL VALUE LATER
 
+  // FREESPIN MECHANISM PID
   public static final int SLOW_INTAKE_SLIDE_PID = 0;
   public static final int FAST_INTAKE_SLIDE_PID = 1;
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
-
+  // INTAKE DISTNACES
   public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(0); // TODO ADD ACTUAL VALUES DURING TESTING
 
+  // HOOD AND TURRET ANGLES
   public static final Angle PREP_D_SIDE_HOOD = Degrees.of(18);// TODO: find actual value
   public static final Angle PREP_D_SIDE_TURRET = Degrees.of(-20.78);// TODO: find actual value
 
@@ -54,7 +59,8 @@ public class ConstPositional {
 
   public static final Angle HOOD_ANGLE_RETRACT = Degrees.of(0);
   public static final Angle TURRET_ANGLE_HOME = Degrees.of(0);
-  // configuration
+
+  // POSITIONAL MECHINISM COFIGURATIONS
   public static final TalonFXConfiguration INTAKE_SLIDE_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TURRET_CONFIGURATION = new TalonFXConfiguration();

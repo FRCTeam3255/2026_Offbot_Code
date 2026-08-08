@@ -13,6 +13,7 @@ import edu.wpi.first.units.measure.AngularVelocity;
 /** Add your docs here. */
 public class ConstFreeSpin {
 
+  // REVERSING FREESPIN MECHANISM SPEEDS
   public static final double STOP = 0;
   public static final double REVERSING_FLYWHEEL_PERCENT_OUTPUT = -1;
   public static final double REVERSING_TRANSFER_BELT_PERCENT_OUTPUT = -1;
@@ -22,21 +23,27 @@ public class ConstFreeSpin {
   public static final double INTAKE_ROLLER_PERCENT_OUTPUT = 1;
   public static final double REVERSING_INTAKE_PERCENT_OUTPUT = -1;
 
+  // FLYWHEEL TOLERANCE
   public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
+  // TRANSFER SPEEDS
   public static final AngularVelocity TRANSFER_BELT_VELOCITY = RPM.of(6000);// TODO: replace with actual values
   public static final AngularVelocity TRANSFER_RAMP_VELOCITY = RPM.of(6000);// TODO: replace with actual values
+
+  // SERILIZER SPEEDS
   public static final AngularVelocity AGITATOR_VELOCITY = RPM.of(6000);// TODO: replace with actual values
   public static final AngularVelocity HOTDOG_ROLLERS_VELOCITY = RPM.of(6000);// TODO: replace with actual values
 
+  // FLYWHEEL SPEEDS
   public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(4100);// TODO: find actual value
-  public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(4100);// TODO: find actual value
-  public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(3700);// TODO: find actual value
+  public static final AngularVelocity PREP_O_SIDE_FLYWHEEL = RPM.of(4250);// TODO: find actual value
+  public static final AngularVelocity PREP_HUB_FLYWHEEL = RPM.of(4000);// TODO: find actual value
   public static final AngularVelocity PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL = RPM.of(3700);// TODO: find actual value
-  public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(3700);// TODO: find actual value
-  public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(4300);// TODO: find actual value
-  public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(4100);// TODO:find actual value
+  public static final AngularVelocity PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL = RPM.of(6400);// TODO: find actual value
+  public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(4000);// TODO: find actual value
+  public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(4000);// TODO:find actual value
 
+  // FREESPIN MECHANISM CONFIGURATIONS
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TRANSFER_RAMP_CONFIGURATION = new TalonFXConfiguration();
