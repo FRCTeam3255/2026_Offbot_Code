@@ -22,9 +22,10 @@ public class Ejecting extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.EJECTING);
-    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.REVERSE_INTAKE_PERCENT_OUTPUT);
-    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.REVERSE_AGITATOR_PERCENT_OUTPUT);
-    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.REVERSE_HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.REVERSING_INTAKE_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.REVERSING_AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance
+        .setHotdogRollersPercentOutput(ConstFreeSpin.REVERSING_HOTDOG_ROLLERS_PERCENT_OUTPUT);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_SLIDE_DISTANCE,
         ConstPositional.FAST_INTAKE_SLIDE_PID);
   }
