@@ -30,10 +30,16 @@ public class RobotPoses extends SubsystemBase {
   Rotation3d turretRotation3d = Rotation3d.kZero;
   Rotation3d hoodRotation3d = Rotation3d.kZero;
 
-  Transform3d turretPivotPoint = new Transform3d(Units.Inches.of(6.5), Units.Inches.of(13.5), Units.Inches.of(6.5),
+  Transform3d turretPivotPoint = new Transform3d(
+      Units.Inches.of(-6.5),
+      Units.Inches.of(6.5),
+      Units.Inches.of(13.5),
       Rotation3d.kZero);
 
-  Transform3d hoodPivotPoint = new Transform3d(Units.Inches.of(6.5), Units.Inches.of(13.5), Units.Inches.of(6.5),
+  Transform3d hoodPivotPoint = new Transform3d(
+      Units.Inches.of(-9.5),
+      Units.Inches.of(6.5),
+      Units.Inches.of(15.5),
       Rotation3d.kZero);
 
   public RobotPoses() {
@@ -66,7 +72,7 @@ public class RobotPoses extends SubsystemBase {
     model0Intake = Pose3d.kZero.transformBy(intakeTransform3d);
     model1Turret = Pose3d.kZero.rotateAround(
         Pose3d.kZero.plus(turretPivotPoint).getTranslation(), turretRotation3d);
-    model2Hood = model1Turret
-        .rotateAround(Pose3d.kZero.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
+    model2Hood = model1Turret.rotateAround(
+        model1Turret.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
   }
 }
