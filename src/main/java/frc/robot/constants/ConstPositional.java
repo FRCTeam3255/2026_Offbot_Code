@@ -4,29 +4,24 @@
 
 package frc.robot.constants;
 
-import static edu.wpi.first.units.Units.Inches;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Seconds;
 
-import edu.wpi.first.units.Units;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 
 /** Add your docs here. */
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
 
-  public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
-
   public final static InterpolatingDoubleTreeMap hoodAngleMap = new InterpolatingDoubleTreeMap();
   public final static InterpolatingDoubleTreeMap timeOfFlightMap = new InterpolatingDoubleTreeMap();
-  public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
 
   // CLIMBER DISTANCES
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
