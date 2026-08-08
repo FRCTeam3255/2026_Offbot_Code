@@ -4,17 +4,24 @@
 
 package frc.robot.constants;
 
-import static edu.wpi.first.units.Units.Inches;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Seconds;
+
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 
 /** Add your docs here. */
 public class ConstPositional {
   // outputs
   public static final double STOP = 0;
+
+  public final static InterpolatingDoubleTreeMap hoodAngleMap = new InterpolatingDoubleTreeMap();
+  public final static InterpolatingDoubleTreeMap timeOfFlightMap = new InterpolatingDoubleTreeMap();
 
   // CLIMBER DISTANCES
   public static final Distance RETRACT_CLIMBER_DISTANCE = Units.Inches.of(0);
@@ -67,6 +74,15 @@ public class ConstPositional {
   public static final TalonFXConfiguration CLIMBER_CONFIGURATION = new TalonFXConfiguration();
 
   static {
+    // TODO: Tune
+    // ---- Hood Angle Map ---- //
+    hoodAngleMap.put(Inches.of(60).in(Inches), Degrees.of(1).in(Degrees));
+    hoodAngleMap.put(Inches.of(50).in(Inches), Degrees.of(1).in(Degrees));
+
+    // ---- Time Of Flight Map ---- //
+    timeOfFlightMap.put(Inches.of(60).in(Inches), Seconds.of(0).in(Seconds));
+    timeOfFlightMap.put(Inches.of(50).in(Inches), Seconds.of(1).in(Seconds));
+
     // Configure TalonFXConfiguration objects here
   }
 }
