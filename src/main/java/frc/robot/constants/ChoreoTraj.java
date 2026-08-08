@@ -73,6 +73,20 @@ public record ChoreoTraj(
         new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
         new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
     );
+    public static final ChoreoTraj PreviewSecondOSideTrenchNeutral = new ChoreoTraj(
+        "PreviewSecondOSideTrenchNeutral",
+        OptionalInt.empty(),
+        7.64059,
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
+    );
+    public static final ChoreoTraj PreviewOSideTrenchNeutralOutpost = new ChoreoTraj(
+        "PreviewOSideTrenchNeutralOutpost",
+        OptionalInt.empty(),
+        9.05601,
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(0.39741, 0.66858, Rotation2d.fromRadians(0))
+    );
 
     /**
      * A map between trajectory names and their corresponding data.
@@ -85,7 +99,9 @@ public record ChoreoTraj(
         Map.entry("PreviewFirstDSideTrenchNeutral", PreviewFirstDSideTrenchNeutral),
         Map.entry("PreviewSecondDSideTrenchNeutral", PreviewSecondDSideTrenchNeutral),
         Map.entry("Preview4414DSideTrenchNeutral_copy1", Preview4414DSideTrenchNeutral_copy1),
-        Map.entry("PreviewFirstOSideTrenchNeutral", PreviewFirstOSideTrenchNeutral)
+        Map.entry("PreviewFirstOSideTrenchNeutral", PreviewFirstOSideTrenchNeutral),
+        Map.entry("PreviewSecondOSideTrenchNeutral", PreviewSecondOSideTrenchNeutral),
+        Map.entry("PreviewOSideTrenchNeutralOutpost", PreviewOSideTrenchNeutralOutpost)
     );
 
     /**
