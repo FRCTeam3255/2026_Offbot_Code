@@ -8,6 +8,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
@@ -29,12 +30,6 @@ public class RobotPoses extends SubsystemBase {
   Transform3d intakeTransform3d = new Transform3d();
   Rotation3d turretRotation3d = Rotation3d.kZero;
   Rotation3d hoodRotation3d = Rotation3d.kZero;
-
-  Transform3d turretPivotPoint = new Transform3d(Units.Inches.of(6.5), Units.Inches.of(13.5), Units.Inches.of(6.5),
-      Rotation3d.kZero);
-
-  Transform3d hoodPivotPoint = new Transform3d(Units.Inches.of(6.5), Units.Inches.of(13.5), Units.Inches.of(6.5),
-      Rotation3d.kZero);
 
   public RobotPoses() {
     SmartDashboard.putData("Field", field2d);
@@ -64,9 +59,7 @@ public class RobotPoses extends SubsystemBase {
     // Robot Positions
     modelDrivetrain = new Pose3d(RobotContainer.drivetrainInstance.getPose());
     model0Intake = Pose3d.kZero.transformBy(intakeTransform3d);
-    model1Turret = Pose3d.kZero.rotateAround(
-        Pose3d.kZero.plus(turretPivotPoint).getTranslation(), turretRotation3d);
-    model2Hood = model1Turret
-        .rotateAround(Pose3d.kZero.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
+    model1Turret = new Pose3d(new Translation3d(), turretRotation3d);
+    model2Hood = new Pose3d(new Translation3d(), hoodRotation3d);
   }
 }
