@@ -1,5 +1,5 @@
 {
- "name":"NewPath",
+ "name":"PreviewPreloadOnly",
  "version":3,
  "snapshot":{
   "waypoints":[],
@@ -7,7 +7,8 @@
   "targetDt":0.05
  },
  "params":{
-  "waypoints":[],
+  "waypoints":[
+    {"x":{"exp":"against_hub.x", "val":3.5825273990631104}, "y":{"exp":"against_hub.y", "val":4.0294270515441895}, "heading":{"exp":"against_hub.heading", "val":0.0}, "intervals":40, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false}],
   "constraints":[
     {"from":"first", "to":null, "data":{"type":"StopPoint", "props":{}}, "enabled":true},
     {"from":"last", "to":null, "data":{"type":"StopPoint", "props":{}}, "enabled":true},

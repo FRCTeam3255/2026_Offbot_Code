@@ -3,8 +3,303 @@
  "version":2,
  "type":"Swerve",
  "variables":{
-  "expressions":{},
+  "expressions":{
+   "intaking_velocity":{
+    "dimension":"LinVel",
+    "var":{
+     "exp":"5 ft / s",
+     "val":1.524
+    }
+   },
+   "over_bump_heading":{
+    "dimension":"Angle",
+    "var":{
+     "exp":"30 deg",
+     "val":0.5235987755982988
+    }
+   }
+  },
   "poses":{
+   "against_hub":{
+    "x":{
+     "exp":"3.5825273990631104 m",
+     "val":3.5825273990631104
+    },
+    "y":{
+     "exp":"4.0294270515441895 m",
+     "val":4.0294270515441895
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "against_hub_neutral":{
+    "x":{
+     "exp":"5.909859657287598 m",
+     "val":5.909859657287598
+    },
+    "y":{
+     "exp":"4.062469005584717 m",
+     "val":4.062469005584717
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "against_outpost":{
+    "x":{
+     "exp":"0.3974081575870514 m",
+     "val":0.3974081575870514
+    },
+    "y":{
+     "exp":"0.6685811877250671 m",
+     "val":0.6685811877250671
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "against_tower_inline_hub":{
+    "x":{
+     "exp":"1.5485527515411377 m",
+     "val":1.5485527515411377
+    },
+    "y":{
+     "exp":"against_hub.y",
+     "val":4.0294270515441895
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "aligned_oside_wall":{
+    "x":{
+     "exp":"1.6718733310699463 m",
+     "val":1.6718733310699463
+    },
+    "y":{
+     "exp":"0.6572020649909973 m",
+     "val":0.6572020649909973
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "between_tower_depot":{
+    "x":{
+     "exp":"0.4103829860687256 m",
+     "val":0.4103829860687256
+    },
+    "y":{
+     "exp":"5.058903789520264 m",
+     "val":5.058903789520264
+    },
+    "heading":{
+     "exp":"-90 deg",
+     "val":-1.5707963267948966
+    }
+   },
+   "between_tower_outpost":{
+    "x":{
+     "exp":"0.440599650144577 m",
+     "val":0.440599650144577
+    },
+    "y":{
+     "exp":"1.9271416664123535 m",
+     "val":1.9271416664123535
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "d_side_alliance_bump":{
+    "x":{
+     "exp":"3.314097738265991 m",
+     "val":3.314097738265991
+    },
+    "y":{
+     "exp":"d_side_neutral_bump.y",
+     "val":5.371868133544922
+    },
+    "heading":{
+     "exp":"over_bump_heading",
+     "val":0.5235987755982988
+    }
+   },
+   "d_side_bump":{
+    "x":{
+     "exp":"3.644417905807495 m",
+     "val":3.644417905807495
+    },
+    "y":{
+     "exp":"5.959388732910156 m",
+     "val":5.959388732910156
+    },
+    "heading":{
+     "exp":"0 deg",
+     "val":0.0
+    }
+   },
+   "d_side_corner":{
+    "x":{
+     "exp":"0.4003106951713562 m",
+     "val":0.4003106951713562
+    },
+    "y":{
+     "exp":"6.92300271987915 m",
+     "val":6.92300271987915
+    },
+    "heading":{
+     "exp":"-90 deg",
+     "val":-1.5707963267948966
+    }
+   },
+   "d_side_neutral_bump":{
+    "x":{
+     "exp":"5.859498023986816 m",
+     "val":5.859498023986816
+    },
+    "y":{
+     "exp":"5.371868133544922 m",
+     "val":5.371868133544922
+    },
+    "heading":{
+     "exp":"over_bump_heading",
+     "val":0.5235987755982988
+    }
+   },
+   "d_side_neutral_middle":{
+    "x":{
+     "exp":"d_side_neutral_wall.x",
+     "val":7.843740940093994
+    },
+    "y":{
+     "exp":"4.535867691040039 m",
+     "val":4.535867691040039
+    },
+    "heading":{
+     "exp":"90 deg",
+     "val":1.5707963267948966
+    }
+   },
+   "d_side_neutral_wall":{
+    "x":{
+     "exp":"7.843740940093994 m",
+     "val":7.843740940093994
+    },
+    "y":{
+     "exp":"d_side_trench.y",
+     "val":7.658281326293945
+    },
+    "heading":{
+     "exp":"90 deg",
+     "val":1.5707963267948966
+    }
+   },
+   "d_side_trench":{
+    "x":{
+     "exp":"4.12706184387207 m",
+     "val":4.12706184387207
+    },
+    "y":{
+     "exp":"7.658281326293945 m",
+     "val":7.658281326293945
+    },
+    "heading":{
+     "exp":"90 deg",
+     "val":1.5707963267948966
+    }
+   },
+   "depot":{
+    "x":{
+     "exp":"0.6834254264831543 m",
+     "val":0.6834254264831543
+    },
+    "y":{
+     "exp":"5.979073524475098 m",
+     "val":5.979073524475098
+    },
+    "heading":{
+     "exp":"0 rad",
+     "val":0.0
+    }
+   },
+   "o_side_alliance_bump":{
+    "x":{
+     "exp":"d_side_alliance_bump.x",
+     "val":3.314097738265991
+    },
+    "y":{
+     "exp":"8.07 m - d_side_alliance_bump.y",
+     "val":2.6981318664550784
+    },
+    "heading":{
+     "exp":"-d_side_alliance_bump.heading",
+     "val":-0.5235987755982988
+    }
+   },
+   "o_side_neutral_bump":{
+    "x":{
+     "exp":"d_side_neutral_bump.x",
+     "val":5.859498023986816
+    },
+    "y":{
+     "exp":"8.07 m - d_side_neutral_bump.y",
+     "val":2.6981318664550784
+    },
+    "heading":{
+     "exp":"-d_side_neutral_bump.heading",
+     "val":-0.5235987755982988
+    }
+   },
+   "o_side_neutral_middle":{
+    "x":{
+     "exp":"d_side_neutral_middle.x",
+     "val":7.843740940093994
+    },
+    "y":{
+     "exp":"8.07 m - d_side_neutral_middle.y",
+     "val":3.534132308959961
+    },
+    "heading":{
+     "exp":"-d_side_neutral_middle.heading",
+     "val":-1.5707963267948966
+    }
+   },
+   "o_side_neutral_wall":{
+    "x":{
+     "exp":"d_side_neutral_wall.x",
+     "val":7.843740940093994
+    },
+    "y":{
+     "exp":"8.07 m - d_side_neutral_wall.y",
+     "val":0.41171867370605497
+    },
+    "heading":{
+     "exp":"-d_side_neutral_wall.heading",
+     "val":-1.5707963267948966
+    }
+   },
+   "o_side_trench":{
+    "x":{
+     "exp":"d_side_trench.x",
+     "val":4.12706184387207
+    },
+    "y":{
+     "exp":"8.07 m - d_side_trench.y",
+     "val":0.41171867370605497
+    },
+    "heading":{
+     "exp":"-d_side_trench.heading",
+     "val":-1.5707963267948966
+    }
+   },
    "pid_end":{
     "x":{
      "exp":"pid_start.x",
@@ -86,16 +381,16 @@
   },
   "bumper":{
    "front":{
-    "exp":"16 in",
-    "val":0.4064
+    "exp":"15.5 in",
+    "val":0.3937
    },
    "side":{
-    "exp":"16 in",
-    "val":0.4064
+    "exp":"15.5 in",
+    "val":0.3937
    },
    "back":{
-    "exp":"16 in",
-    "val":0.4064
+    "exp":"15.5 in",
+    "val":0.3937
    }
   },
   "differentialTrackWidth":{
