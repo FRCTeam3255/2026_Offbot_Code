@@ -252,10 +252,11 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
-  Command ShootOnly(Command TRY_SHOOTING, Time shootingTime) {
+  Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        TRY_SHOOTING.asProxy().withTimeout(shootingTime),
+        prepPreset.asProxy().withTimeout(preppingTime),
+        TRY_SHOOTING_ON_PRESET.asProxy().withTimeout(shootingTime),
         TRY_NONE.asProxy());
   }
 
@@ -263,6 +264,13 @@ public class RobotContainer {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(intakingPath).deadlineFor(TRY_INTAKING.withTimeout(intakingTime).asProxy()),
+        TRY_NONE.asProxy());
+  }
+
+  Command ShootingOnMove(ChoreoTraj shootingPath, Time shootingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.withTimeout(shootingTime).asProxy()),
         TRY_NONE.asProxy());
   }
 
