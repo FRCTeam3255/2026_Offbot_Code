@@ -262,7 +262,7 @@ public class RobotContainer {
   Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        runPath(intakingPath).asProxy(),
+        runPath(intakingPath).alongWith(TRY_INTAKING.asProxy()),
         TRY_INTAKING.asProxy().withTimeout(intakingTime),
         TRY_NONE.asProxy());
   }
