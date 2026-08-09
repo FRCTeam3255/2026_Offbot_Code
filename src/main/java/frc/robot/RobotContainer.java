@@ -13,6 +13,7 @@ import choreo.auto.AutoFactory;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +25,7 @@ import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
 import frc.robot.constants.ChoreoTraj;
+import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -247,6 +249,22 @@ public class RobotContainer {
     });
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
+  }
+
+  // START OF AUTO COMMANDS
+  Command ShootOnly(Command TRY_SHOOTING, Time shootingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        TRY_SHOOTING.asProxy().withTimeout(shootingTime),
+        TRY_NONE.asProxy());
+  }
+
+  Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(intakingPath).asProxy(),
+        TRY_INTAKING.asProxy().withTimeout(intakingTime),
+        TRY_NONE.asProxy());
   }
 
   public Command runPath(ChoreoTraj path) {
