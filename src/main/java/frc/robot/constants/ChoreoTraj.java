@@ -24,54 +24,124 @@ public record ChoreoTraj(
     Pose2d initialPoseBlue,
     Pose2d endPoseBlue
 ) {
-    public static final ChoreoTraj PreviewOSideTrenchNeutralOutpost = new ChoreoTraj(
-        "PreviewOSideTrenchNeutralOutpost",
+    public static final ChoreoTraj xPreviewPreloadDepotOutpost = new ChoreoTraj(
+        "xPreviewPreloadDepotOutpost",
         OptionalInt.empty(),
-        9.05601,
-        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
-        new Pose2d(0.39741, 0.66858, Rotation2d.fromRadians(0))
+        2.9149,
+        new Pose2d(3.64442, 5.95939, Rotation2d.fromRadians(0)),
+        new Pose2d(0.74877, 0.82106, Rotation2d.fromRadians(0))
     );
-    public static final ChoreoTraj PreviewPreloadDepot = new ChoreoTraj(
-        "PreviewPreloadDepot",
-        OptionalInt.empty(),
-        1.93922,
-        new Pose2d(3.74442, 5.95939, Rotation2d.fromRadians(0)),
-        new Pose2d(0.67815, 7.4473, Rotation2d.fromRadians(0))
-    );
-    public static final ChoreoTraj PreviewSecondOSideTrenchNeutral = new ChoreoTraj(
-        "PreviewSecondOSideTrenchNeutral",
-        OptionalInt.empty(),
-        7.64059,
-        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
-        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
-    );
-    public static final ChoreoTraj PreviewPreloadAndBackup = new ChoreoTraj(
-        "PreviewPreloadAndBackup",
-        OptionalInt.empty(),
-        0.95141,
-        new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
-        new Pose2d(1.54855, 4.02943, Rotation2d.fromRadians(0))
-    );
-    public static final ChoreoTraj Preview4414DSideTrenchNeutral_copy1 = new ChoreoTraj(
-        "Preview4414DSideTrenchNeutral_copy1",
-        OptionalInt.empty(),
-        9.83933,
-        new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708)),
-        new Pose2d(0.40031, 6.923, Rotation2d.fromRadians(-1.5708))
-    );
-    public static final ChoreoTraj PreviewFirstDSideTrenchNeutral = new ChoreoTraj(
-        "PreviewFirstDSideTrenchNeutral",
+    public static final ChoreoTraj xPreviewFirstDSideTrenchNeutral = new ChoreoTraj(
+        "xPreviewFirstDSideTrenchNeutral",
         OptionalInt.empty(),
         6.56267,
         new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708)),
         new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236))
     );
-    public static final ChoreoTraj PreviewOSidePreloadAndBackup = new ChoreoTraj(
-        "PreviewOSidePreloadAndBackup",
+    public static final ChoreoTraj FirstDSideNeutralToAlliance = new ChoreoTraj(
+        "FirstDSideNeutralToAlliance",
+        OptionalInt.empty(),
+        2.78273,
+        new Pose2d(7.84374, 4.53587, Rotation2d.fromRadians(1.5708)),
+        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236))
+    );
+    public static final ChoreoTraj OSideAllianceToOutpost = new ChoreoTraj(
+        "OSideAllianceToOutpost",
+        OptionalInt.empty(),
+        1.57579,
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236)),
+        new Pose2d(0.39741, 0.66858, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj SecondOSideNeutralToAlliance = new ChoreoTraj(
+        "SecondOSideNeutralToAlliance",
+        OptionalInt.empty(),
+        3.87061,
+        new Pose2d(7.84374, 3.53413, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
+    );
+    public static final ChoreoTraj xPreviewSecondOSideTrenchNeutral = new ChoreoTraj(
+        "xPreviewSecondOSideTrenchNeutral",
+        OptionalInt.empty(),
+        7.64059,
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
+    );
+    public static final ChoreoTraj DSideAllianceToTrench = new ChoreoTraj(
+        "DSideAllianceToTrench",
+        OptionalInt.empty(),
+        1.41441,
+        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236)),
+        new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708))
+    );
+    public static final ChoreoTraj DSideBumpToDepot = new ChoreoTraj(
+        "DSideBumpToDepot",
+        OptionalInt.empty(),
+        1.14827,
+        new Pose2d(3.64442, 5.95939, Rotation2d.fromRadians(0)),
+        new Pose2d(0.68343, 5.97907, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj xPreviewOSidePreloadAndBackup = new ChoreoTraj(
+        "xPreviewOSidePreloadAndBackup",
         OptionalInt.empty(),
         1.33437,
         new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
         new Pose2d(0.4406, 1.92714, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj xPreviewPreloadDepot = new ChoreoTraj(
+        "xPreviewPreloadDepot",
+        OptionalInt.empty(),
+        1.93922,
+        new Pose2d(3.74442, 5.95939, Rotation2d.fromRadians(0)),
+        new Pose2d(0.67815, 7.4473, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj DepotToOutpost = new ChoreoTraj(
+        "DepotToOutpost",
+        OptionalInt.empty(),
+        1.76382,
+        new Pose2d(0.78688, 5.95277, Rotation2d.fromRadians(0)),
+        new Pose2d(0.74877, 0.82106, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj xPreview4414DSideTrenchNeutral = new ChoreoTraj(
+        "xPreview4414DSideTrenchNeutral",
+        OptionalInt.empty(),
+        9.83933,
+        new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708)),
+        new Pose2d(0.40031, 6.923, Rotation2d.fromRadians(-1.5708))
+    );
+    public static final ChoreoTraj SecondDSideNeutralToAlliance = new ChoreoTraj(
+        "SecondDSideNeutralToAlliance",
+        OptionalInt.empty(),
+        3.82167,
+        new Pose2d(7.84374, 4.53587, Rotation2d.fromRadians(1.5708)),
+        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236))
+    );
+    public static final ChoreoTraj OSidePreloadAndBackup = new ChoreoTraj(
+        "OSidePreloadAndBackup",
+        OptionalInt.empty(),
+        1.33437,
+        new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
+        new Pose2d(0.4406, 1.92714, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj OSideTrenchToNeutral = new ChoreoTraj(
+        "OSideTrenchToNeutral",
+        OptionalInt.empty(),
+        3.89654,
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(7.84374, 3.53413, Rotation2d.fromRadians(-1.5708))
+    );
+    public static final ChoreoTraj OSideAllianceToTrench = new ChoreoTraj(
+        "OSideAllianceToTrench",
+        OptionalInt.empty(),
+        1.41441,
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236)),
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708))
+    );
+    public static final ChoreoTraj xPreviewSecondDSideTrenchNeutral = new ChoreoTraj(
+        "xPreviewSecondDSideTrenchNeutral",
+        OptionalInt.empty(),
+        7.57175,
+        new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708)),
+        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236))
     );
     public static final ChoreoTraj AutoPIDTuning = new ChoreoTraj(
         "AutoPIDTuning",
@@ -80,26 +150,61 @@ public record ChoreoTraj(
         new Pose2d(3.57341, 6.05182, Rotation2d.fromRadians(0)),
         new Pose2d(3.57341, 3.05182, Rotation2d.fromRadians(0))
     );
-    public static final ChoreoTraj PreviewPreloadDepotOutpost = new ChoreoTraj(
-        "PreviewPreloadDepotOutpost",
+    public static final ChoreoTraj FirstOSideNeutralToAlliance = new ChoreoTraj(
+        "FirstOSideNeutralToAlliance",
         OptionalInt.empty(),
-        2.89169,
-        new Pose2d(3.74442, 5.95939, Rotation2d.fromRadians(0)),
-        new Pose2d(0.74877, 0.82106, Rotation2d.fromRadians(0))
+        2.78273,
+        new Pose2d(7.84374, 3.53413, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
     );
-    public static final ChoreoTraj PreviewFirstOSideTrenchNeutral = new ChoreoTraj(
-        "PreviewFirstOSideTrenchNeutral",
+    public static final ChoreoTraj xPreviewFirstOSideTrenchNeutral = new ChoreoTraj(
+        "xPreviewFirstOSideTrenchNeutral",
         OptionalInt.empty(),
         6.56267,
         new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
         new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
     );
-    public static final ChoreoTraj PreviewSecondDSideTrenchNeutral = new ChoreoTraj(
-        "PreviewSecondDSideTrenchNeutral",
+    public static final ChoreoTraj DSideAllianceToDepot = new ChoreoTraj(
+        "DSideAllianceToDepot",
         OptionalInt.empty(),
-        7.57175,
+        2.78439,
+        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236)),
+        new Pose2d(0.40031, 6.923, Rotation2d.fromRadians(-1.5708))
+    );
+    public static final ChoreoTraj DSideTrenchToNeutral = new ChoreoTraj(
+        "DSideTrenchToNeutral",
+        OptionalInt.empty(),
+        3.87581,
         new Pose2d(4.12706, 7.65828, Rotation2d.fromRadians(1.5708)),
-        new Pose2d(3.3141, 5.37187, Rotation2d.fromRadians(0.5236))
+        new Pose2d(7.84374, 4.53587, Rotation2d.fromRadians(1.5708))
+    );
+    public static final ChoreoTraj PreloadAndBackupTower = new ChoreoTraj(
+        "PreloadAndBackupTower",
+        OptionalInt.empty(),
+        0.95141,
+        new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
+        new Pose2d(1.54855, 4.02943, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj DepotToCorner = new ChoreoTraj(
+        "DepotToCorner",
+        OptionalInt.empty(),
+        0.8504,
+        new Pose2d(0.68343, 5.97907, Rotation2d.fromRadians(0)),
+        new Pose2d(0.59227, 7.60044, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj xPreviewOSideTrenchNeutralOutpost = new ChoreoTraj(
+        "xPreviewOSideTrenchNeutralOutpost",
+        OptionalInt.empty(),
+        9.05601,
+        new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
+        new Pose2d(0.39741, 0.66858, Rotation2d.fromRadians(0))
+    );
+    public static final ChoreoTraj xPreviewPreloadAndBackup = new ChoreoTraj(
+        "xPreviewPreloadAndBackup",
+        OptionalInt.empty(),
+        0.95141,
+        new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
+        new Pose2d(1.54855, 4.02943, Rotation2d.fromRadians(0))
     );
 
     /**
@@ -107,17 +212,32 @@ public record ChoreoTraj(
      * This allows for trajectory data to be looked up with strings during runtime.
      */
     public static final Map<String, ChoreoTraj> ALL_TRAJECTORIES = Map.ofEntries(
-        Map.entry("PreviewOSideTrenchNeutralOutpost", PreviewOSideTrenchNeutralOutpost),
-        Map.entry("PreviewPreloadDepot", PreviewPreloadDepot),
-        Map.entry("PreviewSecondOSideTrenchNeutral", PreviewSecondOSideTrenchNeutral),
-        Map.entry("PreviewPreloadAndBackup", PreviewPreloadAndBackup),
-        Map.entry("Preview4414DSideTrenchNeutral_copy1", Preview4414DSideTrenchNeutral_copy1),
-        Map.entry("PreviewFirstDSideTrenchNeutral", PreviewFirstDSideTrenchNeutral),
-        Map.entry("PreviewOSidePreloadAndBackup", PreviewOSidePreloadAndBackup),
+        Map.entry("xPreviewPreloadDepotOutpost", xPreviewPreloadDepotOutpost),
+        Map.entry("xPreviewFirstDSideTrenchNeutral", xPreviewFirstDSideTrenchNeutral),
+        Map.entry("FirstDSideNeutralToAlliance", FirstDSideNeutralToAlliance),
+        Map.entry("OSideAllianceToOutpost", OSideAllianceToOutpost),
+        Map.entry("SecondOSideNeutralToAlliance", SecondOSideNeutralToAlliance),
+        Map.entry("xPreviewSecondOSideTrenchNeutral", xPreviewSecondOSideTrenchNeutral),
+        Map.entry("DSideAllianceToTrench", DSideAllianceToTrench),
+        Map.entry("DSideBumpToDepot", DSideBumpToDepot),
+        Map.entry("xPreviewOSidePreloadAndBackup", xPreviewOSidePreloadAndBackup),
+        Map.entry("xPreviewPreloadDepot", xPreviewPreloadDepot),
+        Map.entry("DepotToOutpost", DepotToOutpost),
+        Map.entry("xPreview4414DSideTrenchNeutral", xPreview4414DSideTrenchNeutral),
+        Map.entry("SecondDSideNeutralToAlliance", SecondDSideNeutralToAlliance),
+        Map.entry("OSidePreloadAndBackup", OSidePreloadAndBackup),
+        Map.entry("OSideTrenchToNeutral", OSideTrenchToNeutral),
+        Map.entry("OSideAllianceToTrench", OSideAllianceToTrench),
+        Map.entry("xPreviewSecondDSideTrenchNeutral", xPreviewSecondDSideTrenchNeutral),
         Map.entry("AutoPIDTuning", AutoPIDTuning),
-        Map.entry("PreviewPreloadDepotOutpost", PreviewPreloadDepotOutpost),
-        Map.entry("PreviewFirstOSideTrenchNeutral", PreviewFirstOSideTrenchNeutral),
-        Map.entry("PreviewSecondDSideTrenchNeutral", PreviewSecondDSideTrenchNeutral)
+        Map.entry("FirstOSideNeutralToAlliance", FirstOSideNeutralToAlliance),
+        Map.entry("xPreviewFirstOSideTrenchNeutral", xPreviewFirstOSideTrenchNeutral),
+        Map.entry("DSideAllianceToDepot", DSideAllianceToDepot),
+        Map.entry("DSideTrenchToNeutral", DSideTrenchToNeutral),
+        Map.entry("PreloadAndBackupTower", PreloadAndBackupTower),
+        Map.entry("DepotToCorner", DepotToCorner),
+        Map.entry("xPreviewOSideTrenchNeutralOutpost", xPreviewOSideTrenchNeutralOutpost),
+        Map.entry("xPreviewPreloadAndBackup", xPreviewPreloadAndBackup)
     );
 
     /**
