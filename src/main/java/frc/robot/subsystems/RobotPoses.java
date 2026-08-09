@@ -34,12 +34,12 @@ public class RobotPoses extends SubsystemBase {
   Rotation3d turretRotation3d = Rotation3d.kZero;
   Rotation3d hoodRotation3d = Rotation3d.kZero;
 
-  Transform3d turretPivotPoint = new Transform3d(
+  public final Transform3d turretPivotPoint = new Transform3d(
       Units.Inches.of(-6.5),
       Units.Inches.of(6.5),
       Units.Inches.of(13.5),
       Rotation3d.kZero);
-  Transform3d hoodPivotPoint = new Transform3d(
+  public final Transform3d hoodPivotPoint = new Transform3d(
       Units.Inches.of(-11.75),
       Units.Inches.of(6.5),
       Units.Inches.of(15.5),

@@ -43,6 +43,9 @@ public class ConstPositional {
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(0); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES
+  public static final Angle MAX_TURRET_ANGLE = Degrees.of(185);
+  public static final Angle MIN_TURRET_ANGLE = Degrees.of(-185);
+
   public static final Angle PREP_D_SIDE_HOOD = Degrees.of(18);// TODO: find actual value
   public static final Angle PREP_D_SIDE_TURRET = Degrees.of(-20.78);// TODO: find actual value
 

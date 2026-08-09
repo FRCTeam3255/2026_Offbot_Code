@@ -10,6 +10,8 @@ import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Seconds;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -38,15 +40,26 @@ public class ShootingOnFly extends Command {
   @Override
   public void execute() {
     target = RobotContainer.robotPose.getTarget();
-    estimatedPoseOverTime = RobotContainer.drivetrainInstance.estimatedPoseOverTime;
+    // estimatedPoseOverTime =
+    // RobotContainer.drivetrainInstance.estimatedPoseOverTime;
+    estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
     distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
+
     RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
-        .snapToTarget(estimatedPoseOverTime, Pose2d.kZero).minus(Degrees.of(180))
+        .snapToTarget(
+            estimatedPoseOverTime
+                .transformBy(new Transform2d(RobotContainer.robotPose.turretPivotPoint.getMeasureX(),
+                    RobotContainer.robotPose.turretPivotPoint.getMeasureY(),
+                    Rotation2d.kZero)),
+            target)
+        .minus(Degrees.of(180))
         .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
+
     RobotContainer.positionalInstance
         .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));
+
     RobotContainer.freeSpinInstance
         .setFlywheelVelocity(RobotContainer.freeSpinInstance.getMappedFlywheelSpeed(distanceToTarget));
   }

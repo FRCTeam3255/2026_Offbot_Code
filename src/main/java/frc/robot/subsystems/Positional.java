@@ -64,8 +64,8 @@ public class Positional extends SubsystemBase {
   }
 
   public void setTurretAngle(Angle setPoint) {
-    turret.setControl(turretMotionRequest.withPosition(setPoint));
-    lastDesiredTurretAngle = setPoint;
+    lastDesiredTurretAngle = getWrappedTurretAngle(setPoint);
+    turret.setControl(turretMotionRequest.withPosition(lastDesiredTurretAngle));
   }
 
   public Angle getHoodPivotAngle() {
@@ -102,6 +102,14 @@ public class Positional extends SubsystemBase {
 
   public Time getMappedTOF(Distance distance) {
     return Seconds.of(ConstPositional.timeOfFlightMap.get(distance.in(Inches)));
+  }
+
+  public Angle getWrappedTurretAngle(Angle desired) {
+    Angle max = ConstPositional.MAX_TURRET_ANGLE, min = ConstPositional.MIN_TURRET_ANGLE;
+    if (desired.gt(max) || desired.lt(min)) {
+      desired = Units.Degrees.of(lastDesiredTurretAngle.magnitude() % 360);
+    }
+    return desired;
   }
 
   @Override
