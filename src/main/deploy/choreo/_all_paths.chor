@@ -7,8 +7,8 @@
    "intaking_velocity":{
     "dimension":"LinVel",
     "var":{
-     "exp":"4 ft / s",
-     "val":1.2192
+     "exp":"5 ft / s",
+     "val":1.524
     }
    },
    "over_bump_heading":{

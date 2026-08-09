@@ -11,7 +11,7 @@ import edu.wpi.first.units.measure.*;
  * in the Choreo GUI.
  */
 public final class ChoreoVars {
-    public static final LinearVelocity intaking_velocity = Units.MetersPerSecond.of(1.2192);
+    public static final LinearVelocity intaking_velocity = Units.MetersPerSecond.of(1.524);
     public static final Angle over_bump_heading = Units.Radians.of(0.5235988);
 
     public static final class Poses {
