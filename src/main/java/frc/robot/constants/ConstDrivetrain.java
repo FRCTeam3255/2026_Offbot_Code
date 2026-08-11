@@ -56,10 +56,10 @@ public class ConstDrivetrain {
   public static final Time ROTATION_DELAY = Seconds.of(0.5);
 
   // TODO: Swoffsets
-  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.178466796875);
-  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.498779296875);
-  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.459716796875);
-  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.31201171875);
+  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.294677734375);
+  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.457275390625);
+  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.04296875);
+  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.0234375);
 
   public static class PRACTICE_BOT {
     // TODO: Swoffsets
@@ -150,11 +150,11 @@ public class ConstDrivetrain {
     DRIVE_CONFIG.kS = 0.0;
     DRIVE_CONFIG.kV = 0.124;
 
-    STEER_CONFIG.kP = 100;
+    STEER_CONFIG.kP = 80;
     STEER_CONFIG.kI = 0.0;
     STEER_CONFIG.kD = 0.5;
     STEER_CONFIG.kS = 0.1;
-    STEER_CONFIG.kV = 2.66;
+    STEER_CONFIG.kV = 1.16;
     STEER_CONFIG.kA = 0.0;
     STEER_CONFIG.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
   }
