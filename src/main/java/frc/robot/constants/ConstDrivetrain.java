@@ -56,10 +56,10 @@ public class ConstDrivetrain {
   public static final Time ROTATION_DELAY = Seconds.of(0.5);
 
   // TODO: Swoffsets
-  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.178466796875);
-  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.498779296875);
-  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.459716796875);
-  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.31201171875);
+  public static final Angle FRONT_LEFT_ABS_ENCODER_OFFSET = Rotations.of(-0.45556640625);
+  public static final Angle FRONT_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.2939453125);
+  public static final Angle BACK_LEFT_ABS_ENCODER_OFFSET = Rotations.of(0.017822265625);
+  public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(0.04443359375);
 
   public static class PRACTICE_BOT {
     // TODO: Swoffsets
@@ -73,7 +73,7 @@ public class ConstDrivetrain {
 
   // Physical dimensions
   // TODO: Confirm Gear Ratios
-  public static Ratios GEAR_RATIOS = Ratios.MK4I.L2;
+  public static Ratios GEAR_RATIOS = new Ratios(12.1, 6.821052631578947, 5.4);
 
   // TODO: Replace with actual measurement
   public static Distance WHEEL_DIAMETER = Inches.of(4.0);
@@ -110,8 +110,8 @@ public class ConstDrivetrain {
 
   // Inverts
   // TODO: Replace with actual measurement
-  public static final boolean INVERT_LEFT_SIDE_DRIVE = false;
-  public static final boolean INVERT_RIGHT_SIDE_DRIVE = true;
+  public static final boolean INVERT_LEFT_SIDE_DRIVE = true;
+  public static final boolean INVERT_RIGHT_SIDE_DRIVE = false;
   public static final boolean INVERT_STEER = true;
   public static final boolean INVERT_STEER_ENCODER = false;
 
@@ -208,7 +208,7 @@ public class ConstDrivetrain {
   public static class SIMULATION {
     // These are only used for simulation
     public static final MomentOfInertia kSteerInertia = KilogramSquareMeters.of(0.01);
-    public static final MomentOfInertia kDriveInertia = KilogramSquareMeters.of(0.01);
+    public static final MomentOfInertia kDriveInertia = KilogramSquareMeters.of(0.035);
     // Simulated voltage necessary to overcome friction
     public static final Voltage kSteerFrictionVoltage = Volts.of(0.2);
     public static final Voltage kDriveFrictionVoltage = Volts.of(0.2);
