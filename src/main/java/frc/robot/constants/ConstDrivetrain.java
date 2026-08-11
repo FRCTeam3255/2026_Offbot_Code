@@ -73,11 +73,11 @@ public class ConstDrivetrain {
 
   // Physical dimensions
   // TODO: Confirm Gear Ratios
-  public static Ratios GEAR_RATIOS = Ratios.MK4I.L2;
+  public static Ratios GEAR_RATIOS = new Ratios(12.1, 6.821052631578947, 5.4);;
 
   // TODO: Replace with actual measurement
   public static Distance WHEEL_DIAMETER = Inches.of(4.0);
-  public static Distance MODULE_OFFSET_LOCATIONS = ModuleLocations.frame29x29;
+  public static Distance MODULE_OFFSET_LOCATIONS = ModuleLocations.frame27x27;
 
   /**
    * Follow the instructions in <a href=
