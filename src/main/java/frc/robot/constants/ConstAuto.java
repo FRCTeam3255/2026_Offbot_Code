@@ -11,5 +11,6 @@ import edu.wpi.first.units.measure.Time;
 /** Add your docs here. */
 public class ConstAuto {
   public static final double PREP_SHOOT_TIMEOUT = 4;
-  public static final Time SHOOTING_TIMEOUT = Seconds.of(4.5);
+  public static final Time NEUTRAL_SHOOTING_TIMEOUT = Seconds.of(4.5);
+  public static final Time DEPOT_SHOOTING_TIMEOUT = Seconds.of(6);
 }

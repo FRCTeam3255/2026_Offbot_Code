@@ -229,18 +229,21 @@ public class RobotContainer {
         CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
-            ConstAuto.SHOOTING_TIMEOUT));
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
 
     Command DSideDoubleNeutral = Commands.sequence(
         DSideNeutral.asProxy(),
         CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.SHOOTING_TIMEOUT));
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
 
-    // Command DSideNeutralWithDepot = Commands.sequence(
-    // DSideNeutral.asProxy(),
-    // CollectAndScore(null, null, null, null));
+    Command DSideNeutralWithDepot = Commands.sequence(
+        DSideNeutral.asProxy(),
+        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
 
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
