@@ -26,6 +26,7 @@ import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
 import frc.robot.constants.ChoreoTraj;
 import frc.robot.constants.ConstAuto;
+import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -220,11 +221,29 @@ public class RobotContainer {
         driverStateMachineInstance // The drive subsystem
     );
 
-    Command AutoPIDTuning = Commands.sequence(runPath(ChoreoTraj.AutoPIDTuning));
+    Command AutoPIDTuning = Commands.sequence(runPath(ChoreoTraj.AutoPIDTuning).asProxy());
+
     Command DoNothing = Commands.none();
 
+    Command DSideNeutral = Commands.sequence(
+        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.FirstDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.SHOOTING_TIMEOUT));
+
+    Command DSideDoubleNeutral = Commands.sequence(
+        DSideNeutral.asProxy(),
+        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.SHOOTING_TIMEOUT));
+
+    // Command DSideNeutralWithDepot = Commands.sequence(
+    // DSideNeutral.asProxy(),
+    // CollectAndScore(null, null, null, null));
+
     // Example: Add autonomous routines to the chooser
-    // Add more autonomous routines as needed, e.g.:
+    // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
@@ -271,6 +290,27 @@ public class RobotContainer {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.withTimeout(shootingTime).asProxy()),
+        TRY_NONE.asProxy());
+  }
+
+  Command CollectAndScore(ChoreoTraj intakingPath, ChoreoTraj returnToAlliancePath, ChoreoTraj shootingPath,
+      Time shootingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(intakingPath).asProxy().deadlineFor(TRY_INTAKING.asProxy()),
+        Commands.parallel(
+            runPath(returnToAlliancePath).asProxy(),
+            Commands.sequence(
+                // TRY_INTAKING is a deferred/instant command that finishes immediately after
+                // requesting the state. Using .until(...) on it will therefore end right away.
+                // Instead, explicitly request the INTAKING state once and then wait until the
+                // drivetrain is behind the horizontal line before continuing to prep shooting.
+                TRY_INTAKING.asProxy(),
+                Commands
+                    .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.FieldElements.ALLIANCE_LINE,
+                        ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
+                TRY_SHOOTING_ON_FLY.asProxy().withTimeout(ConstAuto.PREP_SHOOT_TIMEOUT))),
+        runPath(intakingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
         TRY_NONE.asProxy());
   }
 
