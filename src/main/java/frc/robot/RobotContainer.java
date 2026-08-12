@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -221,15 +222,21 @@ public class RobotContainer {
         driverStateMachineInstance // The drive subsystem
     );
 
-    Command AutoPIDTuning = Commands.sequence(runPath(ChoreoTraj.AutoPIDTuning).asProxy());
+    // make our entries name
+    final Map<Command, ChoreoTraj> autoStartingPoses = new HashMap<>();
+
+    Command AutoPIDTuning = Commands.sequence(
+        runPath(ChoreoTraj.AutoPIDTuning).asProxy());
+    autoStartingPoses.put(AutoPIDTuning, ChoreoTraj.AutoPIDTuning);
 
     Command DoNothing = Commands.none();
 
     Command DSideNeutral = Commands.sequence(
         CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
-            ChoreoTraj.DSideAllianceToDepot,
+            ChoreoTraj.DSideAllianceToTrench,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideDoubleNeutral = Commands.sequence(
         DSideNeutral.asProxy(),
@@ -237,6 +244,7 @@ public class RobotContainer {
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideNeutralWithDepot = Commands.sequence(
         DSideNeutral.asProxy(),
@@ -244,24 +252,19 @@ public class RobotContainer {
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
 
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
-
-    // make our entries name
-    final Map<Command, ChoreoTraj> autoStartingPoses = Map.ofEntries(
-        // Example
-        // TODO: update DoNotiong Path match your actual field
-        Map.entry(DoNothing, ChoreoTraj.AutoPIDTuning),
-        Map.entry(AutoPIDTuning, ChoreoTraj.AutoPIDTuning));
+    autoChooser.addOption("DSideNeutral", DSideNeutral);
+    autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
+    autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
 
     // enter which we want to do based on name
-    autoChooser.onChange(selectedAuto ->
-
-    {
+    autoChooser.onChange(selectedAuto -> {
       ChoreoTraj startingPose = autoStartingPoses.get(selectedAuto);
       // if there is a starting pose, reset to it
       if (startingPose != null) { // Run even when disabled
@@ -312,6 +315,7 @@ public class RobotContainer {
                 Commands
                     .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.FieldElements.ALLIANCE_LINE,
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
+                TRY_NONE.asProxy().withTimeout(0.01),
                 TRY_SHOOTING_ON_FLY.asProxy().withTimeout(ConstAuto.PREP_SHOOT_TIMEOUT))),
         runPath(intakingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
         TRY_NONE.asProxy());
