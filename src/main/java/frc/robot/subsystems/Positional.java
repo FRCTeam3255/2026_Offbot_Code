@@ -106,8 +106,11 @@ public class Positional extends SubsystemBase {
 
   public Angle getWrappedTurretAngle(Angle desired) {
     Angle max = ConstPositional.MAX_TURRET_ANGLE, min = ConstPositional.MIN_TURRET_ANGLE;
-    if (desired.gt(max) || desired.lt(min)) {
-      desired = Units.Degrees.of(lastDesiredTurretAngle.magnitude() % 360);
+    Angle deg360 = Units.Degrees.of(360);
+    if (desired.gt(max)) {
+      desired = desired.minus(deg360);
+    } else if (desired.lt(min)) {
+      desired = desired.plus(deg360);
     }
     return desired;
   }

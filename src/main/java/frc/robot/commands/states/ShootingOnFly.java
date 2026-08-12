@@ -40,9 +40,8 @@ public class ShootingOnFly extends Command {
   @Override
   public void execute() {
     target = RobotContainer.robotPose.getTarget();
-    // estimatedPoseOverTime =
-    // RobotContainer.drivetrainInstance.estimatedPoseOverTime;
-    estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
+    estimatedPoseOverTime = RobotContainer.drivetrainInstance.estimatedPoseOverTime;
+    // estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
     distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
