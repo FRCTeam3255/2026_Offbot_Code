@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
+import frc.robot.commands.states.ShootingOnFly;
 import frc.robot.constants.ChoreoTraj;
 import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstField;
@@ -299,6 +300,11 @@ public class RobotContainer {
             ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
+    Command OSidePreloadAndBackup = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
+
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
@@ -312,6 +318,7 @@ public class RobotContainer {
     autoChooser.addOption("OSideDoubleNeutral", OSideDoubleNeutral);
     autoChooser.addOption("OSideNeutralWithOutpost", OSideNeutralWithOutpost);
     autoChooser.addOption("OSideDoubleNeutralWithOutpost", OSideDoubleNeutralWithOutpost);
+    autoChooser.addOption("OSidePreloadAndBackup", OSidePreloadAndBackup);
 
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
@@ -327,6 +334,7 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
+
   Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
