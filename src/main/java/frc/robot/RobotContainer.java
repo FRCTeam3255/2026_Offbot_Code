@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import choreo.auto.AutoFactory;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +26,8 @@ import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
 import frc.robot.constants.ChoreoTraj;
+import frc.robot.constants.ConstAuto;
+import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstSystem.constControllers;
 import frc.robot.subsystems.DriverStateMachine;
@@ -218,26 +222,52 @@ public class RobotContainer {
         driverStateMachineInstance // The drive subsystem
     );
 
-    Command AutoPIDTuning = Commands.sequence(runPath(ChoreoTraj.AutoPIDTuning));
+    // make our entries name
+    final Map<Command, ChoreoTraj> autoStartingPoses = new HashMap<>();
+
+    Command AutoPIDTuning = Commands.sequence(
+        runPath(ChoreoTraj.AutoPIDTuning).asProxy());
+    autoStartingPoses.put(AutoPIDTuning, ChoreoTraj.AutoPIDTuning);
+
     Command DoNothing = Commands.none();
 
+    Command DSideNeutral = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.FirstDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideDoubleNeutral = Commands.sequence(
+        DSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideNeutralWithDepot = Commands.sequence(
+        DSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
     // Example: Add autonomous routines to the chooser
-    // Add more autonomous routines as needed, e.g.:
+    // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
-
-    // make our entries name
-    final Map<Command, ChoreoTraj> autoStartingPoses = Map.ofEntries(
-        // Example
-        // TODO: update DoNotiong Path match your actual field
-        Map.entry(DoNothing, ChoreoTraj.AutoPIDTuning),
-        Map.entry(AutoPIDTuning, ChoreoTraj.AutoPIDTuning));
+    autoChooser.addOption("DSideNeutral", DSideNeutral);
+    autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
+    autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
 
     // enter which we want to do based on name
-    autoChooser.onChange(selectedAuto ->
-
-    {
+    autoChooser.onChange(selectedAuto -> {
       ChoreoTraj startingPose = autoStartingPoses.get(selectedAuto);
       // if there is a starting pose, reset to it
       if (startingPose != null) { // Run even when disabled
@@ -247,6 +277,51 @@ public class RobotContainer {
     });
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
+  }
+
+  // START OF AUTO COMMANDS
+  Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        prepPreset.asProxy().withTimeout(preppingTime),
+        TRY_SHOOTING_ON_PRESET.asProxy().withTimeout(shootingTime),
+        TRY_NONE.asProxy());
+  }
+
+  Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(intakingPath).deadlineFor(TRY_INTAKING.asProxy()),
+        TRY_NONE.asProxy());
+  }
+
+  Command ShootingOnMove(ChoreoTraj shootingPath, Time shootingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
+        TRY_NONE.asProxy());
+  }
+
+  Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,
+      Time shootingOnTravelTime, Time shootingTime) {
+    return Commands.sequence(
+        Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
+        runPath(intakingPath).asProxy().deadlineFor(TRY_INTAKING.asProxy()),
+        Commands.parallel(
+            runPath(travelingPath).asProxy(),
+            Commands.sequence(
+                // TRY_INTAKING is a deferred/instant command that finishes immediately after
+                // requesting the state. Using .until(...) on it will therefore end right away.
+                // Instead, explicitly request the INTAKING state once and then wait until the
+                // drivetrain is behind the horizontal line before continuing to prep shooting.
+                TRY_INTAKING.asProxy(),
+                Commands
+                    .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.FieldElements.ALLIANCE_LINE,
+                        ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
+                TRY_NONE.asProxy().withTimeout(0.001),
+                TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),
+        runPath(shootingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   public Command runPath(ChoreoTraj path) {
