@@ -300,6 +300,11 @@ public class RobotContainer {
             ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
+    Command OSidePreloadAndBackup = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
+
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
@@ -313,6 +318,7 @@ public class RobotContainer {
     autoChooser.addOption("OSideDoubleNeutral", OSideDoubleNeutral);
     autoChooser.addOption("OSideNeutralWithOutpost", OSideNeutralWithOutpost);
     autoChooser.addOption("OSideDoubleNeutralWithOutpost", OSideDoubleNeutralWithOutpost);
+    autoChooser.addOption("OSidePreloadAndBackup", OSidePreloadAndBackup);
 
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
