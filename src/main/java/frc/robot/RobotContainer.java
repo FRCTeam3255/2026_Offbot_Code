@@ -360,14 +360,14 @@ public class RobotContainer {
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         prepPreset.asProxy().withTimeout(preppingTime),
         TRY_SHOOTING_ON_PRESET.asProxy().withTimeout(shootingTime),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(intakingPath).deadlineFor(TRY_INTAKING.asProxy()),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   Command ShootingOnMove(ChoreoTraj shootingPath) {
