@@ -232,25 +232,28 @@ public class RobotContainer {
     Command DoNothing = Commands.none();
 
     Command DSideNeutral = Commands.sequence(
-        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideDoubleNeutral = Commands.sequence(
         DSideNeutral.asProxy(),
-        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideNeutralWithDepot = Commands.sequence(
         DSideNeutral.asProxy(),
-        CollectAndScore(ChoreoTraj.DSideTrenchToNeutral,
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -299,13 +302,13 @@ public class RobotContainer {
         TRY_NONE.asProxy());
   }
 
-  Command CollectAndScore(ChoreoTraj intakingPath, ChoreoTraj returnToAlliancePath, ChoreoTraj shootingPath,
-      Time shootingTime) {
+  Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,
+      Time shootingOnTravelTime, Time shootingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(intakingPath).asProxy().deadlineFor(TRY_INTAKING.asProxy()),
         Commands.parallel(
-            runPath(returnToAlliancePath).asProxy(),
+            runPath(travelingPath).asProxy(),
             Commands.sequence(
                 // TRY_INTAKING is a deferred/instant command that finishes immediately after
                 // requesting the state. Using .until(...) on it will therefore end right away.
@@ -315,10 +318,10 @@ public class RobotContainer {
                 Commands
                     .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.FieldElements.ALLIANCE_LINE,
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
-                TRY_NONE.asProxy().withTimeout(0.01),
-                TRY_SHOOTING_ON_FLY.asProxy().withTimeout(ConstAuto.PREP_SHOOT_TIMEOUT))),
-        runPath(intakingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
-        TRY_NONE.asProxy());
+                TRY_NONE.asProxy().withTimeout(0.001),
+                TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),
+        runPath(shootingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   public Command runPath(ChoreoTraj path) {
