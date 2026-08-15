@@ -291,14 +291,14 @@ public class RobotContainer {
   Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        runPath(intakingPath).deadlineFor(TRY_INTAKING.withTimeout(intakingTime).asProxy()),
+        runPath(intakingPath).deadlineFor(TRY_INTAKING.asProxy()),
         TRY_NONE.asProxy());
   }
 
   Command ShootingOnMove(ChoreoTraj shootingPath, Time shootingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.withTimeout(shootingTime).asProxy()),
+        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
         TRY_NONE.asProxy());
   }
 
