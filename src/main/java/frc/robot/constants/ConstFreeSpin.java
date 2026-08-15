@@ -58,8 +58,14 @@ public class ConstFreeSpin {
   public final static InterpolatingDoubleTreeMap flywheelSpeedMap = new InterpolatingDoubleTreeMap();
   static {
     // TODO: tune
+    flywheelSpeedMap.put(Inches.of(190).in(Inches), RPM.of(4200).in(RPM));
+    flywheelSpeedMap.put(Inches.of(180).in(Inches), RPM.of(4125).in(RPM));
+    flywheelSpeedMap.put(Inches.of(165.1).in(Inches), RPM.of(4100).in(RPM));
+    flywheelSpeedMap.put(Inches.of(165).in(Inches), RPM.of(4000).in(RPM));
+    flywheelSpeedMap.put(Inches.of(160).in(Inches), RPM.of(3800).in(RPM));
+    flywheelSpeedMap.put(Inches.of(150).in(Inches), RPM.of(3700).in(RPM));
+    flywheelSpeedMap.put(Inches.of(140).in(Inches), RPM.of(3600).in(RPM));
     flywheelSpeedMap.put(Inches.of(120).in(Inches), RPM.of(3400).in(RPM));
-    flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM));
-    // Configure TalonFXConfiguration objects here
+    flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM)); // Configure TalonFXConfiguration objects here
   }
 }
