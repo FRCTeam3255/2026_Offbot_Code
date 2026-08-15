@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Seconds;
 
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -14,6 +15,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
@@ -32,6 +34,7 @@ public class Positional extends SubsystemBase {
   MotionMagicExpoVoltage turretMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage climberMotionRequest = new MotionMagicExpoVoltage(0);
 
+  public Time timeOfFlight = Seconds.zero();
   public Angle lastDesiredHoodPivotAngle = Degrees.zero();
   public Angle lastDesiredTurretAngle = Degrees.zero();
   public Distance lastDesiredIntakePosition = Inches.zero();
@@ -61,8 +64,8 @@ public class Positional extends SubsystemBase {
   }
 
   public void setTurretAngle(Angle setPoint) {
-    turret.setControl(turretMotionRequest.withPosition(setPoint));
-    lastDesiredTurretAngle = setPoint;
+    lastDesiredTurretAngle = getWrappedTurretAngle(setPoint);
+    turret.setControl(turretMotionRequest.withPosition(lastDesiredTurretAngle));
   }
 
   public Angle getHoodPivotAngle() {
@@ -91,6 +94,25 @@ public class Positional extends SubsystemBase {
       return lastDesiredClimberPosition;
     }
     return Units.Inches.of(climber.getPosition().getValueAsDouble());
+  }
+
+  public Angle getMappedHoodAngle(Distance distance) {
+    return Degrees.of(ConstPositional.hoodAngleMap.get(distance.in(Inches)));
+  }
+
+  public Time getMappedTOF(Distance distance) {
+    return Seconds.of(ConstPositional.timeOfFlightMap.get(distance.in(Inches)));
+  }
+
+  public Angle getWrappedTurretAngle(Angle desired) {
+    Angle max = ConstPositional.MAX_TURRET_ANGLE, min = ConstPositional.MIN_TURRET_ANGLE;
+    Angle deg360 = Units.Degrees.of(360);
+    if (desired.gt(max)) {
+      desired = desired.minus(deg360);
+    } else if (desired.lt(min)) {
+      desired = desired.plus(deg360);
+    }
+    return desired;
   }
 
   @Override

@@ -4,13 +4,25 @@
 
 package frc.robot.commands.states;
 
+import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Seconds;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.StateMachine.RobotState;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class ShootingOnFly extends Command {
   /** Creates a new ShootingOnFly. */
+  Pose2d estimatedPoseOverTime = Pose2d.kZero;
+  Time TOF = Seconds.zero();
+  Distance distanceToTarget = Inches.zero();
+  Pose2d target = Pose2d.kZero;
+
   public ShootingOnFly() {
     addRequirements(RobotContainer.stateMachineInstance);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,11 +37,32 @@ public class ShootingOnFly extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    target = RobotContainer.robotPose.getTarget();
+    estimatedPoseOverTime = RobotContainer.drivetrainInstance.getEstimatedPoseOverTime();
+    // estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
+    distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
+    TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
+    RobotContainer.positionalInstance.timeOfFlight = TOF;
+
+    RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
+        .snapToTarget(
+            estimatedPoseOverTime
+                .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
+            target)
+        .minus(Degrees.of(180))
+        .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
+
+    RobotContainer.positionalInstance
+        .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));
+
+    RobotContainer.freeSpinInstance
+        .setFlywheelVelocity(RobotContainer.freeSpinInstance.getMappedFlywheelSpeed(distanceToTarget));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    TOF = Seconds.zero();
   }
 
   // Returns true when the command should end.
