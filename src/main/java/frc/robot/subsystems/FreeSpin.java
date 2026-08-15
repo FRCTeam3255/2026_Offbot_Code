@@ -10,7 +10,9 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.constants.ConstFreeSpin;
@@ -121,6 +123,10 @@ public class FreeSpin extends SubsystemBase {
 
   public AngularVelocity getTransferRampVelocity() {
     return transferRamp.getVelocity().getValue();
+  }
+
+  public AngularVelocity getMappedFlywheelSpeed(Distance distance) {
+    return Units.RPM.of(ConstFreeSpin.flywheelSpeedMap.get(distance.in(Units.Inches)));
   }
 
   @Override
