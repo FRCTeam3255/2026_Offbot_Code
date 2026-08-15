@@ -57,12 +57,24 @@ public class ShootingOnFly extends Command {
 
     RobotContainer.freeSpinInstance
         .setFlywheelVelocity(RobotContainer.freeSpinInstance.getMappedFlywheelSpeed(distanceToTarget));
+
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(1);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(1);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(1);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(1);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     TOF = Seconds.zero();
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(0);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(0);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(0);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(0);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(0);
+    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(0);
   }
 
   // Returns true when the command should end.
