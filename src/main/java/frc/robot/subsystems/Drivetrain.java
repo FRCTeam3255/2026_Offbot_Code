@@ -245,4 +245,12 @@ public class Drivetrain extends SN_SuperSwerveV2 {
     double angleRad = Math.atan2(dy, dx);
     return Degrees.of(Math.toDegrees(angleRad));
   }
+
+  public Pose2d getEstimatedPoseOverTime() {
+    return estimatedPoseOverTime;
+  }
+
+  public void setEstimatedPoseOverTime(Pose2d estimatedPoseOverTime) {
+    this.estimatedPoseOverTime = estimatedPoseOverTime;
+  }
 }

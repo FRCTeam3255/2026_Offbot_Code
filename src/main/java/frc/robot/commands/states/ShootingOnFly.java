@@ -24,6 +24,10 @@ public class ShootingOnFly extends Command {
   Time TOF = Seconds.zero();
   Distance distanceToTarget = Inches.zero();
   Pose2d target = Pose2d.kZero;
+  Transform2d turretPivotPoint = new Transform2d(
+      RobotContainer.robotPose.turretPivotPoint.getMeasureX(),
+      RobotContainer.robotPose.turretPivotPoint.getMeasureY(),
+      Rotation2d.kZero);
 
   public ShootingOnFly() {
     addRequirements(RobotContainer.stateMachineInstance);
@@ -40,7 +44,7 @@ public class ShootingOnFly extends Command {
   @Override
   public void execute() {
     target = RobotContainer.robotPose.getTarget();
-    estimatedPoseOverTime = RobotContainer.drivetrainInstance.estimatedPoseOverTime;
+    estimatedPoseOverTime = RobotContainer.drivetrainInstance.getEstimatedPoseOverTime();
     // estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
     distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
@@ -49,9 +53,7 @@ public class ShootingOnFly extends Command {
     RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
         .snapToTarget(
             estimatedPoseOverTime
-                .transformBy(new Transform2d(RobotContainer.robotPose.turretPivotPoint.getMeasureX(),
-                    RobotContainer.robotPose.turretPivotPoint.getMeasureY(),
-                    Rotation2d.kZero)),
+                .transformBy(turretPivotPoint),
             target)
         .minus(Degrees.of(180))
         .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));

@@ -65,10 +65,10 @@ public class DriveManual extends Command {
     driveWithSticks(velocities);
     updateXbrake();
     if (!RobotContainer.positionalInstance.timeOfFlight.equals(Seconds.zero())) {
-      RobotContainer.drivetrainInstance.estimatedPoseOverTime = estimatePoseOverTime(
-          RobotContainer.positionalInstance.timeOfFlight, velocities);
+      RobotContainer.drivetrainInstance.setEstimatedPoseOverTime(estimatePoseOverTime(
+          RobotContainer.positionalInstance.timeOfFlight, velocities));
     } else {
-      RobotContainer.drivetrainInstance.estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
+      RobotContainer.drivetrainInstance.setEstimatedPoseOverTime(RobotContainer.drivetrainInstance.getPose());
     }
   }
 
