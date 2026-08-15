@@ -266,15 +266,15 @@ public class RobotContainer {
     autoStartingPoses.put(PreloadOutpost, ChoreoTraj.HubToOutpost);
 
     Command PreloadDepot = Commands.sequence(
-        ShootingOnMove(ChoreoTraj.DSideBumpToDepot,
+        ShootingOnMove(ChoreoTraj.HubToDepot,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
-    autoStartingPoses.put(PreloadDepot, ChoreoTraj.DSideBumpToDepot);
+    autoStartingPoses.put(PreloadDepot, ChoreoTraj.HubToDepot);
 
     Command PreloadDepotOutpost = Commands.sequence(
         PreloadDepot.asProxy(),
         ShootingOnMove(ChoreoTraj.DepotToOutpost,
             ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
-    autoStartingPoses.put(PreloadDepotOutpost, ChoreoTraj.DepotToOutpost);
+    autoStartingPoses.put(PreloadDepotOutpost, ChoreoTraj.HubToDepot);
 
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
@@ -321,7 +321,7 @@ public class RobotContainer {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,

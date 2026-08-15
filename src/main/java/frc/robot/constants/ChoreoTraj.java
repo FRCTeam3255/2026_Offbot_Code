@@ -213,6 +213,13 @@ public record ChoreoTraj(
         new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
         new Pose2d(3.3141, 2.69813, Rotation2d.fromRadians(-0.5236))
     );
+    public static final ChoreoTraj HubToDepot = new ChoreoTraj(
+        "HubToDepot",
+        OptionalInt.empty(),
+        2.56644,
+        new Pose2d(3.58253, 4.02943, Rotation2d.fromRadians(0)),
+        new Pose2d(0.68343, 5.97907, Rotation2d.fromRadians(0))
+    );
 
     /**
      * A map between trajectory names and their corresponding data.
@@ -245,7 +252,8 @@ public record ChoreoTraj(
         Map.entry("xPreviewPreloadDepot", xPreviewPreloadDepot),
         Map.entry("xPreviewPreloadDepotOutpost", xPreviewPreloadDepotOutpost),
         Map.entry("xPreviewSecondDSideTrenchNeutral", xPreviewSecondDSideTrenchNeutral),
-        Map.entry("xPreviewSecondOSideTrenchNeutral", xPreviewSecondOSideTrenchNeutral)
+        Map.entry("xPreviewSecondOSideTrenchNeutral", xPreviewSecondOSideTrenchNeutral),
+        Map.entry("HubToDepot", HubToDepot)
     );
 
     /**
