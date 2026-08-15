@@ -4,12 +4,14 @@
 
 package frc.robot.constants;
 
-import static edu.wpi.first.units.Units.Inches;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import edu.wpi.first.units.measure.Distance;
 import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Inches;
+
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 
 /** Add your docs here. */
 public class ConstPositional {
@@ -69,4 +71,9 @@ public class ConstPositional {
   static {
     // Configure TalonFXConfiguration objects here
   }
+
+  // each angles
+  public static final double[] TURRET_TO_ENCODER_ANGLES = { 0, 40, 80, 120, 160, 200, 240, 280, 320 };
+  public static final double TURRET_TO_MOTOR_ANGLE_CALC = 360 * (12 / (58 * 9));
+  public static final double[] TURRET_TO_MOTOR_ANGLES = {0, TURRET_TO_MOTOR_ANGLE_CALC, 2 * TURRET_TO_MOTOR_ANGLE_CALC, 3 * TURRET_TO_MOTOR_ANGLE_CALC}
 }
