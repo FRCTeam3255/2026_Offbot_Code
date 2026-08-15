@@ -320,8 +320,7 @@ public class RobotContainer {
     autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
     Command OSidePreloadAndBackup = Commands.sequence(
-        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup,
-            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup));
     autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
 
     // Example: Add autonomous routines to the chooser
