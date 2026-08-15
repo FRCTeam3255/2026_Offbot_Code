@@ -250,13 +250,55 @@ public class RobotContainer {
     autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideNeutralWithDepot = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.FirstDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideDoubleNeutralWithDepot = Commands.sequence(
         DSideNeutral.asProxy(),
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
             ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
-    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+    autoStartingPoses.put(DSideDoubleNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command OSideNeutral = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutral = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideNeutralWithOutpost = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutralWithOutpost = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
@@ -266,6 +308,11 @@ public class RobotContainer {
     autoChooser.addOption("DSideNeutral", DSideNeutral);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
     autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
+    autoChooser.addOption("DSideDoubleNeutralWithDepot", DSideDoubleNeutralWithDepot);
+    autoChooser.addOption("OSideNeutral", OSideNeutral);
+    autoChooser.addOption("OSideDoubleNeutral", OSideDoubleNeutral);
+    autoChooser.addOption("OSideNeutralWithOutpost", OSideNeutralWithOutpost);
+    autoChooser.addOption("OSideDoubleNeutralWithOutpost", OSideDoubleNeutralWithOutpost);
 
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
