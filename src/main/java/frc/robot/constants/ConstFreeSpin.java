@@ -4,10 +4,12 @@
 
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.RPM;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
+import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.measure.AngularVelocity;
 
 /** Add your docs here. */
@@ -53,7 +55,17 @@ public class ConstFreeSpin {
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
 
+  public final static InterpolatingDoubleTreeMap flywheelSpeedMap = new InterpolatingDoubleTreeMap();
   static {
-    // Configure TalonFXConfiguration objects here
+    // TODO: tune
+    flywheelSpeedMap.put(Inches.of(190).in(Inches), RPM.of(4200).in(RPM));
+    flywheelSpeedMap.put(Inches.of(180).in(Inches), RPM.of(4125).in(RPM));
+    flywheelSpeedMap.put(Inches.of(165.1).in(Inches), RPM.of(4100).in(RPM));
+    flywheelSpeedMap.put(Inches.of(165).in(Inches), RPM.of(4000).in(RPM));
+    flywheelSpeedMap.put(Inches.of(160).in(Inches), RPM.of(3800).in(RPM));
+    flywheelSpeedMap.put(Inches.of(150).in(Inches), RPM.of(3700).in(RPM));
+    flywheelSpeedMap.put(Inches.of(140).in(Inches), RPM.of(3600).in(RPM));
+    flywheelSpeedMap.put(Inches.of(120).in(Inches), RPM.of(3400).in(RPM));
+    flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM)); // Configure TalonFXConfiguration objects here
   }
 }

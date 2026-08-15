@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Degrees;
+
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -15,6 +16,7 @@ import com.ctre.phoenix6.swerve.SwerveModuleConstants.SteerFeedbackType;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants.SteerMotorArrangement;
 import com.ctre.phoenix6.swerve.SwerveModuleConstantsFactory;
 import com.frcteam3255.components.swerve.SN_SuperSwerveV2;
+
 import choreo.trajectory.SwerveSample;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -34,6 +36,7 @@ public class Drivetrain extends SN_SuperSwerveV2 {
   public Pose2d lastDesiredTarget;
   private Rotation2d targetDriveRotation = new Rotation2d();
   private boolean manualRotationEnabled = true;
+  public Pose2d estimatedPoseOverTime = new Pose2d();
 
   /** Creates a new Drivetrain. */
   public static final SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration> constantCreator = new SwerveModuleConstantsFactory<TalonFXConfiguration, TalonFXConfiguration, CANcoderConfiguration>()
@@ -234,5 +237,20 @@ public class Drivetrain extends SN_SuperSwerveV2 {
 
   public Rotation2d getRawHeading() {
     return getState().RawHeading;
+  }
+
+  public Angle snapToTarget(Pose2d current, Pose2d targetPose) {
+    double dx = targetPose.getX() - current.getX();
+    double dy = targetPose.getY() - current.getY();
+    double angleRad = Math.atan2(dy, dx);
+    return Degrees.of(Math.toDegrees(angleRad));
+  }
+
+  public Pose2d getEstimatedPoseOverTime() {
+    return estimatedPoseOverTime;
+  }
+
+  public void setEstimatedPoseOverTime(Pose2d estimatedPoseOverTime) {
+    this.estimatedPoseOverTime = estimatedPoseOverTime;
   }
 }
