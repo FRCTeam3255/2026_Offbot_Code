@@ -251,29 +251,91 @@ public class RobotContainer {
     autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideNeutralWithDepot = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.FirstDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command SecondDSideNeutralWithDepot = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(SecondDSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideDoubleNeutralWithDepot = Commands.sequence(
         DSideNeutral.asProxy(),
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
             ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
-    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+    autoStartingPoses.put(DSideDoubleNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideNeutralWithDepotThenNeutral = Commands.sequence(
+        SecondDSideNeutralWithDepot.asProxy(),
+        ShootingOnMove(ChoreoTraj.DSideCornerToDSideTrench),
+        IntakeAndShootOnTheFly(
+            ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepotThenNeutral, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command OSideNeutral = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutral = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideNeutralWithOutpost = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutralWithOutpost = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSidePreloadAndBackup = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup));
+    autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
 
     Command PreloadOutpost = Commands.sequence(
         ShootingOnMove(
-            ChoreoTraj.HubToOutpost,
-            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+            ChoreoTraj.HubToOutpost));
     autoStartingPoses.put(PreloadOutpost, ChoreoTraj.HubToOutpost);
 
     Command PreloadDepot = Commands.sequence(
-        ShootingOnMove(ChoreoTraj.HubToDepot,
-            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+        ShootingOnMove(ChoreoTraj.HubToDepot));
     autoStartingPoses.put(PreloadDepot, ChoreoTraj.HubToDepot);
 
     Command PreloadDepotOutpost = Commands.sequence(
         PreloadDepot.asProxy(),
-        ShootingOnMove(ChoreoTraj.DepotToOutpost,
-            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+        ShootingOnMove(ChoreoTraj.DepotToOutpost));
     autoStartingPoses.put(PreloadDepotOutpost, ChoreoTraj.HubToDepot);
 
     // Example: Add autonomous routines to the chooser
@@ -287,6 +349,14 @@ public class RobotContainer {
     autoChooser.addOption("PreloadOutpost", PreloadOutpost);
     autoChooser.addOption("PreloadDepot", PreloadDepot);
     autoChooser.addOption("PreloadDepotOutpost", PreloadDepotOutpost);
+    autoChooser.addOption("SecondDSideNeutralWithDepot", SecondDSideNeutralWithDepot);
+    autoChooser.addOption("DSideDoubleNeutralWithDepot", DSideDoubleNeutralWithDepot);
+    autoChooser.addOption("DSideNeutralWithDepotThenNeutral", DSideNeutralWithDepotThenNeutral);
+    autoChooser.addOption("OSideNeutral", OSideNeutral);
+    autoChooser.addOption("OSideDoubleNeutral", OSideDoubleNeutral);
+    autoChooser.addOption("OSideNeutralWithOutpost", OSideNeutralWithOutpost);
+    autoChooser.addOption("OSideDoubleNeutralWithOutpost", OSideDoubleNeutralWithOutpost);
+    autoChooser.addOption("OSidePreloadAndBackup", OSidePreloadAndBackup);
 
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
@@ -302,26 +372,27 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
+
   Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         prepPreset.asProxy().withTimeout(preppingTime),
         TRY_SHOOTING_ON_PRESET.asProxy().withTimeout(shootingTime),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(intakingPath).deadlineFor(TRY_INTAKING.asProxy()),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
-  Command ShootingOnMove(ChoreoTraj shootingPath, Time shootingTime) {
+  Command ShootingOnMove(ChoreoTraj shootingPath) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
-        TRY_NONE.asProxy().withTimeout(0.001));
+        runPath(shootingPath).asProxy().deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
+        TRY_NONE.asProxy().withTimeout(0.001).withTimeout(0.001));
   }
 
   Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,

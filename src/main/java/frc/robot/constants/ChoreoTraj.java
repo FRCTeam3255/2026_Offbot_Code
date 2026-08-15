@@ -109,6 +109,14 @@ public record ChoreoTraj(
       3.39378,
       new Pose2d(4.12706, 0.41172, Rotation2d.fromRadians(-1.5708)),
       new Pose2d(7.84374, 3.53413, Rotation2d.fromRadians(-1.5708)));
+
+  public static final ChoreoTraj DSideCornerToDSideTrench = new ChoreoTraj(
+      "DSideCornerToDSideTrench",
+      OptionalInt.empty(),
+      1.61481,
+      new Pose2d(0.4, 6.923, Rotation2d.fromRadians(-1.571)),
+      new Pose2d(4.127, 7.658, Rotation2d.fromRadians(1.571)));
+
   public static final ChoreoTraj PreloadAndBackupTower = new ChoreoTraj(
       "PreloadAndBackupTower",
       OptionalInt.empty(),
