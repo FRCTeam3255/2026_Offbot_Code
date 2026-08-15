@@ -240,14 +240,6 @@ public class RobotContainer {
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
-    Command OSidePreloadAndBackup = Commands.sequence(
-        OSidePreloadAndBackup.asProxy(),
-        IntakeAndShootOnTheFly(, null, null, null, null)
-
-
-
-    )
-
     Command DSideDoubleNeutral = Commands.sequence(
         DSideNeutral.asProxy(),
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
@@ -289,8 +281,6 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
-
-
 
   Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
