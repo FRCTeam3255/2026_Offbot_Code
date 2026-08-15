@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
+import frc.robot.commands.states.ShootingOnFly;
 import frc.robot.constants.ChoreoTraj;
 import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstField;
@@ -239,6 +240,14 @@ public class RobotContainer {
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
+    Command OSidePreloadAndBackup = Commands.sequence(
+        OSidePreloadAndBackup.asProxy(),
+        IntakeAndShootOnTheFly(, null, null, null, null)
+
+
+
+    )
+
     Command DSideDoubleNeutral = Commands.sequence(
         DSideNeutral.asProxy(),
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
@@ -280,6 +289,9 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
+
+
+
   Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
