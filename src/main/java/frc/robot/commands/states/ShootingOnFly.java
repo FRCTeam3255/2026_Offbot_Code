@@ -10,8 +10,6 @@ import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Seconds;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,10 +22,6 @@ public class ShootingOnFly extends Command {
   Time TOF = Seconds.zero();
   Distance distanceToTarget = Inches.zero();
   Pose2d target = Pose2d.kZero;
-  Transform2d turretPivotPoint = new Transform2d(
-      RobotContainer.robotPose.turretPivotPoint.getMeasureX(),
-      RobotContainer.robotPose.turretPivotPoint.getMeasureY(),
-      Rotation2d.kZero);
 
   public ShootingOnFly() {
     addRequirements(RobotContainer.stateMachineInstance);
@@ -53,7 +47,7 @@ public class ShootingOnFly extends Command {
     RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
         .snapToTarget(
             estimatedPoseOverTime
-                .transformBy(turretPivotPoint),
+                .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
             target)
         .minus(Degrees.of(180))
         .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));

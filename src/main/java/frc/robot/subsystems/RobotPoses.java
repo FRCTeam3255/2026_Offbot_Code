@@ -7,7 +7,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -44,6 +46,10 @@ public class RobotPoses extends SubsystemBase {
       Units.Inches.of(6.5),
       Units.Inches.of(15.5),
       Rotation3d.kZero);
+  public final Transform2d turretPivotTransform2d = new Transform2d(
+      turretPivotPoint.getMeasureX(),
+      turretPivotPoint.getMeasureY(),
+      Rotation2d.kZero);
 
   public RobotPoses() {
     SmartDashboard.putData("Field", field2d);
