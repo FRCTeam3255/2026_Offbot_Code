@@ -111,6 +111,10 @@ public class DriveManual extends Command {
         ConstDrivetrain.ROTATION_PID.kP,
         ConstDrivetrain.ROTATION_PID.kI,
         ConstDrivetrain.ROTATION_PID.kD);
+    if (DriverStation.isAutonomousEnabled()) {
+      RobotContainer.drivetrainInstance
+          .setDriveRotation(RobotContainer.drivetrainInstance.getPose().getRotation().getMeasure());
+    }
   }
 
   private void updateXbrake() {
