@@ -26,6 +26,7 @@ import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
 import frc.robot.commands.states.ShootingOnFly;
+import frc.robot.commands.states.ShootingOnPreset;
 import frc.robot.constants.ChoreoTraj;
 import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstField;
@@ -328,15 +329,32 @@ public class RobotContainer {
         ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup));
     autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
 
+    Command PreloadOutpost = Commands.sequence(
+        ShootingOnMove(
+            ChoreoTraj.HubToOutpost));
+    autoStartingPoses.put(PreloadOutpost, ChoreoTraj.HubToOutpost);
+
+    Command PreloadDepot = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.HubToDepot));
+    autoStartingPoses.put(PreloadDepot, ChoreoTraj.HubToDepot);
+
+    Command PreloadDepotOutpost = Commands.sequence(
+        PreloadDepot.asProxy(),
+        ShootingOnMove(ChoreoTraj.DepotToOutpost));
+    autoStartingPoses.put(PreloadDepotOutpost, ChoreoTraj.HubToDepot);
+
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
-    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
+    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("DSideNeutral", DSideNeutral);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
     autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
+    autoChooser.addOption("PreloadOutpost", PreloadOutpost);
+    autoChooser.addOption("PreloadDepot", PreloadDepot);
+    autoChooser.addOption("PreloadDepotOutpost", PreloadDepotOutpost);
     autoChooser.addOption("SecondDSideNeutralWithDepot", SecondDSideNeutralWithDepot);
     autoChooser.addOption("DSideDoubleNeutralWithDepot", DSideDoubleNeutralWithDepot);
     autoChooser.addOption("DSideNeutralWithDepotThenNeutral", DSideNeutralWithDepotThenNeutral);
@@ -380,7 +398,7 @@ public class RobotContainer {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(shootingPath).asProxy().deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
-        TRY_NONE.asProxy().withTimeout(0.001));
+        TRY_NONE.asProxy().withTimeout(0.001).withTimeout(0.001));
   }
 
   Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,
