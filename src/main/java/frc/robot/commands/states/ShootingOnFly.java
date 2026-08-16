@@ -60,9 +60,9 @@ public class ShootingOnFly extends Command {
 
     RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(1);
     RobotContainer.freeSpinInstance.setAgitatorPercentOutput(1);
-    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(1);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(1);
     RobotContainer.freeSpinInstance.setTransferRampPercentOutput(1);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(1);
   }
 
   // Called once the command ends or is interrupted.
@@ -71,10 +71,10 @@ public class ShootingOnFly extends Command {
     TOF = Seconds.zero();
     RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(0);
     RobotContainer.freeSpinInstance.setAgitatorPercentOutput(0);
-    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(0);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(0);
     RobotContainer.freeSpinInstance.setTransferRampPercentOutput(0);
     RobotContainer.freeSpinInstance.setFlywheelPercentOutput(0);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(0);
   }
 
   // Returns true when the command should end.

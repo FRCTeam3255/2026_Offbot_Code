@@ -395,6 +395,7 @@ public class RobotContainer {
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
                 TRY_NONE.asProxy().withTimeout(0.001),
                 TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),
+        TRY_NONE.asProxy().withTimeout(0.001),
         runPath(shootingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
         TRY_NONE.asProxy().withTimeout(0.001));
   }
