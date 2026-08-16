@@ -242,7 +242,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -251,7 +251,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -259,7 +259,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -267,7 +267,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
     autoStartingPoses.put(SecondDSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -276,7 +276,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideDoubleNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -287,7 +287,7 @@ public class RobotContainer {
             ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutralWithDepotThenNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -295,7 +295,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
             ChoreoTraj.FirstOSideNeutralToAlliance,
             ChoreoTraj.OSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideNeutral, ChoreoTraj.OSideTrenchToNeutral);
 
@@ -304,7 +304,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
             ChoreoTraj.SecondOSideNeutralToAlliance,
             ChoreoTraj.OSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideDoubleNeutral, ChoreoTraj.OSideTrenchToNeutral);
 
@@ -312,7 +312,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
             ChoreoTraj.FirstOSideNeutralToAlliance,
             ChoreoTraj.OSideAllianceToOutpost,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
@@ -321,7 +321,7 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
             ChoreoTraj.SecondOSideNeutralToAlliance,
             ChoreoTraj.OSideAllianceToOutpost,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
     autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
 
@@ -419,6 +419,7 @@ public class RobotContainer {
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
                 TRY_NONE.asProxy().withTimeout(0.001),
                 TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),
+        TRY_NONE.asProxy().withTimeout(0.001),
         runPath(shootingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
         TRY_NONE.asProxy().withTimeout(0.001));
   }

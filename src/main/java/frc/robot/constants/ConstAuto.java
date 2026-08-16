@@ -10,8 +10,9 @@ import edu.wpi.first.units.measure.Time;
 
 /** Add your docs here. */
 public class ConstAuto {
-  public static final Time NEUTRAL_SHOOTING_TIMEOUT = Seconds.of(6.5);
-  public static final Time NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT = Seconds.of(6.5);
+  public static final Time NEUTRAL_SHOOTING_TIMEOUT = Seconds.of(1.5);
+  public static final Time FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT = Seconds.of(1);
+  public static final Time SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT = Seconds.of(1);
   public static final Time DEPOT_SHOOTING_TIMEOUT = Seconds.of(7);
   public static final Time OUTPOST_SHOOTING_TIMEOUT = Seconds.of(7);
 }
