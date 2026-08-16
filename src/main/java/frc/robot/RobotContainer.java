@@ -14,20 +14,23 @@ import choreo.auto.AutoFactory;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
-import frc.robot.commands.states.ShootingOnFly;
 import frc.robot.commands.states.ShootingOnPreset;
 import frc.robot.constants.ChoreoTraj;
+import frc.robot.constants.ConstRumble;
 import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
@@ -139,6 +142,16 @@ public class RobotContainer {
           conDriver.axis_RightX,
           conDriver.btn_RightBumper),
       Set.of(driverStateMachineInstance));
+
+  // public final Trigger
+  public final Trigger isOurShiftFirstTrigger = new Trigger(
+      () -> telemetryInstance.ourShiftFirst());
+  public final Trigger isOurShiftTrigger = new Trigger(
+      () -> telemetryInstance.isHubActive());
+  public final Trigger hubSwitchingTrigger = new Trigger(
+      () -> telemetryInstance.hubsIsSwitching());
+  public final Trigger climbingL1Trigger = new Trigger(
+      () -> stateMachineInstance.getRobotState() == RobotState.CLIMBING);
 
   public RobotContainer() {
     conDriver.setLeftDeadband(constControllers.DRIVER_LEFT_STICK_DEADBAND);
@@ -456,5 +469,26 @@ public class RobotContainer {
 
   public static boolean isPracticeBot() {
     return RobotController.getSerialNumber().equals(ConstSystem.PRACTICE_BOT_RIO_SERIAL_NUMBER);
+  }
+
+  public void configFeedback() {
+
+    hubSwitchingTrigger
+        .whileTrue(
+            Commands.run(() -> conDriver.setRumble(RumbleType.kRightRumble,
+                ConstRumble.SHIFT_CHANGE_RUMBLE), telemetryInstance))
+        .onFalse(Commands.runOnce(() -> conDriver.setRumble(RumbleType.kRightRumble,
+            ConstRumble.RUMBLE_OFF), telemetryInstance));
+
+    isOurShiftFirstTrigger
+        .whileTrue(Commands.run(() -> {
+          double t = Timer.getFPGATimestamp(); // seconds since FPGA boot
+          boolean on = ((int) Math.floor(t) % 2) == 0; // toggle every 1 second
+          conDriver.setRumble(RumbleType.kLeftRumble,
+              on ? ConstRumble.OUR_SHIFT_FIRST_RUMBLE : ConstRumble.RUMBLE_OFF);
+        }, telemetryInstance))
+        .onFalse(Commands.runOnce(() -> conDriver.setRumble(RumbleType.kLeftRumble, ConstRumble.RUMBLE_OFF),
+            telemetryInstance));
+    // Add feedback bindings here if needed
   }
 }
