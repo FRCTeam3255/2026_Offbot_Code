@@ -94,6 +94,20 @@ public record ChoreoTraj(
 	    new Pose2d(7.844, 3.534, Rotation2d.fromRadians(-1.571)),
 	    new Pose2d(3.314, 2.698, Rotation2d.fromRadians(-0.524))
 	);
+	public static final ChoreoTraj HubToDepot = new ChoreoTraj(
+	    "HubToDepot",
+	    OptionalInt.empty(),
+	    1.53201,
+	    new Pose2d(3.583, 4.029, Rotation2d.fromRadians(0)),
+	    new Pose2d(0.683, 5.979, Rotation2d.fromRadians(0))
+	);
+	public static final ChoreoTraj HubToOutpost = new ChoreoTraj(
+	    "HubToOutpost",
+	    OptionalInt.empty(),
+	    1.85264,
+	    new Pose2d(3.583, 4.029, Rotation2d.fromRadians(0)),
+	    new Pose2d(0.397, 0.669, Rotation2d.fromRadians(0))
+	);
 	public static final ChoreoTraj OSideAllianceToOutpost = new ChoreoTraj(
 	    "OSideAllianceToOutpost",
 	    OptionalInt.empty(),
@@ -229,6 +243,8 @@ public record ChoreoTraj(
 		Map.entry("DSideTrenchToNeutral", DSideTrenchToNeutral),
 		Map.entry("FirstDSideNeutralToAlliance", FirstDSideNeutralToAlliance),
 		Map.entry("FirstOSideNeutralToAlliance", FirstOSideNeutralToAlliance),
+		Map.entry("HubToDepot", HubToDepot),
+		Map.entry("HubToOutpost", HubToOutpost),
 		Map.entry("OSideAllianceToOutpost", OSideAllianceToOutpost),
 		Map.entry("OSideAllianceToTrench", OSideAllianceToTrench),
 		Map.entry("OSidePreloadAndBackup", OSidePreloadAndBackup),
