@@ -347,7 +347,6 @@ public class RobotContainer {
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
-    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
     autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("DSideNeutral", DSideNeutral);
