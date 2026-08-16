@@ -232,6 +232,11 @@ public class RobotContainer {
 
     Command DoNothing = Commands.none();
 
+    Command PreloadThenBackUp = Commands.sequence(
+        ShootingOnMove(
+            ChoreoTraj.PreloadAndBackupTower));
+    autoStartingPoses.put(PreloadThenBackUp, ChoreoTraj.PreloadAndBackupTower);
+
     Command DSideNeutral = Commands.sequence(
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
@@ -327,6 +332,7 @@ public class RobotContainer {
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
+    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
     autoChooser.addOption("DSideNeutral", DSideNeutral);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
