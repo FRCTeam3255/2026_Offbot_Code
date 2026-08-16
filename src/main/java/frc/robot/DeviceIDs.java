@@ -55,6 +55,6 @@ public class DeviceIDs {
     public static final int HOOD_PIVOT_CAN = 31;
     public static final int TURRET_CAN = 32;
     public static final int CLIMBER_CAN = 33;
-
+    public static final int TURRET_ENCODER_DIO = 1;
   }
 }

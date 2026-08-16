@@ -14,6 +14,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
@@ -26,6 +27,7 @@ public class Positional extends SubsystemBase {
   final TalonFX hoodPivot = new TalonFX(DeviceIDs.positionalIDs.HOOD_PIVOT_CAN);
   final TalonFX turret = new TalonFX(DeviceIDs.positionalIDs.TURRET_CAN);
   final TalonFX climber = new TalonFX(DeviceIDs.positionalIDs.CLIMBER_CAN);
+  final DutyCycleEncoder absoluteEncoder = new DutyCycleEncoder(DeviceIDs.positionalIDs.TURRET_ENCODER_DIO);
 
   MotionMagicExpoVoltage intakeSlideMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage hoodPivotMotionRequest = new MotionMagicExpoVoltage(0);
@@ -36,6 +38,8 @@ public class Positional extends SubsystemBase {
   public Angle lastDesiredTurretAngle = Degrees.zero();
   public Distance lastDesiredIntakePosition = Inches.zero();
   public Distance lastDesiredClimberPosition = Inches.zero();
+
+  public boolean isTurretSeeded = false;
 
   public Positional() {
     intakeSlide.getConfigurator().apply(ConstPositional.INTAKE_SLIDE_CONFIGURATION);
@@ -91,6 +95,34 @@ public class Positional extends SubsystemBase {
       return lastDesiredClimberPosition;
     }
     return Units.Inches.of(climber.getPosition().getValueAsDouble());
+  }
+
+  public double getRawEncoderRead() {
+    return absoluteEncoder.get();
+  }
+
+  public Angle seedingTurret(Angle tolerance) {
+    double motorRead = turret.getRotorPosition().getValue().in(Degrees);
+    Angle error = Degrees.of(0);
+    Angle minError = Degrees.of(500);
+    Angle seedingAngle = null;
+    for (int i = 0; i < ConstPositional.TURRET_TO_MOTOR_ANGLES.length; i++) {
+      Angle motorReadDeg = Degrees.of(motorRead + ConstPositional.TURRET_TO_MOTOR_ANGLES[i]);
+      for (int n = 0; n < ConstPositional.TURRET_TO_ENCODER_ANGLES.length; n++) {
+        Angle encoderReadDeg = Degrees.of(getRawEncoderRead() + ConstPositional.TURRET_TO_ENCODER_ANGLES[n]);
+        error = motorReadDeg.minus(encoderReadDeg);
+        if (error.lt(minError)) {
+          minError = error;
+          seedingAngle = motorReadDeg;
+        }
+      }
+    }
+    if (seedingAngle == null || error.gt(tolerance)) {
+      isTurretSeeded = false;
+      System.out.print("***---- WARNING: FAILED TO SEED TURRET ----***");
+      seedingAngle = Degrees.of(0);
+    }
+    return seedingAngle;
   }
 
   @Override
