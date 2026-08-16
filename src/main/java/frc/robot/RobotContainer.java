@@ -349,6 +349,7 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
+    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("DSideNeutral", DSideNeutral);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
     autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
