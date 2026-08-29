@@ -12,7 +12,7 @@ import frc.robot.subsystems.StateMachine;
 public class PreppingTrench extends BasePreps {
   /** Creates a new PreppingTrench. */
   public PreppingTrench() {
-    super(ConstPositional.PREP_TRENCH_TURRET,
+    super(
         ConstPositional.PREP_TRENCH_HOOD,
         ConstFreeSpin.PREP_TRENCH_FLYWHEEL,
         StateMachine.RobotState.PREPPING_TRENCH);

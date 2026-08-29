@@ -12,7 +12,7 @@ import frc.robot.subsystems.StateMachine;
 public class PreppingDSide extends BasePreps {
   /** Creates a new PreppingDSide. */
   public PreppingDSide() {
-    super(ConstPositional.PREP_D_SIDE_TURRET,
+    super(
         ConstPositional.PREP_D_SIDE_HOOD,
         ConstFreeSpin.PREP_D_SIDE_FLYWHEEL,
         StateMachine.RobotState.PREPPING_DSIDE);
