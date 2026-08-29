@@ -74,7 +74,7 @@ public class ConstPositional {
 
   // each angles
   public static final double[] TURRET_TO_ENCODER_ANGLES = { 0, 40, 80, 120, 160, 200, 240, 280, 320 };
-  public static final double TURRET_TO_MOTOR_ANGLE_CALC = 360.0 * (12 / (58 * 9));
+  public static final double TURRET_TO_MOTOR_ANGLE_CALC = 360.0 * (12.0 / (58.0 * 9.0));
   public static final double[] TURRET_TO_MOTOR_ANGLES = new double[35];
   static {
     for (int i = 0; i < 35; i++) {
