@@ -14,6 +14,7 @@ import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.constants.ConstFreeSpin;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 public class ShootingOnFly extends Command {
@@ -58,23 +59,23 @@ public class ShootingOnFly extends Command {
     RobotContainer.freeSpinInstance
         .setFlywheelVelocity(RobotContainer.freeSpinInstance.getMappedFlywheelSpeed(distanceToTarget));
 
-    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(1);
-    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(1);
-    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(1);
-    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(1);
-    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(1);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.TRANSFER_BELT_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANSFER_RAMP_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     TOF = Seconds.zero();
-    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(0);
-    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(0);
-    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(0);
-    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(0);
-    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(0);
-    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(0);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.STOP);
   }
 
   // Returns true when the command should end.
