@@ -98,7 +98,7 @@ public class Positional extends SubsystemBase {
   }
 
   public double getRawEncoderRead() {
-    return absoluteEncoder.get();
+    return absoluteEncoder.get() * 360;
   }
 
   public Angle seedingTurret(Angle tolerance) {
@@ -110,7 +110,7 @@ public class Positional extends SubsystemBase {
       Angle motorReadDeg = Degrees.of(motorRead + ConstPositional.TURRET_TO_MOTOR_ANGLES[i]);
       for (int n = 0; n < ConstPositional.TURRET_TO_ENCODER_ANGLES.length; n++) {
         Angle encoderReadDeg = Degrees.of(getRawEncoderRead() + ConstPositional.TURRET_TO_ENCODER_ANGLES[n]);
-        error = motorReadDeg.minus(encoderReadDeg);
+        error = Units.Degrees.of(Math.abs(motorReadDeg.minus(encoderReadDeg).in(Degrees)));
         if (error.lt(minError)) {
           minError = error;
           seedingAngle = motorReadDeg;
