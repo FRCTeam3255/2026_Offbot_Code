@@ -101,5 +101,8 @@ public class ConstPositional {
     timeOfFlightMap.put(Inches.of(50).in(Inches), Seconds.of(1).in(Seconds));
 
     // Configure TalonFXConfiguration objects here
+    INTAKE_SLIDE_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 30.0) * (1.0 * Math.PI));
+    HOOD_PIVOT_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 130.0) * (12.0 / 30.0));
+    TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0) * (10.0 / 90.0));
   }
 }
