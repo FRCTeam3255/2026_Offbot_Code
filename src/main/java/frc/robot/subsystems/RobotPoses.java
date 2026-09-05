@@ -22,7 +22,7 @@ import frc.robot.constants.ConstField;
 @Logged
 public class RobotPoses extends SubsystemBase {
   /** Creates a new RobotPoses. */
-  boolean isOurShift = true;
+  boolean isOurShift = RobotContainer.telemetryInstance.isHubActive();
   Pose2d target = Pose2d.kZero;
   Field2d field2d = new Field2d();
   FieldObject2d robotObject = field2d.getObject("Robot");
