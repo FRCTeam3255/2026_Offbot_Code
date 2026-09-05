@@ -9,6 +9,8 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Seconds;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
@@ -104,5 +106,16 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 30.0) * (1.0 * Math.PI));
     HOOD_PIVOT_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 130.0) * (12.0 / 30.0));
     TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0) * (10.0 / 90.0));
+
+    INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    HOOD_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    CLIMBER_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+    INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    CLIMBER_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+
   }
 }

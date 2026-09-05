@@ -8,6 +8,8 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.RPM;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -71,6 +73,25 @@ public class ConstFreeSpin {
     flywheelSpeedMap.put(Inches.of(150).in(Inches), RPM.of(3700).in(RPM));
     flywheelSpeedMap.put(Inches.of(140).in(Inches), RPM.of(3600).in(RPM));
     flywheelSpeedMap.put(Inches.of(120).in(Inches), RPM.of(3400).in(RPM));
+
     flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM)); // Configure TalonFXConfiguration objects here
+    INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    FLYWHEEL_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    FLYWHEEL_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    TRANSFER_BELT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    TRANSFER_RAMP_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    AGITATOR_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+
+    INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    TRANSFER_BELT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    AGITATOR_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    FLYWHEEL_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    FLYWHEEL_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    TRANSFER_RAMP_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
   }
 }
