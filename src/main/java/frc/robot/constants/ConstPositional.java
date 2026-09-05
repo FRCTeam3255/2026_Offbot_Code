@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Seconds;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
@@ -108,5 +109,12 @@ public class ConstPositional {
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     HOOD_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+
+    INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    CLIMBER_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+
   }
 }
