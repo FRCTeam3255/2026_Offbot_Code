@@ -110,6 +110,7 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     HOOD_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    CLIMBER_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
