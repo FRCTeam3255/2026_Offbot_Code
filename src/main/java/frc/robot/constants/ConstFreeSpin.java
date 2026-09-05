@@ -77,11 +77,11 @@ public class ConstFreeSpin {
                                                                                                       // TalonFXConfiguration
                                                                                                       // objects here
     INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    FLYWHEEL_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    FLYWHEEL_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    TRANSFER_BELT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    TRANSFER_RAMP_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    AGITATOR_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    TRANSFER_BELT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    TRANSFER_RAMP_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    AGITATOR_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
   }
 }
