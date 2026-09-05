@@ -67,12 +67,13 @@ public class RobotContainer {
   private final DriverStateMachine loggedDriverStateMachineInstance = driverStateMachineInstance;
   public static final StateMachine stateMachineInstance = new StateMachine();
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
+  public static final Telemetry telemetryInstance = new Telemetry();
+  private final Telemetry loggedTelemetryInstance = telemetryInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
   public static final Vision visionInstance = new Vision();
   private final Vision loggedVisionInstance = visionInstance;
-  public static final Telemetry telemetryInstance = new Telemetry();
-  private final Telemetry loggedTelemetryInstance = telemetryInstance;
+
   // states
   Command TRY_NONE = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.NONE));
