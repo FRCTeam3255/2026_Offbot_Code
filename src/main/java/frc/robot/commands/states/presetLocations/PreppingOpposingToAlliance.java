@@ -13,7 +13,7 @@ public class PreppingOpposingToAlliance extends BasePreps {
   /** Creates a new PreppingOpposingToAlliance. */
   public PreppingOpposingToAlliance() {
 
-    super(ConstPositional.PREP_OPPOSING_TO_ALLIANCE_TURRET,
+    super(
         ConstPositional.PREP_OPPOSING_TO_ALLIANCE_HOOD,
         ConstFreeSpin.PREP_OPPOSING_TO_ALLIANCE_FLYWHEEL,
         StateMachine.RobotState.PREPPING_OPPOSING_TO_ALLIANCE);

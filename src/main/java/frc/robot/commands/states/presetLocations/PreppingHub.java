@@ -12,7 +12,7 @@ import frc.robot.subsystems.StateMachine;
 public class PreppingHub extends BasePreps {
   /** Creates a new PreppingHub. */
   public PreppingHub() {
-    super(ConstPositional.PREP_HUB_TURRET,
+    super(
         ConstPositional.PREP_HUB_HOOD,
         ConstFreeSpin.PREP_HUB_FLYWHEEL,
         StateMachine.RobotState.PREPPING_HUB);

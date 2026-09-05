@@ -13,7 +13,7 @@ public class PreppingNeutralToAlliance extends BasePreps {
   /** Creates a new PreppingNeutralToAlliance. */
   public PreppingNeutralToAlliance() {
 
-    super(ConstPositional.PREP_NEUTRAL_TO_ALLIANCE_TURRET,
+    super(
         ConstPositional.PREP_NEUTRAL_TO_ALLIANCE_HOOD,
         ConstFreeSpin.PREP_NEUTRAL_TO_ALLIANCE_FLYWHEEL,
         StateMachine.RobotState.PREPPING_NEUTRAL_TO_ALLIANCE);
