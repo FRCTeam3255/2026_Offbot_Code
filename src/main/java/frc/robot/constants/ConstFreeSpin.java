@@ -8,6 +8,8 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.RPM;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -63,6 +65,12 @@ public class ConstFreeSpin {
   public final static InterpolatingDoubleTreeMap flywheelSpeedMap = new InterpolatingDoubleTreeMap();
   static {
     // TODO: tune
+
+    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.CurrentLimits.SupplyCurrentLimitEnable = true;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.CurrentLimits.SupplyCurrentLowerLimit = 35;
+
     flywheelSpeedMap.put(Inches.of(190).in(Inches), RPM.of(4200).in(RPM));
     flywheelSpeedMap.put(Inches.of(180).in(Inches), RPM.of(4125).in(RPM));
     flywheelSpeedMap.put(Inches.of(165.1).in(Inches), RPM.of(4100).in(RPM));

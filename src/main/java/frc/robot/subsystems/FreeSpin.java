@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.RPM;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.epilogue.Logged;
@@ -36,6 +37,10 @@ public class FreeSpin extends SubsystemBase {
 
   public AngularVelocity lastDesiredFlywheelVelocity = RPM.zero();
   public AngularVelocity lastDesiredIntakeRollerVelocity = RPM.zero();
+
+  public AngularVelocity lastDesiredIntakeRollerWestVelocity = RPM.zero();
+  public AngularVelocity lastDesiredIntakeRollerEastVelocity = RPM.zero();
+
   public AngularVelocity lastDesiredHotdogRollersVelocity = RPM.zero();
   public AngularVelocity lastDesiredTransferBeltVelocity = RPM.zero();
   public AngularVelocity lastDesiredAgitatorVelocity = RPM.zero();
@@ -48,7 +53,8 @@ public class FreeSpin extends SubsystemBase {
   public FreeSpin() {
 
     intakeRollerWestLeader.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);
-    intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_EAST_CONFIGURATION);
+    intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);
+
     hotdogRollers.getConfigurator().apply(ConstFreeSpin.HOTDOG_ROLLERS_CONFIGURATION);
     transferBelt.getConfigurator().apply(ConstFreeSpin.TRANSFER_BELT_CONFIGURATION);
     westFlywheelLeader.getConfigurator().apply(ConstFreeSpin.FLYWHEEL_WEST_CONFIGURATION);
@@ -67,7 +73,7 @@ public class FreeSpin extends SubsystemBase {
   public void setIntakeRollersPercentOutput(double percentOutput) {
     intakeRollerWestLeader.set(percentOutput);
     intakeRollerEastFollower.setControl(intakeFollower);
-    lastDesiredIntakeRollerVelocity = Units.RPM.of(percentOutput * 6000);
+    lastDesiredIntakeRollerVelocity = Units.RPM.of(6000);
   }
 
   public AngularVelocity getIntakeRollersVelocity() {
@@ -75,6 +81,20 @@ public class FreeSpin extends SubsystemBase {
       return lastDesiredIntakeRollerVelocity;
     }
     return intakeRollerWestLeader.getVelocity().getValue();
+  }
+
+  public AngularVelocity getIntakeRollerWestVelocity() {
+    if (Robot.isSimulation()) {
+      return lastDesiredIntakeRollerWestVelocity;
+    }
+    return intakeRollerWestLeader.getVelocity().getValue();
+  }
+
+  public AngularVelocity getIntakeRollerEastVelocity() {
+    if (Robot.isSimulation()) {
+      return lastDesiredIntakeRollerEastVelocity;
+    }
+    return intakeRollerEastFollower.getVelocity().getValue();
   }
 
   public void setFlywheelVelocity(AngularVelocity velocity) {
