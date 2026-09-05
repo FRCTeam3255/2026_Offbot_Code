@@ -109,5 +109,6 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    CLIMBER_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
   }
 }
