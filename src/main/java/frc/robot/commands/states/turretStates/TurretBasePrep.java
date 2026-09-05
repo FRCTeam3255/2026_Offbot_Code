@@ -8,16 +8,18 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.constants.ConstPositional;
-import frc.robot.subsystems.TurretStatemachine.TurretState;;
+import frc.robot.subsystems.TurretStateMachine.TurretState;;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class TurretBasePrep extends Command {
   Angle commandTurretAngle;
+  TurretState commandTurretState;
 
   /** Creates a new TurretBasePrep. */
   public TurretBasePrep(Angle inputTurretAngle, TurretState inputState) {
     // Use addRequirements() here to declare subsystem dependencies.
     commandTurretAngle = inputTurretAngle;
+    commandTurretState = inputState;
     addRequirements(RobotContainer.turretStateMachineInstance);
   }
 
@@ -25,6 +27,7 @@ public class TurretBasePrep extends Command {
   @Override
   public void initialize() {
     RobotContainer.positionalInstance.setTurretAngle(commandTurretAngle);
+    RobotContainer.turretStateMachineInstance.setTurretState(commandTurretState);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

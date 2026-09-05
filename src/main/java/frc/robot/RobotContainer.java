@@ -43,7 +43,8 @@ import frc.robot.subsystems.RobotPoses;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
 import frc.robot.subsystems.Telemetry;
-import frc.robot.subsystems.TurretStatemachine;
+import frc.robot.subsystems.TurretStateMachine;
+import frc.robot.subsystems.TurretStateMachine.TurretState;
 import frc.robot.subsystems.Vision;
 
 @Logged
@@ -67,8 +68,8 @@ public class RobotContainer {
   private final DriverStateMachine loggedDriverStateMachineInstance = driverStateMachineInstance;
   public static final StateMachine stateMachineInstance = new StateMachine();
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
-  public static final TurretStatemachine turretStateMachineInstance = new TurretStatemachine();
-  public final TurretStatemachine loggedTurretStatemachine = turretStateMachineInstance;
+  public static final TurretStateMachine turretStateMachineInstance = new TurretStateMachine();
+  private final TurretStateMachine loggedTurretStateMachine = turretStateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
   public static final Vision visionInstance = new Vision();
@@ -77,7 +78,11 @@ public class RobotContainer {
   private final Telemetry loggedTelemetryInstance = telemetryInstance;
   // states
   Command TRY_NONE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.NONE));
+      () -> stateMachineInstance.tryState(RobotState.NONE)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.NONE)));
+
+  Command TRY_AIMING_TURRET = Commands.deferredProxy(
+      () -> turretStateMachineInstance.tryTurretState(TurretState.SHOOTING_ON_FLY));
 
   Command TRY_INTAKING = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.INTAKING));
@@ -95,28 +100,36 @@ public class RobotContainer {
       () -> stateMachineInstance.tryState(RobotState.REVERSING_SHOOTER));
 
   Command TRY_SHOOTING_ON_FLY = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.SHOOTING_ON_FLY));
+      () -> stateMachineInstance.tryState(RobotState.SHOOTING_ON_FLY)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.SHOOTING_ON_FLY)));
 
   Command TRY_PREPPING_TRENCH = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_TRENCH));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_TRENCH)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_TRENCH)));
 
   Command TRY_PREPPING_OSIDE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_OSIDE));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_OSIDE)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_OSIDE)));
 
   Command TRY_PREPPING_DSIDE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_DSIDE));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_DSIDE)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_DSIDE)));
 
   Command TRY_PREPPING_TOWER = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_TOWER));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_TOWER)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_TOWER)));
 
   Command TRY_PREPPING_HUB = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_HUB));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_HUB)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_HUB)));
 
   Command TRY_PREPPING_NEUTRAL_TO_ALLIANCE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_NEUTRAL_TO_ALLIANCE));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_NEUTRAL_TO_ALLIANCE)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_NEUTRAL_TO_ALLIANCE)));
 
   Command TRY_PREPPING_OPPOSING_TO_ALLIANCE = Commands.deferredProxy(
-      () -> stateMachineInstance.tryState(RobotState.PREPPING_OPPOSING_TO_ALLIANCE));
+      () -> stateMachineInstance.tryState(RobotState.PREPPING_OPPOSING_TO_ALLIANCE)
+          .alongWith(turretStateMachineInstance.tryTurretState(TurretState.PREPPING_OPPOSING_TO_ALLIANCE)));
 
   Command TRY_PREPPING_CLIMB = Commands.deferredProxy(
       () -> stateMachineInstance.tryState(RobotState.PREPPING_CLIMB));
@@ -174,9 +187,10 @@ public class RobotContainer {
         .onFalse(TRY_NONE);
 
     conDriver.btn_RightTrigger
-        .onTrue(TRY_SHOOTING_ON_FLY)
         .onTrue(TRY_SHOOTING_ON_PRESET)
-        .onFalse(TRY_NONE);
+        .onTrue(TRY_SHOOTING_ON_FLY)
+        .onFalse(TRY_NONE)
+        .onFalse(TRY_AIMING_TURRET);
 
     conDriver.btn_RightBumper
         .onTrue(TRY_RETRACTING_INTAKE)

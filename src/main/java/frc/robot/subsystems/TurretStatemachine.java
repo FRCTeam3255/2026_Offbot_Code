@@ -19,12 +19,12 @@ import frc.robot.commands.states.turretStates.TurretPreppingTrench;
 import frc.robot.commands.states.turretStates.TurretShootingOnFly;
 
 @Logged
-public class TurretStatemachine extends SubsystemBase {
+public class TurretStateMachine extends SubsystemBase {
   /** Creates a new TurretStatemachine. */
   public static TurretState currentTurretState;
 
-  public TurretStatemachine() {
-    currentTurretState = TurretState.NONE;
+  public TurretStateMachine() {
+    currentTurretState = TurretState.SHOOTING_ON_FLY;
   }
 
   public void setTurretState(TurretState turretState) {
@@ -39,7 +39,6 @@ public class TurretStatemachine extends SubsystemBase {
     switch (desiredTurretState) {
       case NONE:
         switch (currentTurretState) {
-          case NONE:
           case SHOOTING_ON_FLY:
           case PREPPING_TRENCH:
           case PREPPING_OSIDE:
@@ -68,6 +67,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingTrench();
         }
         break;
@@ -81,6 +81,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingOSide();
         }
         break;
@@ -94,6 +95,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingDSide();
         }
         break;
@@ -107,6 +109,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingTower();
         }
         break;
@@ -120,6 +123,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingHub();
         }
         break;
@@ -133,6 +137,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingNeutralToAlliance();
         }
         break;
@@ -146,6 +151,7 @@ public class TurretStatemachine extends SubsystemBase {
           case PREPPING_HUB:
           case PREPPING_NEUTRAL_TO_ALLIANCE:
           case PREPPING_OPPOSING_TO_ALLIANCE:
+          case SHOOTING_ON_FLY:
             return new TurretPreppingOpposingToAlliance();
         }
         break;
