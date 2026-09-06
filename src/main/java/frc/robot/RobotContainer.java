@@ -14,18 +14,23 @@ import choreo.auto.AutoFactory;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.epilogue.NotLogged;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.DeviceIDs.controllerIDs;
 import frc.robot.commands.AddVisionMeasurement;
 import frc.robot.commands.ResetPose;
+import frc.robot.commands.states.ShootingOnPreset;
 import frc.robot.constants.ChoreoTraj;
+import frc.robot.constants.ConstRumble;
 import frc.robot.constants.ConstAuto;
 import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
@@ -138,6 +143,16 @@ public class RobotContainer {
           conDriver.btn_RightBumper),
       Set.of(driverStateMachineInstance));
 
+  // public final Trigger
+  public final Trigger isOurShiftFirstTrigger = new Trigger(
+      () -> telemetryInstance.ourShiftFirst());
+  public final Trigger isOurShiftTrigger = new Trigger(
+      () -> telemetryInstance.isHubActive());
+  public final Trigger hubSwitchingTrigger = new Trigger(
+      () -> telemetryInstance.hubsIsSwitching());
+  public final Trigger climbingL1Trigger = new Trigger(
+      () -> stateMachineInstance.getRobotState() == RobotState.CLIMBING);
+
   public RobotContainer() {
     conDriver.setLeftDeadband(constControllers.DRIVER_LEFT_STICK_DEADBAND);
 
@@ -231,11 +246,16 @@ public class RobotContainer {
 
     Command DoNothing = Commands.none();
 
+    Command PreloadThenBackUp = Commands.sequence(
+        ShootingOnMove(
+            ChoreoTraj.PreloadAndBackupTower));
+    autoStartingPoses.put(PreloadThenBackUp, ChoreoTraj.PreloadAndBackupTower);
+
     Command DSideNeutral = Commands.sequence(
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.FirstDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
@@ -244,27 +264,118 @@ public class RobotContainer {
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToTrench,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
     autoStartingPoses.put(DSideDoubleNeutral, ChoreoTraj.DSideTrenchToNeutral);
 
     Command DSideNeutralWithDepot = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.FirstDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command SecondDSideNeutralWithDepot = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToDepot,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(SecondDSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideDoubleNeutralWithDepot = Commands.sequence(
         DSideNeutral.asProxy(),
         IntakeAndShootOnTheFly(ChoreoTraj.DSideTrenchToNeutral,
             ChoreoTraj.SecondDSideNeutralToAlliance,
             ChoreoTraj.DSideAllianceToDepot,
-            ConstAuto.NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
             ConstAuto.DEPOT_SHOOTING_TIMEOUT));
-    autoStartingPoses.put(DSideNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+    autoStartingPoses.put(DSideDoubleNeutralWithDepot, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command DSideNeutralWithDepotThenNeutral = Commands.sequence(
+        SecondDSideNeutralWithDepot.asProxy(),
+        ShootingOnMove(ChoreoTraj.DSideCornerToDSideTrench),
+        IntakeAndShootOnTheFly(
+            ChoreoTraj.DSideTrenchToNeutral,
+            ChoreoTraj.SecondDSideNeutralToAlliance,
+            ChoreoTraj.DSideAllianceToTrench,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.DEPOT_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(DSideNeutralWithDepotThenNeutral, ChoreoTraj.DSideTrenchToNeutral);
+
+    Command OSideNeutral = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutral = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToTrench,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.NEUTRAL_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutral, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideNeutralWithOutpost = Commands.sequence(
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.FirstOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.FIRST_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSideDoubleNeutralWithOutpost = Commands.sequence(
+        OSideNeutral.asProxy(),
+        IntakeAndShootOnTheFly(ChoreoTraj.OSideTrenchToNeutral,
+            ChoreoTraj.SecondOSideNeutralToAlliance,
+            ChoreoTraj.OSideAllianceToOutpost,
+            ConstAuto.SECOND_NEUTRAL_TO_ALLIANCE_TRAVELING_SHOOTING_TIMEOUT,
+            ConstAuto.OUTPOST_SHOOTING_TIMEOUT));
+    autoStartingPoses.put(OSideDoubleNeutralWithOutpost, ChoreoTraj.OSideTrenchToNeutral);
+
+    Command OSidePreloadAndBackup = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.OSidePreloadAndBackup));
+    autoStartingPoses.put(OSidePreloadAndBackup, ChoreoTraj.OSidePreloadAndBackup);
+
+    Command PreloadOutpost = Commands.sequence(
+        ShootingOnMove(
+            ChoreoTraj.HubToOutpost));
+    autoStartingPoses.put(PreloadOutpost, ChoreoTraj.HubToOutpost);
+
+    Command PreloadDepot = Commands.sequence(
+        ShootingOnMove(ChoreoTraj.HubToDepot));
+    autoStartingPoses.put(PreloadDepot, ChoreoTraj.HubToDepot);
+
+    Command PreloadDepotOutpost = Commands.sequence(
+        PreloadDepot.asProxy(),
+        ShootingOnMove(ChoreoTraj.DepotToOutpost));
+    autoStartingPoses.put(PreloadDepotOutpost, ChoreoTraj.HubToDepot);
 
     // Example: Add autonomous routines to the chooser
     // Add more autonomous routines as needed, e.g.:\
     // autoChooser.addOption("Score and Leave", runPath("ScoreAndLeave"));
     autoChooser.setDefaultOption("Do Nothing", DoNothing);
     autoChooser.addOption("AutoPIDTuning", AutoPIDTuning);
+    autoChooser.addOption("PreloadThenBackUp", PreloadThenBackUp);
     autoChooser.addOption("DSideNeutral", DSideNeutral);
     autoChooser.addOption("DSideDoubleNeutral", DSideDoubleNeutral);
     autoChooser.addOption("DSideNeutralWithDepot", DSideNeutralWithDepot);
+    autoChooser.addOption("PreloadOutpost", PreloadOutpost);
+    autoChooser.addOption("PreloadDepot", PreloadDepot);
+    autoChooser.addOption("PreloadDepotOutpost", PreloadDepotOutpost);
+    autoChooser.addOption("SecondDSideNeutralWithDepot", SecondDSideNeutralWithDepot);
+    autoChooser.addOption("DSideDoubleNeutralWithDepot", DSideDoubleNeutralWithDepot);
+    autoChooser.addOption("DSideNeutralWithDepotThenNeutral", DSideNeutralWithDepotThenNeutral);
+    autoChooser.addOption("OSideNeutral", OSideNeutral);
+    autoChooser.addOption("OSideDoubleNeutral", OSideDoubleNeutral);
+    autoChooser.addOption("OSideNeutralWithOutpost", OSideNeutralWithOutpost);
+    autoChooser.addOption("OSideDoubleNeutralWithOutpost", OSideDoubleNeutralWithOutpost);
+    autoChooser.addOption("OSidePreloadAndBackup", OSidePreloadAndBackup);
 
     // enter which we want to do based on name
     autoChooser.onChange(selectedAuto -> {
@@ -280,26 +391,27 @@ public class RobotContainer {
   }
 
   // START OF AUTO COMMANDS
+
   Command ShootOnly(Command prepPreset, Time shootingTime, Time preppingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         prepPreset.asProxy().withTimeout(preppingTime),
         TRY_SHOOTING_ON_PRESET.asProxy().withTimeout(shootingTime),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
   Command IntakeOnly(ChoreoTraj intakingPath, Time intakingTime) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
         runPath(intakingPath).deadlineFor(TRY_INTAKING.asProxy()),
-        TRY_NONE.asProxy());
+        TRY_NONE.asProxy().withTimeout(0.001));
   }
 
-  Command ShootingOnMove(ChoreoTraj shootingPath, Time shootingTime) {
+  Command ShootingOnMove(ChoreoTraj shootingPath) {
     return Commands.sequence(
         Commands.runOnce(() -> stateMachineInstance.setRobotState(RobotState.NONE)).asProxy(),
-        runPath(shootingPath).deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
-        TRY_NONE.asProxy());
+        runPath(shootingPath).asProxy().deadlineFor(TRY_SHOOTING_ON_FLY.asProxy()),
+        TRY_NONE.asProxy().withTimeout(0.001).withTimeout(0.001));
   }
 
   Command IntakeAndShootOnTheFly(ChoreoTraj intakingPath, ChoreoTraj travelingPath, ChoreoTraj shootingPath,
@@ -320,6 +432,7 @@ public class RobotContainer {
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
                 TRY_NONE.asProxy().withTimeout(0.001),
                 TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),
+        TRY_NONE.asProxy().withTimeout(0.001),
         runPath(shootingPath).asProxy().alongWith(TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingTime)),
         TRY_NONE.asProxy().withTimeout(0.001));
   }
@@ -357,5 +470,26 @@ public class RobotContainer {
 
   public static boolean isPracticeBot() {
     return RobotController.getSerialNumber().equals(ConstSystem.PRACTICE_BOT_RIO_SERIAL_NUMBER);
+  }
+
+  public void configFeedback() {
+
+    hubSwitchingTrigger
+        .whileTrue(
+            Commands.run(() -> conDriver.setRumble(RumbleType.kRightRumble,
+                ConstRumble.SHIFT_CHANGE_RUMBLE), telemetryInstance))
+        .onFalse(Commands.runOnce(() -> conDriver.setRumble(RumbleType.kRightRumble,
+            ConstRumble.RUMBLE_OFF), telemetryInstance));
+
+    isOurShiftFirstTrigger
+        .whileTrue(Commands.run(() -> {
+          double t = Timer.getFPGATimestamp(); // seconds since FPGA boot
+          boolean on = ((int) Math.floor(t) % 2) == 0; // toggle every 1 second
+          conDriver.setRumble(RumbleType.kLeftRumble,
+              on ? ConstRumble.OUR_SHIFT_FIRST_RUMBLE : ConstRumble.RUMBLE_OFF);
+        }, telemetryInstance))
+        .onFalse(Commands.runOnce(() -> conDriver.setRumble(RumbleType.kLeftRumble, ConstRumble.RUMBLE_OFF),
+            telemetryInstance));
+    // Add feedback bindings here if needed
   }
 }
