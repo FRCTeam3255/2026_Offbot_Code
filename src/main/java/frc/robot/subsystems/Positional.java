@@ -8,6 +8,8 @@ import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Seconds;
 
+import java.util.concurrent.TimeoutException;
+
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -34,7 +36,7 @@ public class Positional extends SubsystemBase {
   MotionMagicExpoVoltage turretMotionRequest = new MotionMagicExpoVoltage(0);
   MotionMagicExpoVoltage climberMotionRequest = new MotionMagicExpoVoltage(0);
 
-  public Time timeOfFlight = Seconds.zero();
+  public static Time timeOfFlight = Seconds.zero();
   public Angle lastDesiredHoodPivotAngle = Degrees.zero();
   public Angle lastDesiredTurretAngle = Degrees.zero();
   public Distance lastDesiredIntakePosition = Inches.zero();
@@ -113,6 +115,10 @@ public class Positional extends SubsystemBase {
       desired = desired.plus(deg360);
     }
     return desired;
+  }
+
+  public Time gettimeOfFlight(Time time) {
+    return (Positional.timeOfFlight);
   }
 
   @Override
