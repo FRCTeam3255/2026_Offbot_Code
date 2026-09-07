@@ -32,7 +32,6 @@ public class ShootingOnFly extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    TOF = Seconds.zero();
     RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.STOP);
     RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.STOP);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
