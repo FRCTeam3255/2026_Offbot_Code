@@ -7,6 +7,7 @@ package frc.robot.commands.states;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.commands.SubCommands;
+import frc.robot.constants.ConstFreeSpin;
 import frc.robot.subsystems.StateMachine.RobotState;
 
 public class ShootingOnFly extends Command {
@@ -31,6 +32,13 @@ public class ShootingOnFly extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    TOF = Seconds.zero();
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setFlywheelPercentOutput(ConstFreeSpin.STOP);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.STOP);
   }
 
   // Returns true when the command should end.
