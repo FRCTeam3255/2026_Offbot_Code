@@ -8,15 +8,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.states.turretStates.TurretNone;
-import frc.robot.commands.states.turretStates.TurretPreppingDSide;
-import frc.robot.commands.states.turretStates.TurretPreppingHub;
-import frc.robot.commands.states.turretStates.TurretPreppingNeutralToAlliance;
-import frc.robot.commands.states.turretStates.TurretPreppingOSide;
-import frc.robot.commands.states.turretStates.TurretPreppingOpposingToAlliance;
-import frc.robot.commands.states.turretStates.TurretPreppingTower;
-import frc.robot.commands.states.turretStates.TurretPreppingTrench;
-import frc.robot.commands.states.turretStates.TurretShootingOnFly;
+import frc.robot.commands.states.turretStates.*;
 
 @Logged
 public class TurretStateMachine extends SubsystemBase {

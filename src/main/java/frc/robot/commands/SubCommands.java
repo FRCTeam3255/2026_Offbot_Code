@@ -10,7 +10,7 @@ import edu.wpi.first.units.measure.Time;
 import frc.robot.RobotContainer;
 
 public class SubCommands {
-  public static void ShootingOnFly(boolean controlTurret) {
+  public static void shootingOnFly(boolean controlTurret) {
     Pose2d estimatedPoseOverTime = Pose2d.kZero;
     Distance distanceToTarget = Inches.zero();
     Pose2d target = Pose2d.kZero;
