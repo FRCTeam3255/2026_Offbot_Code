@@ -19,11 +19,11 @@ import frc.robot.commands.states.turretStates.TurretPreppingTrench;
 import frc.robot.commands.states.turretStates.TurretShootingOnFly;
 
 @Logged
-public class TurretStateMachine extends SubsystemBase {
+public class Hi extends SubsystemBase {
   /** Creates a new TurretStatemachine. */
   public static TurretState currentTurretState;
 
-  public TurretStateMachine() {
+  public Hi() {
     currentTurretState = TurretState.SHOOTING_ON_FLY;
   }
 

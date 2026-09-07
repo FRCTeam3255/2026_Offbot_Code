@@ -38,13 +38,13 @@ import frc.robot.subsystems.DriverStateMachine;
 import frc.robot.subsystems.DriverStateMachine.DriverState;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FreeSpin;
+import frc.robot.subsystems.Hi;
+import frc.robot.subsystems.Hi.TurretState;
 import frc.robot.subsystems.Positional;
 import frc.robot.subsystems.RobotPoses;
 import frc.robot.subsystems.StateMachine;
 import frc.robot.subsystems.StateMachine.RobotState;
 import frc.robot.subsystems.Telemetry;
-import frc.robot.subsystems.TurretStateMachine;
-import frc.robot.subsystems.TurretStateMachine.TurretState;
 import frc.robot.subsystems.Vision;
 
 @Logged
@@ -68,8 +68,8 @@ public class RobotContainer {
   private final DriverStateMachine loggedDriverStateMachineInstance = driverStateMachineInstance;
   public static final StateMachine stateMachineInstance = new StateMachine();
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
-  public static final TurretStateMachine turretStateMachineInstance = new TurretStateMachine();
-  private final TurretStateMachine loggedTurretStateMachine = turretStateMachineInstance;
+  public static final Hi turretStateMachineInstance = new Hi();
+  private final Hi loggedTurretStateMachine = turretStateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
   public static final Vision visionInstance = new Vision();

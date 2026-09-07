@@ -5,7 +5,7 @@
 package frc.robot.commands.states.turretStates;
 
 import frc.robot.constants.ConstPositional;
-import frc.robot.subsystems.TurretStateMachine.TurretState;
+import frc.robot.subsystems.Hi.TurretState;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class TurretPreppingOpposingToAlliance extends TurretBasePrep {
