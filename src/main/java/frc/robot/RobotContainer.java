@@ -69,7 +69,7 @@ public class RobotContainer {
   public static final StateMachine stateMachineInstance = new StateMachine();
   private final StateMachine loggedStateMachineInstance = stateMachineInstance;
   public static final TurretStateMachine turretStateMachineInstance = new TurretStateMachine();
-  private final TurretStateMachine loggedTurretStateMachine = turretStateMachineInstance;
+  private final TurretStateMachine loggedTurretStateMachineInstance = turretStateMachineInstance;
   public static final RobotPoses robotPose = new RobotPoses();
   private final RobotPoses loggedRobotPose = robotPose;
   public static final Vision visionInstance = new Vision();
