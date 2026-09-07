@@ -39,6 +39,7 @@ public class TurretStateMachine extends SubsystemBase {
     switch (desiredTurretState) {
       case NONE:
         switch (currentTurretState) {
+          case NONE:
           case SHOOTING_ON_FLY:
           case PREPPING_TRENCH:
           case PREPPING_OSIDE:
