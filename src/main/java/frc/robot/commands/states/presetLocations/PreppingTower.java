@@ -12,7 +12,7 @@ import frc.robot.subsystems.StateMachine;
 public class PreppingTower extends BasePreps {
   /** Creates a new PreppingTower. */
   public PreppingTower() {
-    super(ConstPositional.PREP_TOWER_TURRET,
+    super(
         ConstPositional.PREP_TOWER_HOOD,
         ConstFreeSpin.PREP_TOWER_FLYWHEEL,
         StateMachine.RobotState.PREPPING_TOWER);
