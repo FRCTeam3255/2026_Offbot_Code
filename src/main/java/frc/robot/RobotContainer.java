@@ -445,7 +445,7 @@ public class RobotContainer {
                 // drivetrain is behind the horizontal line before continuing to prep shooting.
                 TRY_INTAKING.asProxy(),
                 Commands
-                    .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.FieldElements.ALLIANCE_LINE,
+                    .waitUntil(() -> drivetrainInstance.isBehindHorizontalLine(ConstField.ALLIANCE_LINE,
                         ConstField.isRedAlliance(), ConstField.FIELD_LENGTH)),
                 TRY_NONE.asProxy().withTimeout(0.001),
                 TRY_SHOOTING_ON_FLY.asProxy().withTimeout(shootingOnTravelTime))),

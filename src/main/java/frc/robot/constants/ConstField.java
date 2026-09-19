@@ -112,6 +112,7 @@ public class ConstField {
 
   public static final Distance FIELD_LENGTH = Units.Inches.of(651.2);
   public static final Distance FIELD_WIDTH = Units.Inches.of(317.7);
+  public static final Distance ALLIANCE_LINE = Units.Meters.of(4.008662700653076);
 
   /**
    * Boolean that controls when the path will be mirrored for the red
@@ -135,7 +136,6 @@ public class ConstField {
     private static final Pose2d RESET_POSE = new Pose2d(0, 0, new Rotation2d());
     private static final Pose2d HUB_POSE = new Pose2d(4.629215, 4.0317845, new Rotation2d());
     private static final Pose2d PASS_TO_CORNER_POSE = new Pose2d(0, 0, new Rotation2d());
-    public static final Distance ALLIANCE_LINE = Units.Meters.of(4.008662700653076);
   }
 
   public static class FieldElementGroups {
