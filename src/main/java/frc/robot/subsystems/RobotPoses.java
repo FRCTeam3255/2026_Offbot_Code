@@ -23,6 +23,10 @@ import frc.robot.constants.ConstField;
 public class RobotPoses extends SubsystemBase {
   /** Creates a new RobotPoses. */
   boolean isOurShift = RobotContainer.telemetryInstance.isHubActive();
+  boolean isInOurAlliance = RobotContainer.drivetrainInstance.isBehindHorizontalLine(
+      ConstField.ALLIANCE_LINE,
+      ConstField.isRedAlliance(),
+      ConstField.FIELD_LENGTH);
   Pose2d target = Pose2d.kZero;
   Field2d field2d = new Field2d();
   FieldObject2d robotObject = field2d.getObject("Robot");
@@ -84,7 +88,7 @@ public class RobotPoses extends SubsystemBase {
     model2Hood = model1Turret
         .rotateAround(Pose3d.kZero.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
 
-    target = isOurShift ? getHub() : getPass();
+    target = isInOurAlliance ? getHub() : getPass();
   }
 
   public Pose2d getHub() {
