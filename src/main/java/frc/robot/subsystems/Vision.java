@@ -45,7 +45,7 @@ public class Vision extends SubsystemBase {
   String limelightInUse = LL_INUSE.NONE.toString();
 
   public void setUpLLPoses() {
-    LimelightHelpers.setCameraPose_RobotSpace("limelight-right",
+    LimelightHelpers.setCameraPose_RobotSpace(ConstVision.LIMELIGHT_RIGHT_NAME,
         ConstVision.LimelightRight.LL_FORWARD.in(Meters),
         ConstVision.LimelightRight.LL_RIGHT.in(Meters),
         ConstVision.LimelightRight.LL_UP.in(Meters),
@@ -53,7 +53,7 @@ public class Vision extends SubsystemBase {
         ConstVision.LimelightRight.LL_PITCH.in(Degrees),
         ConstVision.LimelightRight.LL_YAW.in(Degrees));
 
-    LimelightHelpers.setCameraPose_RobotSpace("limelight-left",
+    LimelightHelpers.setCameraPose_RobotSpace(ConstVision.LIMELIGHT_LEFT_NAME,
         ConstVision.LimelightLeft.LL_FORWARD.in(Meters),
         ConstVision.LimelightLeft.LL_RIGHT.in(Meters),
         ConstVision.LimelightLeft.LL_UP.in(Meters),
@@ -61,7 +61,7 @@ public class Vision extends SubsystemBase {
         ConstVision.LimelightLeft.LL_PITCH.in(Degrees),
         ConstVision.LimelightLeft.LL_YAW.in(Degrees));
 
-    LimelightHelpers.setCameraPose_RobotSpace("limelight-front",
+    LimelightHelpers.setCameraPose_RobotSpace(ConstVision.LIMELIGHT_FRONT_NAME,
         ConstVision.LimelightFront.LL_FORWARD.in(Meters),
         ConstVision.LimelightFront.LL_RIGHT.in(Meters),
         ConstVision.LimelightFront.LL_UP.in(Meters),
@@ -95,11 +95,11 @@ public class Vision extends SubsystemBase {
     if (useAssist == true) {
       LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.IMUMode.INTERNAL_MT1_ASSIST);
       LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.IMUMode.INTERNAL_MT1_ASSIST);
-      LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.IMUMode.INTERNAL_MT1_ASSIST);
+      LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_FRONT_NAME, ConstVision.IMUMode.INTERNAL_MT1_ASSIST);
     } else {
       LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.IMUMode.EXTERNAL_SEED);
       LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.IMUMode.EXTERNAL_SEED);
-      LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.IMUMode.EXTERNAL_SEED);
+      LimelightHelpers.SetIMUMode(ConstVision.LIMELIGHT_FRONT_NAME, ConstVision.IMUMode.EXTERNAL_SEED);
     }
   }
 
@@ -178,11 +178,11 @@ public class Vision extends SubsystemBase {
       currentEstimateRight = LimelightHelpers
           .getBotPoseEstimate_wpiBlue_MegaTag2(ConstVision.LIMELIGHT_RIGHT_NAME);
       currentEstimateLeft = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(ConstVision.LIMELIGHT_LEFT_NAME);
-      currentEstimateBack = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(ConstVision.LIMELIGHT_BACK_NAME);
+      currentEstimateBack = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(ConstVision.LIMELIGHT_FRONT_NAME);
     } else {
       currentEstimateRight = LimelightHelpers.getBotPoseEstimate_wpiBlue(ConstVision.LIMELIGHT_RIGHT_NAME);
       currentEstimateLeft = LimelightHelpers.getBotPoseEstimate_wpiBlue(ConstVision.LIMELIGHT_LEFT_NAME);
-      currentEstimateBack = LimelightHelpers.getBotPoseEstimate_wpiBlue(ConstVision.LIMELIGHT_BACK_NAME);
+      currentEstimateBack = LimelightHelpers.getBotPoseEstimate_wpiBlue(ConstVision.LIMELIGHT_FRONT_NAME);
     }
 
     if (currentEstimateRight != null

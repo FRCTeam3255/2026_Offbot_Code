@@ -68,10 +68,10 @@ public class Robot extends TimedRobot {
     selectTab("Disabled");
     LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
     LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
-    LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
+    LimelightHelpers.SetIMUAssistAlpha(ConstVision.LIMELIGHT_FRONT_NAME, ConstVision.IMU_ASSIST_ALPHA_VALUE);
     LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.DisabledThrottle);
     LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.DisabledThrottle);
-    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.DisabledThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_FRONT_NAME, ConstVision.DisabledThrottle);
     m_robotContainer.visionInstance.setIMUAssistMode(false);
   }
 
@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
         yaw, 0, 0, 0, 0, 0);
     LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_LEFT_NAME,
         yaw, 0, 0, 0, 0, 0);
-    LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_BACK_NAME,
+    LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_FRONT_NAME,
         yaw, 0, 0, 0, 0, 0);
 
   }
@@ -93,7 +93,7 @@ public class Robot extends TimedRobot {
   public void disabledExit() {
     LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_RIGHT_NAME, ConstVision.TeleopThrottle);
     LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_LEFT_NAME, ConstVision.TeleopThrottle);
-    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_BACK_NAME, ConstVision.TeleopThrottle);
+    LimelightHelpers.SetThrottle(ConstVision.LIMELIGHT_FRONT_NAME, ConstVision.TeleopThrottle);
     m_robotContainer.visionInstance.setIMUAssistMode(true);
     CommandScheduler.getInstance().schedule(m_robotContainer.addVisionMeasurement());
   }

@@ -48,7 +48,7 @@ public class ConstVision {
   // TODO: Replace with actual names
   public static final String LIMELIGHT_RIGHT_NAME = "limelight-right";
   public static final String LIMELIGHT_LEFT_NAME = "limelight-left";
-  public static final String LIMELIGHT_BACK_NAME = "limelight-front";
+  public static final String LIMELIGHT_FRONT_NAME = "limelight-front";
 
   /**
    * <p>
