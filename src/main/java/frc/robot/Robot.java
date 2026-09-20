@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.frcteam3255.utils.LimelightHelpers;
+
 import edu.wpi.first.epilogue.Epilogue;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.net.WebServer;
@@ -21,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.constants.ConstField;
 import frc.robot.constants.ConstSystem;
 import frc.robot.constants.ConstVision;
-import com.frcteam3255.utils.LimelightHelpers;
 
 @Logged
 public class Robot extends TimedRobot {
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
     // Log the DS data and joysticks
     DriverStation.startDataLog(DataLogManager.getLog(), true);
     DriverStation.silenceJoystickConnectionWarning(ConstSystem.constControllers.SILENCE_JOYSTICK_WARNINGS);
+    m_robotContainer.visionInstance.setUpLLPoses();
   }
 
   public void selectTab(String tabName) {

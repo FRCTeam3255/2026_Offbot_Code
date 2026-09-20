@@ -48,7 +48,7 @@ public class ConstVision {
   // TODO: Replace with actual names
   public static final String LIMELIGHT_RIGHT_NAME = "limelight-right";
   public static final String LIMELIGHT_LEFT_NAME = "limelight-left";
-  public static final String LIMELIGHT_BACK_NAME = "limelight-back";
+  public static final String LIMELIGHT_BACK_NAME = "limelight-front";
 
   /**
    * <p>
@@ -96,35 +96,35 @@ public class ConstVision {
   // The below values are accounted for in the limelight interface, NOT in code
   // TODO: Replace with actual measurement
   public static class LimelightRight {
-    public static final Distance LL_FORWARD = Units.Meters.of(0.269494);
-    public static final Distance LL_RIGHT = Units.Meters.of(0.307594);
-    public static final Distance LL_UP = Units.Meters.of(0.211328);
+    public static final Distance LL_FORWARD = Units.Inches.of(9.10);
+    public static final Distance LL_RIGHT = Units.Inches.of(-12.21);
+    public static final Distance LL_UP = Units.Inches.of(20.0);
 
-    public static final Angle LL_ROLL = Units.Degrees.of(180);
-    public static final Angle LL_PITCH = Units.Degrees.of(23.17);
-    public static final Angle LL_YAW = Units.Degrees.of(51.25);
+    public static final Angle LL_ROLL = Units.Degrees.of(0);
+    public static final Angle LL_PITCH = Units.Degrees.of(19.43);
+    public static final Angle LL_YAW = Units.Degrees.of(120);
   }
 
   // TODO: Replace with actual measurement
   public static class LimelightLeft {
-    public static final Distance LL_FORWARD = Units.Meters.of(0.269494);
-    public static final Distance LL_RIGHT = Units.Meters.of(-0.307594);
-    public static final Distance LL_UP = Units.Meters.of(0.211328);
+    public static final Distance LL_FORWARD = Units.Inches.of(9.10);
+    public static final Distance LL_RIGHT = Units.Inches.of(-7.79);
+    public static final Distance LL_UP = Units.Inches.of(20.0);
 
-    public static final Angle LL_ROLL = Units.Degrees.of(180);
-    public static final Angle LL_PITCH = Units.Degrees.of(23.17);
-    public static final Angle LL_YAW = Units.Degrees.of(-51.25);
+    public static final Angle LL_ROLL = Units.Degrees.of(0);
+    public static final Angle LL_PITCH = Units.Degrees.of(19.43);
+    public static final Angle LL_YAW = Units.Degrees.of(60);
 
   }
 
   // TODO: Replace with actual measurement
-  public static class LimelightBack {
-    public static final Distance LL_FORWARD = Units.Meters.of(0.3429);
-    public static final Distance LL_RIGHT = Units.Meters.of(0);
-    public static final Distance LL_UP = Units.Meters.of(0.2921);
+  public static class LimelightFront {
+    public static final Distance LL_FORWARD = Units.Inches.of(12.93);
+    public static final Distance LL_RIGHT = Units.Inches.of(10.0);
+    public static final Distance LL_UP = Units.Inches.of(20.0);
 
     public static final Angle LL_ROLL = Units.Degrees.of(0);
-    public static final Angle LL_PITCH = Units.Degrees.of(-20);
+    public static final Angle LL_PITCH = Units.Degrees.of(10);
     public static final Angle LL_YAW = Units.Degrees.of(0);
   }
 }
