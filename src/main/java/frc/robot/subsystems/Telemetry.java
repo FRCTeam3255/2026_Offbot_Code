@@ -29,6 +29,7 @@ public class Telemetry extends SubsystemBase {
   double shift3Time = 55;
   double shift4Time = 30;
   double endgameTime = 0;
+  double timeBeforeShoot = 2;
 
   private String gameData = "";
 
@@ -129,6 +130,10 @@ public class Telemetry extends SubsystemBase {
   }
 
   public boolean isHubActive() {
+    return isHubActive(0);
+  }
+
+  public boolean isHubActive(double timeOffset) {
     Optional<Alliance> alliance = DriverStation.getAlliance();
     // If we have no alliance, we cannot be enabled, therefore no hub.
     if (alliance.isEmpty()) {
@@ -166,19 +171,20 @@ public class Telemetry extends SubsystemBase {
       case Blue -> redInactiveFirst;
     };
 
-    if (matchTime > transitionShiftTime) {
-      // Transition shift, hub is active.
+    double startShooting = matchTime - timeBeforeShoot;
+    if (startShooting > transitionShiftTime) {
+      // Transition shift, hub uis active.
       return true;
-    } else if (matchTime > shift1Time) {
+    } else if (startShooting > shift1Time) {
       // Shift 1
       return shift1Active;
-    } else if (matchTime > shift2Time) {
+    } else if (startShooting > shift2Time) {
       // Shift 2
       return !shift1Active;
-    } else if (matchTime > shift3Time) {
+    } else if (startShooting > shift3Time) {
       // Shift 3
       return shift1Active;
-    } else if (matchTime > shift4Time) {
+    } else if (startShooting > shift4Time) {
       // Shift 4
       return !shift1Active;
     } else {
