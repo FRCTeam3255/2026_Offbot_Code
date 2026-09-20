@@ -84,7 +84,10 @@ public class RobotPoses extends SubsystemBase {
     model2Hood = model1Turret
         .rotateAround(Pose3d.kZero.plus(hoodPivotPoint).getTranslation(), hoodRotation3d);
 
-    target = isOurShift ? getHub() : getPass();
+    target = RobotContainer.drivetrainInstance.isBehindHorizontalLine(
+        ConstField.ALLIANCE_LINE,
+        ConstField.isRedAlliance(),
+        ConstField.FIELD_LENGTH) ? getHub() : getPass();
   }
 
   public Pose2d getHub() {
