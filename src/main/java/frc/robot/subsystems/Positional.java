@@ -12,6 +12,7 @@ import java.util.concurrent.TimeoutException;
 
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.units.Units;
@@ -21,6 +22,7 @@ import edu.wpi.first.units.measure.Time;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.DeviceIDs;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.constants.ConstPositional;
 
 @Logged
@@ -41,6 +43,7 @@ public class Positional extends SubsystemBase {
   public Angle lastDesiredTurretAngle = Degrees.zero();
   public Distance lastDesiredIntakePosition = Inches.zero();
   public Distance lastDesiredClimberPosition = Inches.zero();
+  public boolean weZeroin = true;
 
   public Positional() {
     intakeSlide.getConfigurator().apply(ConstPositional.INTAKE_SLIDE_CONFIGURATION);
@@ -119,6 +122,14 @@ public class Positional extends SubsystemBase {
 
   public Time gettimeOfFlight(Time time) {
     return (Positional.timeOfFlight);
+  }
+
+  public boolean isTurretZeroing() {
+    if (weZeroin = true) {
+      turret.getConfigurator().apply(ConstPositional.TURRET_ZEROING_CONFIGURATION);
+
+    }
+    return false;
   }
 
   @Override
