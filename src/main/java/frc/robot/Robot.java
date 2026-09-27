@@ -51,7 +51,6 @@ public class Robot extends TimedRobot {
     // Log the DS data and joysticks
     DriverStation.startDataLog(DataLogManager.getLog(), true);
     DriverStation.silenceJoystickConnectionWarning(ConstSystem.constControllers.SILENCE_JOYSTICK_WARNINGS);
-    m_robotContainer.visionInstance.setUpLLPoses();
   }
 
   public void selectTab(String tabName) {
