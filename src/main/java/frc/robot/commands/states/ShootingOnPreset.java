@@ -25,11 +25,11 @@ public class ShootingOnPreset extends Command {
   @Override
   public void initialize() {
 
-    RobotContainer.stateMachineInstance.setRobotState(RobotState.SHOOTING_ON_PRESET);
-    RobotContainer.freeSpinInstance.setTransferBeltVelocity(ConstFreeSpin.TRANSFER_BELT_VELOCITY);
-    RobotContainer.freeSpinInstance.setTransferRampVelocity(ConstFreeSpin.TRANSFER_RAMP_VELOCITY);
-    RobotContainer.freeSpinInstance.setAgitatorVelocity(ConstFreeSpin.AGITATOR_VELOCITY);
-    RobotContainer.freeSpinInstance.setHotdogRollersVelocity(ConstFreeSpin.HOTDOG_ROLLERS_VELOCITY);
+    RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.TRANSFER_BELT_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANSFER_RAMP_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.RETRACTING_INTAKE_SLIDE_DISTANCE,
         ConstPositional.SLOW_INTAKE_SLIDE_PID);
   }

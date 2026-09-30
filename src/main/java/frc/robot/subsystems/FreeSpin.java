@@ -26,6 +26,7 @@ public class FreeSpin extends SubsystemBase {
   final TalonFX intakeRollerEastFollower = new TalonFX(DeviceIDs.freeSpinIDs.INTAKE_ROLLERS_EAST_CAN);
 
   final TalonFX hotdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.HOTDOG_ROLLERS_CAN);
+  final TalonFX topdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.TOPDOG_ROLLERS_CAN);
   final TalonFX transferBelt = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_BELT_CAN);
 
   final TalonFX westFlywheelLeader = new TalonFX(DeviceIDs.freeSpinIDs.FLYWHEEL_WEST_CAN);
@@ -37,6 +38,7 @@ public class FreeSpin extends SubsystemBase {
   public AngularVelocity lastDesiredFlywheelVelocity = RPM.zero();
   public AngularVelocity lastDesiredIntakeRollerVelocity = RPM.zero();
   public AngularVelocity lastDesiredHotdogRollersVelocity = RPM.zero();
+  public AngularVelocity lastDesiredTopdogRollersVelocity = RPM.zero();
   public AngularVelocity lastDesiredTransferBeltVelocity = RPM.zero();
   public AngularVelocity lastDesiredAgitatorVelocity = RPM.zero();
   public AngularVelocity lastDesiredTransferRampVelocity = RPM.zero();
@@ -44,6 +46,8 @@ public class FreeSpin extends SubsystemBase {
   Follower flywheelFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Opposed);
 
   Follower intakeFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Opposed);
+
+  Follower topdogFollower = new Follower(hotdogRollers.getDeviceID(), MotorAlignmentValue.Aligned);
 
   public FreeSpin() {
 
@@ -55,11 +59,13 @@ public class FreeSpin extends SubsystemBase {
     eastFlywheelFollower.getConfigurator().apply(ConstFreeSpin.FLYWHEEL_EAST_CONFIGURATION);
     agitator.getConfigurator().apply(ConstFreeSpin.AGITATOR_CONFIGURATION);
     transferRamp.getConfigurator().apply(ConstFreeSpin.TRANSFER_RAMP_CONFIGURATION);
+    topdogRollers.getConfigurator().apply(ConstFreeSpin.TOPDOG_ROLLERS_CONFIGURATION);
 
   }
 
   final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage hotdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage topdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage agitatorVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferRampVelocityRequest = new MotionMagicVelocityVoltage(0);
@@ -97,10 +103,12 @@ public class FreeSpin extends SubsystemBase {
 
   public void setHotdogRollersVelocity(AngularVelocity velocity) {
     hotdogRollers.setControl(hotdogRollersVelocityRequest.withVelocity(velocity));
+    topdogRollers.setControl(topdogFollower);
   }
 
   public void setHotdogRollersPercentOutput(double percentOutput) {
     hotdogRollers.set(percentOutput);
+    topdogRollers.setControl(topdogFollower);
     lastDesiredHotdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
   }
 
