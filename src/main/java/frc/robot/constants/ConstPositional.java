@@ -10,8 +10,10 @@ import static edu.wpi.first.units.Units.Rotations;
 import static edu.wpi.first.units.Units.Seconds;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.signals.StaticFeedforwardSignValue;
 
 import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
@@ -42,8 +44,8 @@ public class ConstPositional {
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
   // INTAKE DISTANCES
-  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(20);
-  public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(0); // TODO ADD ACTUAL VALUES DURING TESTING
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(11.5);
+  public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES
   public static final Angle MAX_TURRET_ANGLE = Degrees.of(185);
@@ -105,12 +107,25 @@ public class ConstPositional {
 
     // Configure TalonFXConfiguration objects here
     INTAKE_SLIDE_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0
-        / ((10.0 / 30.0) * (1.0 * Math.PI));
+        / ((12.0 / 30.0) * (1.0 * Math.PI));
     HOOD_PIVOT_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 130.0) * (12.0 / 30.0));
     TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0) * (10.0 / 90.0));
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Elevator_Static;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.kS = 0.0;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.kG = 0.0;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.kP = 0;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.kS = 0.0;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.kG = 0.0;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.kP = 0;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
+    INTAKE_SLIDE_CONFIGURATION.MotionMagic.MotionMagicExpo_kV = 0.001;
+    INTAKE_SLIDE_CONFIGURATION.MotionMagic.MotionMagicExpo_kA = 0.001;
+    INTAKE_SLIDE_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
 
     HOOD_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     HOOD_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
@@ -118,16 +133,24 @@ public class ConstPositional {
     HOOD_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Degrees.of(30).in(Rotations);
     HOOD_PIVOT_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Degrees.of(0).in(Rotations);
     HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    HOOD_PIVOT_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
+    HOOD_PIVOT_CONFIGURATION.Slot0.kS = 0.23;
+    HOOD_PIVOT_CONFIGURATION.Slot0.kG = 0.5;
+    HOOD_PIVOT_CONFIGURATION.Slot0.kP = 110;
+    HOOD_PIVOT_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
 
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Degrees.of(180).in(Rotations);
-    TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Degrees.of(-169).in(Rotations);
+    TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Degrees.of(-160).in(Rotations);
     TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    TURRET_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
+    TURRET_CONFIGURATION.Slot0.kS = 0.5;
+    TURRET_CONFIGURATION.Slot0.kG = 0.0;
+    TURRET_CONFIGURATION.Slot0.kP = 1.5;
 
-    CLIMBER_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    CLIMBER_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-
+    CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
+    CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
   }
 }

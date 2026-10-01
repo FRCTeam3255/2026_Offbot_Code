@@ -86,6 +86,7 @@ public class FreeSpin extends SubsystemBase {
   public void setFlywheelVelocity(AngularVelocity velocity) {
     westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(velocity));
     eastFlywheelFollower.setControl(flywheelFollower);
+    lastDesiredFlywheelVelocity = velocity;
   }
 
   public void setFlywheelPercentOutput(double percentOutput) {
