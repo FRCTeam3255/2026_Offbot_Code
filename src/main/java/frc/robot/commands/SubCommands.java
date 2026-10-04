@@ -27,8 +27,9 @@ public class SubCommands {
               estimatedPoseOverTime
                   .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
               target)
-          .minus(Degrees.of(90))
-          .plus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
+          .minus(Degrees.of(180))
+          .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation())
+          .unaryMinus());
     } else {
       RobotContainer.positionalInstance
           .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));
