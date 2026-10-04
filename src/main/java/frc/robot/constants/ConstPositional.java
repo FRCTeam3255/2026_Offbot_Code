@@ -16,6 +16,7 @@ import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 
 /** Add your docs here. */
 public class ConstPositional {
@@ -77,7 +78,7 @@ public class ConstPositional {
   public static final TalonFXConfiguration HOOD_PIVOT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration TURRET_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration CLIMBER_CONFIGURATION = new TalonFXConfiguration();
-
+  public static final TalonFXConfiguration TURRET_ZEROING_CONFIGURATION = new TalonFXConfiguration();
   static {
     // TODO: Tune
     // ---- Hood Angle Map ---- //
@@ -106,16 +107,22 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 30.0) * (1.0 * Math.PI));
     HOOD_PIVOT_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 130.0) * (12.0 / 30.0));
     TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0) * (10.0 / 90.0));
+    TURRET_ZEROING_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0)) * (10.0 / 90.0);
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
     HOOD_PIVOT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
     TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+
     CLIMBER_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+    TURRET_ZEROING_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     HOOD_PIVOT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     CLIMBER_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-
+    TURRET_ZEROING_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
   }
 }
