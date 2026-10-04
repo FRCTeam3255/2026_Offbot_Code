@@ -36,12 +36,12 @@ public class ConstFreeSpin {
   public static final AngularVelocity FLYWHEEL_TOLERANCE = RPM.of(100);
 
   // TRANSFER VELOCITIES
-  public static final AngularVelocity TRANSFER_BELT_VELOCITY = RPM.of(6000);// TODO: replace with actual values
-  public static final AngularVelocity TRANSFER_RAMP_VELOCITY = RPM.of(6000);// TODO: replace with actual values
+  public static final AngularVelocity TRANSFER_BELT_VELOCITY = RPM.of(5000);// TODO: replace with actual values
+  public static final AngularVelocity TRANSFER_RAMP_VELOCITY = RPM.of(5000);// TODO: replace with actual values
 
   // SERIALIZER VELOCITIES
-  public static final AngularVelocity AGITATOR_VELOCITY = RPM.of(6000);// TODO: replace with actual values
-  public static final AngularVelocity HOTDOG_ROLLERS_VELOCITY = RPM.of(6000);// TODO: replace with actual values
+  public static final AngularVelocity AGITATOR_VELOCITY = RPM.of(5000);// TODO: replace with actual values
+  public static final AngularVelocity HOTDOG_ROLLERS_VELOCITY = RPM.of(5000);// TODO: replace with actual values
 
   // FLYWHEEL VELOCITIES
   public static final AngularVelocity PREP_D_SIDE_FLYWHEEL = RPM.of(4100);// TODO: find actual value
@@ -99,7 +99,7 @@ public class ConstFreeSpin {
     FLYWHEEL_WEST_CONFIGURATION.Slot0.kS = 0.235;
     FLYWHEEL_WEST_CONFIGURATION.Slot0.kV = 0.117;
     FLYWHEEL_WEST_CONFIGURATION.Slot0.kA = 0;
-    FLYWHEEL_WEST_CONFIGURATION.Slot0.kP = 1.1;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kP = 0.5;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
@@ -107,10 +107,42 @@ public class ConstFreeSpin {
     FLYWHEEL_EAST_CONFIGURATION.Slot0.kS = 0.235;
     FLYWHEEL_EAST_CONFIGURATION.Slot0.kV = 0.117;
     FLYWHEEL_EAST_CONFIGURATION.Slot0.kA = 0;
-    FLYWHEEL_EAST_CONFIGURATION.Slot0.kP = 1.1;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kP = 0.5;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
+
+    HOTDOG_ROLLERS_CONFIGURATION.Slot0.kS = 0.1;
+    HOTDOG_ROLLERS_CONFIGURATION.Slot0.kV = 0.113;
+    HOTDOG_ROLLERS_CONFIGURATION.Slot0.kA = 0;
+    HOTDOG_ROLLERS_CONFIGURATION.Slot0.kP = 0.65;
+    HOTDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    HOTDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    HOTDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
+
+    TOPDOG_ROLLERS_CONFIGURATION.Slot0.kS = 0.1;
+    TOPDOG_ROLLERS_CONFIGURATION.Slot0.kV = 0.113;
+    TOPDOG_ROLLERS_CONFIGURATION.Slot0.kA = 0;
+    TOPDOG_ROLLERS_CONFIGURATION.Slot0.kP = 0.65;
+    TOPDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    TOPDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    TOPDOG_ROLLERS_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
+
+    TRANSFER_BELT_CONFIGURATION.Slot0.kS = 0.23;
+    TRANSFER_BELT_CONFIGURATION.Slot0.kV = 0.11;
+    TRANSFER_BELT_CONFIGURATION.Slot0.kA = 0;
+    TRANSFER_BELT_CONFIGURATION.Slot0.kP = 0.75;
+    TRANSFER_BELT_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    TRANSFER_BELT_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    TRANSFER_BELT_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
+
+    TRANSFER_RAMP_CONFIGURATION.Slot0.kS = 0.11;
+    TRANSFER_RAMP_CONFIGURATION.Slot0.kV = 0.112;
+    TRANSFER_RAMP_CONFIGURATION.Slot0.kA = 0;
+    TRANSFER_RAMP_CONFIGURATION.Slot0.kP = 0.3;
+    TRANSFER_RAMP_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    TRANSFER_RAMP_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    TRANSFER_RAMP_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
 
   }
 }

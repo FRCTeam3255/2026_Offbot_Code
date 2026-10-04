@@ -21,17 +21,18 @@ public class ShootingOnFly extends Command {
   @Override
   public void initialize() {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.SHOOTING_ON_FLY);
+    RobotContainer.visionInstance.setVisionEnabled(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     SubCommands.shootingOnFly(false);
-    // RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.TRANSFER_BELT_PERCENT_OUTPUT);
-    // RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
-    // RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
-    // RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANSFER_RAMP_PERCENT_OUTPUT);
-    // RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setTransferBeltVelocity(ConstFreeSpin.TRANSFER_BELT_VELOCITY);
+    RobotContainer.freeSpinInstance.setTransferRampVelocity(ConstFreeSpin.TRANSFER_RAMP_VELOCITY);
+    RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.setHotdogRollersVelocity(ConstFreeSpin.HOTDOG_ROLLERS_VELOCITY);
   }
 
   // Called once the command ends or is interrupted.

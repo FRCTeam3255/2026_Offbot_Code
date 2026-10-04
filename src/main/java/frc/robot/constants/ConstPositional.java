@@ -44,7 +44,7 @@ public class ConstPositional {
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
   // INTAKE DISTANCES
-  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(11.5);
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(11.1);
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES
@@ -148,7 +148,7 @@ public class ConstPositional {
     TURRET_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
     TURRET_CONFIGURATION.Slot0.kS = 0.15;
     TURRET_CONFIGURATION.Slot0.kG = 0.0;
-    TURRET_CONFIGURATION.Slot0.kP = 7;
+    TURRET_CONFIGURATION.Slot0.kP = 40;
     TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kV = 0.001;
     TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kA = 0.001;
     TURRET_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;

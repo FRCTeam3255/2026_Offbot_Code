@@ -27,7 +27,7 @@ public class SubCommands {
               estimatedPoseOverTime
                   .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
               target)
-          .minus(Degrees.of(180))
+          .plus(Degrees.of(90))
           .plus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
     } else {
       RobotContainer.positionalInstance

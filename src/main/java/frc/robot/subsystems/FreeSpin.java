@@ -105,12 +105,15 @@ public class FreeSpin extends SubsystemBase {
   public void setHotdogRollersVelocity(AngularVelocity velocity) {
     hotdogRollers.setControl(hotdogRollersVelocityRequest.withVelocity(velocity));
     topdogRollers.setControl(topdogFollower);
+    lastDesiredHotdogRollersVelocity = velocity;
+    lastDesiredTopdogRollersVelocity = velocity;
   }
 
   public void setHotdogRollersPercentOutput(double percentOutput) {
     hotdogRollers.set(percentOutput);
     topdogRollers.setControl(topdogFollower);
     lastDesiredHotdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
+    lastDesiredTopdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
   }
 
   public AngularVelocity getHotdogRollersVelocity() {
@@ -122,6 +125,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setTransferBeltVelocity(AngularVelocity velocity) {
     transferBelt.setControl(transferBeltVelocityRequest.withVelocity(velocity));
+    lastDesiredTransferBeltVelocity = velocity;
   }
 
   public void setTransferBeltPercentOutput(double percentOutput) {
@@ -138,6 +142,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setAgitatorVelocity(AngularVelocity velocity) {
     agitator.setControl(agitatorVelocityRequest.withVelocity(velocity));
+    lastDesiredAgitatorVelocity = velocity;
   }
 
   public void setAgitatorPercentOutput(double percentOutput) {
@@ -154,6 +159,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setTransferRampVelocity(AngularVelocity velocity) {
     transferRamp.setControl(transferRampVelocityRequest.withVelocity(velocity));
+    lastDesiredTransferRampVelocity = velocity;
   }
 
   public void setTransferRampPercentOutput(double percentOutput) {
