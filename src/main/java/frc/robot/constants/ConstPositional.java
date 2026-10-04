@@ -48,8 +48,8 @@ public class ConstPositional {
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES
-  public static final Angle MAX_TURRET_ANGLE = Degrees.of(185);
-  public static final Angle MIN_TURRET_ANGLE = Degrees.of(-185);
+  public static final Angle MAX_TURRET_ANGLE = Degrees.of(225);
+  public static final Angle MIN_TURRET_ANGLE = Degrees.of(-80);
 
   public static final Angle PREP_D_SIDE_HOOD = Degrees.of(18);// TODO: find actual value
   public static final Angle PREP_D_SIDE_TURRET = Degrees.of(-20.78);// TODO: find actual value
@@ -119,9 +119,9 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.Slot0.kG = 0.0;
     INTAKE_SLIDE_CONFIGURATION.Slot0.kP = 0;
     INTAKE_SLIDE_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
-    INTAKE_SLIDE_CONFIGURATION.Slot1.kS = 0.0;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.kS = 0.4;
     INTAKE_SLIDE_CONFIGURATION.Slot1.kG = 0.0;
-    INTAKE_SLIDE_CONFIGURATION.Slot1.kP = 0;
+    INTAKE_SLIDE_CONFIGURATION.Slot1.kP = 7;
     INTAKE_SLIDE_CONFIGURATION.Slot1.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
     INTAKE_SLIDE_CONFIGURATION.MotionMagic.MotionMagicExpo_kV = 0.001;
     INTAKE_SLIDE_CONFIGURATION.MotionMagic.MotionMagicExpo_kA = 0.001;
@@ -141,14 +141,17 @@ public class ConstPositional {
 
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-    TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Degrees.of(180).in(Rotations);
-    TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Degrees.of(-160).in(Rotations);
+    TURRET_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = MAX_TURRET_ANGLE.in(Rotations);
+    TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = MIN_TURRET_ANGLE.in(Rotations);
     TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     TURRET_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
-    TURRET_CONFIGURATION.Slot0.kS = 0.5;
+    TURRET_CONFIGURATION.Slot0.kS = 0.15;
     TURRET_CONFIGURATION.Slot0.kG = 0.0;
-    TURRET_CONFIGURATION.Slot0.kP = 1.5;
+    TURRET_CONFIGURATION.Slot0.kP = 7;
+    TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kV = 0.001;
+    TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kA = 0.001;
+    TURRET_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
 
     CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
