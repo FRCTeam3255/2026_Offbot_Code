@@ -13,7 +13,9 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -76,11 +78,12 @@ public class RobotPoses extends SubsystemBase {
         RobotContainer.positionalInstance.getHoodPivotAngle(),
         Units.Degrees.zero());
 
-    robotObject.setPose(RobotContainer.drivetrainInstance.getPose());
+    robotObject.setPose(RobotContainer.drivetrainInstance.getPose().rotateBy(Rotation2d.k180deg));
     // This method will be called once per scheduler run
 
     // Robot Positions
-    modelDrivetrain = new Pose3d(RobotContainer.drivetrainInstance.getPose());
+    modelDrivetrain = new Pose3d(
+        RobotContainer.drivetrainInstance.getPose().plus(new Transform2d(Translation2d.kZero, Rotation2d.k180deg)));
     model0Intake = Pose3d.kZero.transformBy(intakeTransform3d);
     model1Turret = Pose3d.kZero.rotateAround(
         Pose3d.kZero.plus(turretPivotPoint).getTranslation(), turretRotation3d);
