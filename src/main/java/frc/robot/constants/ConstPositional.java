@@ -145,13 +145,20 @@ public class ConstPositional {
     TURRET_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = MIN_TURRET_ANGLE.in(Rotations);
     TURRET_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TURRET_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    // Aiming PID
     TURRET_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
     TURRET_CONFIGURATION.Slot0.kS = 0.15;
     TURRET_CONFIGURATION.Slot0.kG = 0.0;
     TURRET_CONFIGURATION.Slot0.kP = 40;
     TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kV = 0.001;
     TURRET_CONFIGURATION.MotionMagic.MotionMagicExpo_kA = 0.001;
-    TURRET_CONFIGURATION.Slot0.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
+    TURRET_CONFIGURATION.Slot1.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
+    // TODO: wrap around PID
+    TURRET_CONFIGURATION.Slot1.GravityType = GravityTypeValue.Arm_Cosine;
+    TURRET_CONFIGURATION.Slot1.kS = 0.15;
+    TURRET_CONFIGURATION.Slot1.kG = 0.0;
+    TURRET_CONFIGURATION.Slot1.kP = 120;
+    TURRET_CONFIGURATION.Slot1.StaticFeedforwardSign = StaticFeedforwardSignValue.UseClosedLoopSign;
 
     CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     CLIMBER_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
