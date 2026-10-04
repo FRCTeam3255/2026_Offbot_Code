@@ -59,6 +59,7 @@ public class ConstFreeSpin {
   public static final TalonFXConfiguration TRANSFER_BELT_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration AGITATOR_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration HOTDOG_ROLLERS_CONFIGURATION = new TalonFXConfiguration();
+  public static final TalonFXConfiguration TOPDOG_ROLLERS_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration INTAKE_ROLLERS_EAST_CONFIGURATION = new TalonFXConfiguration();
 
@@ -75,23 +76,41 @@ public class ConstFreeSpin {
     flywheelSpeedMap.put(Inches.of(120).in(Inches), RPM.of(3400).in(RPM));
 
     flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM)); // Configure TalonFXConfiguration objects here
-    INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     FLYWHEEL_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
-    TRANSFER_BELT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-    TRANSFER_RAMP_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    TRANSFER_BELT_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    TRANSFER_RAMP_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
     HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    TOPDOG_ROLLERS_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     AGITATOR_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
     INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    TOPDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TRANSFER_BELT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     AGITATOR_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     FLYWHEEL_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TRANSFER_RAMP_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kS = 0.235;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kV = 0.117;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kA = 0;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kP = 1.1;
+    FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
+
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kS = 0.235;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kV = 0.117;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kA = 0;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kP = 1.1;
+    FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
+    FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
+    FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
 
   }
 }

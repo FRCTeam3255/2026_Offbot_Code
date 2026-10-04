@@ -46,6 +46,7 @@ public class DeviceIDs {
     public static final int FLYWHEEL_WEST_CAN = 15;
     public static final int FLYWHEEL_EAST_CAN = 16;
     public static final int TRANSFER_RAMP_CAN = 17;
+    public static final int TOPDOG_ROLLERS_CAN = 18;
 
   }
 
