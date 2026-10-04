@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import static edu.wpi.first.units.Units.Degrees;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
@@ -59,7 +61,7 @@ public class RobotPoses extends SubsystemBase {
   @Override
   public void periodic() {
     intakeTransform3d = new Transform3d(
-        RobotContainer.positionalInstance.lastDesiredIntakePosition,
+        RobotContainer.positionalInstance.getIntakeSlidePosition(),
         Units.Inches.zero(),
         Units.Inches.zero(),
         Rotation3d.kZero);
@@ -67,11 +69,11 @@ public class RobotPoses extends SubsystemBase {
     turretRotation3d = new Rotation3d(
         Units.Degrees.zero(),
         Units.Degrees.zero(),
-        RobotContainer.positionalInstance.lastDesiredTurretAngle);
+        RobotContainer.positionalInstance.getTurretAngle().plus(Degrees.of(180)).unaryMinus());
 
     hoodRotation3d = new Rotation3d(
         Units.Degrees.zero(),
-        RobotContainer.positionalInstance.lastDesiredHoodPivotAngle,
+        RobotContainer.positionalInstance.getHoodPivotAngle(),
         Units.Degrees.zero());
 
     robotObject.setPose(RobotContainer.drivetrainInstance.getPose());

@@ -48,8 +48,8 @@ public class ConstPositional {
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES
-  public static final Angle MAX_TURRET_ANGLE = Degrees.of(225);
-  public static final Angle MIN_TURRET_ANGLE = Degrees.of(-80);
+  public static final Angle MAX_TURRET_ANGLE = Degrees.of(285);
+  public static final Angle MIN_TURRET_ANGLE = Degrees.of(-108);
 
   public static final Angle PREP_D_SIDE_HOOD = Degrees.of(18);// TODO: find actual value
   public static final Angle PREP_D_SIDE_TURRET = Degrees.of(-20.78);// TODO: find actual value
@@ -109,7 +109,7 @@ public class ConstPositional {
     INTAKE_SLIDE_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0
         / ((12.0 / 30.0) * (1.0 * Math.PI));
     HOOD_PIVOT_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((10.0 / 130.0) * (12.0 / 30.0));
-    TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((12.0 / 58.0) * (10.0 / 90.0));
+    TURRET_CONFIGURATION.Feedback.SensorToMechanismRatio = 1.0 / ((14.0 / 54.0) * (10.0 / 90.0));
 
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     INTAKE_SLIDE_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
