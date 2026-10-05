@@ -178,6 +178,10 @@ public class FreeSpin extends SubsystemBase {
     return Units.RPM.of(ConstFreeSpin.flywheelSpeedMap.get(distance.in(Units.Inches)));
   }
 
+  public boolean isFlywheelUpToVelocity() {
+    return getFlywheelVelocity().isNear(lastDesiredFlywheelVelocity, ConstFreeSpin.FLYWHEEL_TOLERANCE);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

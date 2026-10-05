@@ -63,7 +63,7 @@ public class ConstPositional {
   public static final Angle PREP_NEUTRAL_TO_ALLIANCE_HOOD = Degrees.of(45);// TODO: find actual value
   public static final Angle PREP_NEUTRAL_TO_ALLIANCE_TURRET = Degrees.of(-180);// TODO: find actual value
 
-  public static final Angle PREP_OPPOSING_TO_ALLIANCE_HOOD = Degrees.of(37);// TODO: find actual value
+  public static final Angle PREP_OPPOSING_TO_ALLIANCE_HOOD = Degrees.of(29.5);// TODO: find actual value
   public static final Angle PREP_OPPOSING_TO_ALLIANCE_TURRET = Degrees.of(-180);// TODO: find actual value
 
   public static final Angle PREP_TOWER_HOOD = Degrees.of(14);// TODO: find actual value
@@ -84,23 +84,24 @@ public class ConstPositional {
   static {
     // TODO: Tune
     // ---- Hood Angle Map ---- //
-    // hoodAngleMap.put(Inches.of(0).in(Inches), Degrees.of(3).in(Degrees));
-    hoodAngleMap.put(Inches.of(200).in(Inches), Degrees.of(29).in(Degrees));
+    hoodAngleMap.put(Inches.of(200).in(Inches), Degrees.of(12).in(Degrees));
     // hoodAngleMap.put(Inches.of(190).in(Inches), Degrees.of(29).in(Degrees));
-    hoodAngleMap.put(Inches.of(180).in(Inches), Degrees.of(24).in(Degrees));
+    // hoodAngleMap.put(Inches.of(180).in(Inches), Degrees.of(24).in(Degrees));
     // hoodAngleMap.put(Inches.of(170).in(Inches), Degrees.of(24).in(Degrees));
     // hoodAngleMap.put(Inches.of(160).in(Inches), Degrees.of(24).in(Degrees));
     // hoodAngleMap.put(Inches.of(150).in(Inches), Degrees.of(24).in(Degrees));
-    hoodAngleMap.put(Inches.of(140).in(Inches), Degrees.of(24).in(Degrees)); // good
+    // hoodAngleMap.put(Inches.of(140).in(Inches), Degrees.of(24).in(Degrees)); //
     // hoodAngleMap.put(Inches.of(130).in(Inches), Degrees.of(16).in(Degrees));
-    hoodAngleMap.put(Inches.of(120).in(Inches), Degrees.of(22).in(Degrees)); // good
+    // hoodAngleMap.put(Inches.of(120).in(Inches), Degrees.of(22).in(Degrees)); //
     // hoodAngleMap.put(Inches.of(110).in(Inches), Degrees.of(13).in(Degrees));
-    hoodAngleMap.put(Inches.of(100).in(Inches), Degrees.of(16).in(Degrees)); // little too far, made most
-    // hoodAngleMap.put(Inches.of(90).in(Inches), Degrees.of(9).in(Degrees));
-    hoodAngleMap.put(Inches.of(80).in(Inches), Degrees.of(13.25).in(Degrees)); //
+    // hoodAngleMap.put(Inches.of(100).in(Inches), Degrees.of(16).in(Degrees)); //
+    // Base line: 90 inches 12 deg
+    hoodAngleMap.put(Inches.of(83.5).in(Inches), Degrees.of(12).in(Degrees));
+    // hoodAngleMap.put(Inches.of(80).in(Inches), Degrees.of(13.25).in(Degrees)); //
     // hoodAngleMap.put(Inches.of(70).in(Inches), Degrees.of(6).in(Degrees));
     // hoodAngleMap.put(Inches.of(60).in(Inches), Degrees.of(6).in(Degrees));
-    hoodAngleMap.put(Inches.of(50).in(Inches), Degrees.of(1).in(Degrees)); //
+    // hoodAngleMap.put(Inches.of(50).in(Inches), Degrees.of(1).in(Degrees)); //
+    // hoodAngleMap.put(Inches.of(0).in(Inches), Degrees.of(3).in(Degrees));
     // ---- Time Of Flight Map ---- //
     timeOfFlightMap.put(Inches.of(60).in(Inches), Seconds.of(0).in(Seconds));
     timeOfFlightMap.put(Inches.of(50).in(Inches), Seconds.of(1).in(Seconds));
