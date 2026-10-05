@@ -90,8 +90,8 @@ public class ConstFreeSpin {
 
     INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     INTAKE_ROLLERS_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-    TOPDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+    HOTDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    TOPDOG_ROLLERS_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     TRANSFER_BELT_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     AGITATOR_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     FLYWHEEL_EAST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
