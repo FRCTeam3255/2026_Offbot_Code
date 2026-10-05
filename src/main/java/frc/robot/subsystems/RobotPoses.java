@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Meters;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -16,6 +17,7 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -106,5 +108,12 @@ public class RobotPoses extends SubsystemBase {
 
   public Pose2d getTarget() {
     return target;
+  }
+
+  public Distance distanceToTarget() {
+    return Meters.of(target
+        // TODO: TEST AND INVESITGATE IF THIS IS GOOD
+        .transformBy(RobotContainer.robotPose.turretPivotTransform2d)
+        .getTranslation().getDistance(RobotContainer.drivetrainInstance.getPose().getTranslation()));
   }
 }
