@@ -18,7 +18,10 @@ public class SubCommands {
     target = RobotContainer.robotPose.getTarget();
     estimatedPoseOverTime = RobotContainer.drivetrainInstance.getEstimatedPoseOverTime();
     // estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
-    distanceToTarget = Meters.of(estimatedPoseOverTime.getTranslation().getDistance(target.getTranslation()));
+    distanceToTarget = Meters.of(estimatedPoseOverTime
+        // TODO: TEST AND INVESITGATE IF THIS IS GOOD
+        .transformBy(RobotContainer.robotPose.turretPivotTransform2d)
+        .getTranslation().getDistance(target.getTranslation()));
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
     if (controlTurret) {
@@ -28,7 +31,8 @@ public class SubCommands {
                   .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
               target)
           .minus(Degrees.of(180))
-          .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation()));
+          .minus(RobotContainer.drivetrainInstance.getDrivetrainRotation())
+          .unaryMinus());
     } else {
       RobotContainer.positionalInstance
           .setHoodPivotAngle(RobotContainer.positionalInstance.getMappedHoodAngle(distanceToTarget));

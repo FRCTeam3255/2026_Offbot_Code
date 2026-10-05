@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Meters;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
@@ -11,7 +14,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +28,8 @@ import frc.robot.constants.ConstField;
 @Logged
 public class RobotPoses extends SubsystemBase {
   /** Creates a new RobotPoses. */
-  boolean isOurShift = RobotContainer.telemetryInstance.isHubActive();
+  // boolean isOurShift = RobotContainer.telemetryInstance.isHubActive();
+  boolean isOurShift = true;
   Pose2d target = Pose2d.kZero;
   Field2d field2d = new Field2d();
   FieldObject2d robotObject = field2d.getObject("Robot");
@@ -58,7 +65,7 @@ public class RobotPoses extends SubsystemBase {
   @Override
   public void periodic() {
     intakeTransform3d = new Transform3d(
-        RobotContainer.positionalInstance.lastDesiredIntakePosition,
+        RobotContainer.positionalInstance.getIntakeSlidePosition(),
         Units.Inches.zero(),
         Units.Inches.zero(),
         Rotation3d.kZero);
@@ -66,18 +73,19 @@ public class RobotPoses extends SubsystemBase {
     turretRotation3d = new Rotation3d(
         Units.Degrees.zero(),
         Units.Degrees.zero(),
-        RobotContainer.positionalInstance.lastDesiredTurretAngle);
+        RobotContainer.positionalInstance.getTurretAngle().plus(Degrees.of(180)).unaryMinus());
 
     hoodRotation3d = new Rotation3d(
         Units.Degrees.zero(),
-        RobotContainer.positionalInstance.lastDesiredHoodPivotAngle,
+        RobotContainer.positionalInstance.getHoodPivotAngle(),
         Units.Degrees.zero());
 
-    robotObject.setPose(RobotContainer.drivetrainInstance.getPose());
+    robotObject.setPose(RobotContainer.drivetrainInstance.getPose().rotateBy(Rotation2d.k180deg));
     // This method will be called once per scheduler run
 
     // Robot Positions
-    modelDrivetrain = new Pose3d(RobotContainer.drivetrainInstance.getPose());
+    modelDrivetrain = new Pose3d(
+        RobotContainer.drivetrainInstance.getPose().plus(new Transform2d(Translation2d.kZero, Rotation2d.k180deg)));
     model0Intake = Pose3d.kZero.transformBy(intakeTransform3d);
     model1Turret = Pose3d.kZero.rotateAround(
         Pose3d.kZero.plus(turretPivotPoint).getTranslation(), turretRotation3d);
@@ -100,5 +108,12 @@ public class RobotPoses extends SubsystemBase {
 
   public Pose2d getTarget() {
     return target;
+  }
+
+  public Distance distanceToTarget() {
+    return Meters.of(target
+        // TODO: TEST AND INVESITGATE IF THIS IS GOOD
+        .transformBy(RobotContainer.robotPose.turretPivotTransform2d)
+        .getTranslation().getDistance(RobotContainer.drivetrainInstance.getPose().getTranslation()));
   }
 }
