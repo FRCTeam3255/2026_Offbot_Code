@@ -36,6 +36,7 @@ public class ConstPositional {
   public static final Distance CLIMBER_TOLERANCE = Units.Inches.of(0.5);
   public static final Angle TURRET_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
   public static final Angle HOOD_TOLERANCE = Degrees.of(1);// TODO: find actual tolerance
+  public static final Angle HOOD_FAST_PID_TOL = Degrees.of(90);
   public static final Distance INTAKE_SLIDE_TOLERANCE = Inches.of(1);// TODO ADD ACTUAL VALUE LATER
 
   // FREESPIN MECHANISM PID

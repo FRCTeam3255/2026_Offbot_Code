@@ -65,7 +65,12 @@ public class Positional extends SubsystemBase {
 
   public void setTurretAngle(Angle setPoint) {
     lastDesiredTurretAngle = getWrappedTurretAngle(setPoint);
-    turret.setControl(turretMotionRequest.withPosition(lastDesiredTurretAngle));
+    if (lastDesiredTurretAngle.minus(getTurretAngle()).gte(ConstPositional.HOOD_FAST_PID_TOL)
+        || lastDesiredTurretAngle.minus(getTurretAngle()).lte(ConstPositional.HOOD_FAST_PID_TOL.unaryMinus())) {
+      turret.setControl(turretMotionRequest.withPosition(lastDesiredTurretAngle).withSlot(1));
+    } else {
+      turret.setControl(turretMotionRequest.withPosition(lastDesiredTurretAngle).withSlot(0));
+    }
   }
 
   public Angle getHoodPivotAngle() {
