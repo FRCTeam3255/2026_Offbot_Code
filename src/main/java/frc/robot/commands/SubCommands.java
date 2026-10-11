@@ -5,6 +5,9 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.Time;
 import frc.robot.RobotContainer;
@@ -17,16 +20,13 @@ public class SubCommands {
     Time TOF;
     target = RobotContainer.robotPose.getTarget();
     estimatedPoseOverTime = RobotContainer.drivetrainInstance.getEstimatedPoseOverTime();
-    // estimatedPoseOverTime = RobotContainer.drivetrainInstance.getPose();
-    distanceToTarget = Meters.of(estimatedPoseOverTime
-        // TODO: TEST AND INVESITGATE IF THIS IS GOOD
-        .transformBy(RobotContainer.robotPose.turretPivotTransform2d)
-        .getTranslation().getDistance(target.getTranslation()));
+    distanceToTarget = RobotContainer.robotPose.estimatedDistanceToTarget(estimatedPoseOverTime);
     TOF = RobotContainer.positionalInstance.getMappedTOF(distanceToTarget);
     RobotContainer.positionalInstance.timeOfFlight = TOF;
     if (controlTurret) {
       RobotContainer.positionalInstance.setTurretAngle(RobotContainer.drivetrainInstance
           .snapToTarget(
+              // I dont understand half of the things under this, but it works
               estimatedPoseOverTime
                   .transformBy(RobotContainer.robotPose.turretPivotTransform2d),
               target)

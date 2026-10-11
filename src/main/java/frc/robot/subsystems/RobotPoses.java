@@ -54,8 +54,8 @@ public class RobotPoses extends SubsystemBase {
       Units.Inches.of(15.5),
       Rotation3d.kZero);
   public final Transform2d turretPivotTransform2d = new Transform2d(
-      turretPivotPoint.getMeasureX(),
-      turretPivotPoint.getMeasureY(),
+      turretPivotPoint.getMeasureX().unaryMinus(),
+      turretPivotPoint.getMeasureY().unaryMinus(),
       Rotation2d.kZero);
 
   public RobotPoses() {
@@ -110,10 +110,18 @@ public class RobotPoses extends SubsystemBase {
     return target;
   }
 
-  public Distance distanceToTarget() {
+  public Pose2d getTurret(Pose2d robotPose) {
+    return robotPose.transformBy(RobotContainer.robotPose.turretPivotTransform2d);
+
+  }
+
+  public Distance estimatedDistanceToTarget(Pose2d robotPose) {
     return Meters.of(target
-        // TODO: TEST AND INVESITGATE IF THIS IS GOOD
-        .transformBy(RobotContainer.robotPose.turretPivotTransform2d)
-        .getTranslation().getDistance(RobotContainer.drivetrainInstance.getPose().getTranslation()));
+        .getTranslation().getDistance(
+            getTurret(robotPose).getTranslation()));
+  }
+
+  public Distance distanceToTarget() {
+    return estimatedDistanceToTarget(RobotContainer.drivetrainInstance.getPose());
   }
 }
