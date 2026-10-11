@@ -44,7 +44,7 @@ public class ConstPositional {
   public static final int SLOW_CLIMBER_PID = 0;
   public static final int FAST_CLIMBER_PID = 1;
   // INTAKE DISTANCES
-  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(11.1);
+  public static final Distance DEPLOY_INTAKE_SLIDE_DISTANCE = Units.Inches.of(10.8);
   public static final Distance RETRACTING_INTAKE_SLIDE_DISTANCE = Inches.of(1); // TODO ADD ACTUAL VALUES DURING TESTING
 
   // HOOD AND TURRET ANGLES

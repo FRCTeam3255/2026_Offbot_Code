@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.RPM;
 
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
@@ -63,7 +64,7 @@ public class FreeSpin extends SubsystemBase {
 
   }
 
-  final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final VelocityVoltage flywheelVelocityRequest = new VelocityVoltage(0);
   final MotionMagicVelocityVoltage hotdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage topdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
@@ -113,6 +114,11 @@ public class FreeSpin extends SubsystemBase {
     hotdogRollers.set(percentOutput);
     topdogRollers.setControl(topdogFollower);
     lastDesiredHotdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
+    lastDesiredTopdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
+  }
+
+  public void setTopdogRollersPercentOutput(double percentOutput) {
+    topdogRollers.set(percentOutput);
     lastDesiredTopdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
   }
 

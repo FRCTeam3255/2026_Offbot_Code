@@ -30,6 +30,7 @@ public class ConstFreeSpin {
   public static final double TRANSFER_RAMP_PERCENT_OUTPUT = 1;
   public static final double AGITATOR_PERCENT_OUTPUT = 1;
   public static final double HOTDOG_ROLLERS_PERCENT_OUTPUT = 1;
+  public static final double TOP_DOG_INTAKING_PERCET_OUTPUT = -0.1;
   public static final double INTAKE_ROLLER_PERCENT_OUTPUT = 1;
 
   // FLYWHEEL TOLERANCE
@@ -66,7 +67,7 @@ public class ConstFreeSpin {
   public final static InterpolatingDoubleTreeMap flywheelSpeedMap = new InterpolatingDoubleTreeMap();
   static {
     // TODO: tune
-    flywheelSpeedMap.put(Inches.of(190).in(Inches), RPM.of(2500).in(RPM));
+    flywheelSpeedMap.put(Inches.of(190).in(Inches), RPM.of(4414).in(RPM));
     // flywheelSpeedMap.put(Inches.of(180).in(Inches), RPM.of(3925).in(RPM));
     // flywheelSpeedMap.put(Inches.of(165.1).in(Inches), RPM.of(3900).in(RPM));
     // flywheelSpeedMap.put(Inches.of(165).in(Inches), RPM.of(3800).in(RPM));
@@ -75,7 +76,7 @@ public class ConstFreeSpin {
     // flywheelSpeedMap.put(Inches.of(140).in(Inches), RPM.of(3400).in(RPM));
     // flywheelSpeedMap.put(Inches.of(120).in(Inches), RPM.of(3200).in(RPM));
     // Base Line: 90 inches 2500 rpm
-    flywheelSpeedMap.put(Inches.of(83.5).in(Inches), RPM.of(2500).in(RPM));
+    flywheelSpeedMap.put(Inches.of(83.5).in(Inches), RPM.of(4414).in(RPM));
 
     flywheelSpeedMap.put(Inches.of(0).in(Inches), RPM.of(3400).in(RPM)); // Configure TalonFXConfiguration objects here
     INTAKE_ROLLERS_EAST_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -98,18 +99,18 @@ public class ConstFreeSpin {
     FLYWHEEL_WEST_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
     TRANSFER_RAMP_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 
-    FLYWHEEL_WEST_CONFIGURATION.Slot0.kS = 0.235;
-    FLYWHEEL_WEST_CONFIGURATION.Slot0.kV = 0.11;
-    FLYWHEEL_WEST_CONFIGURATION.Slot0.kA = 1;
-    FLYWHEEL_WEST_CONFIGURATION.Slot0.kP = 0.5;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kS = 0.2;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kV = 0.115;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kA = 0;
+    FLYWHEEL_WEST_CONFIGURATION.Slot0.kP = 0.2;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
     FLYWHEEL_WEST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
 
-    FLYWHEEL_EAST_CONFIGURATION.Slot0.kS = 0.235;
-    FLYWHEEL_EAST_CONFIGURATION.Slot0.kV = 0.11;
-    FLYWHEEL_EAST_CONFIGURATION.Slot0.kA = 1;
-    FLYWHEEL_EAST_CONFIGURATION.Slot0.kP = 0.5;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kS = 0.2;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kV = 0.115;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kA = 0;
+    FLYWHEEL_EAST_CONFIGURATION.Slot0.kP = 0.2;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicCruiseVelocity = 0;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicAcceleration = 9999;
     FLYWHEEL_EAST_CONFIGURATION.MotionMagic.MotionMagicJerk = 0;
