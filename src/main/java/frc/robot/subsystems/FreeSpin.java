@@ -53,7 +53,10 @@ public class FreeSpin extends SubsystemBase {
   public FreeSpin() {
 
     intakeRollerWestLeader.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);
-    intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);
+    intakeRollerEastFollower.getConfigurator().apply(ConstFreeSpin.INTAKE_ROLLERS_WEST_CONFIGURATION);// I was trying to
+                                                                                                      // see if i could
+                                                                                                      // use the same
+                                                                                                      // configs
 
     hotdogRollers.getConfigurator().apply(ConstFreeSpin.HOTDOG_ROLLERS_CONFIGURATION);
     transferBelt.getConfigurator().apply(ConstFreeSpin.TRANSFER_BELT_CONFIGURATION);
@@ -87,7 +90,8 @@ public class FreeSpin extends SubsystemBase {
     if (Robot.isSimulation()) {
       return lastDesiredIntakeRollerWestVelocity;
     }
-    return intakeRollerWestLeader.getVelocity().getValue();
+    return intakeRollerWestLeader.getVelocity().getValue();// If we can get this working to show each of their
+                                                           // individual velocities, that be nice
   }
 
   public AngularVelocity getIntakeRollerEastVelocity() {
