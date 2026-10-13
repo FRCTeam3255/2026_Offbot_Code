@@ -32,6 +32,28 @@ public class ShootingOnFly extends Command {
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
     RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANSFER_RAMP_PERCENT_OUTPUT);
     RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    RobotContainer.freeSpinInstance.getHotdogRollersVoltage();
+    RobotContainer.freeSpinInstance.getTransferBeltVoltage();
+    RobotContainer.freeSpinInstance.getTransferRampVoltage();
+    RobotContainer.freeSpinInstance.getAgitatorVoltage();
+    if (RobotContainer.freeSpinInstance.getHotdogRollersVoltage() > ConstFreeSpin.MAX_VOLTAGE_THRESHOLD ||
+        RobotContainer.freeSpinInstance.getTransferBeltVoltage() > ConstFreeSpin.MAX_VOLTAGE_THRESHOLD ||
+        RobotContainer.freeSpinInstance.getTransferRampVoltage() > ConstFreeSpin.MAX_VOLTAGE_THRESHOLD ||
+        RobotContainer.freeSpinInstance.getAgitatorVoltage() > ConstFreeSpin.MAX_VOLTAGE_THRESHOLD) {
+      RobotContainer.freeSpinInstance
+          .setTransferBeltPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_BELT_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.REVERSING_AGITATOR_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance
+          .setTransferRampPercentOutput(ConstFreeSpin.REVERSING_TRANSFER_RAMP_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance
+          .setHotdogRollersPercentOutput(ConstFreeSpin.REVERSING_HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    } else {
+      RobotContainer.freeSpinInstance.setTransferBeltPercentOutput(ConstFreeSpin.TRANSFER_BELT_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance.setAgitatorPercentOutput(ConstFreeSpin.AGITATOR_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance.setTransferRampPercentOutput(ConstFreeSpin.TRANSFER_RAMP_PERCENT_OUTPUT);
+      RobotContainer.freeSpinInstance.setHotdogRollersPercentOutput(ConstFreeSpin.HOTDOG_ROLLERS_PERCENT_OUTPUT);
+    }
   }
 
   // Called once the command ends or is interrupted.

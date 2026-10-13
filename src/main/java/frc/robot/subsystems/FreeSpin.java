@@ -111,6 +111,10 @@ public class FreeSpin extends SubsystemBase {
     return hotdogRollers.getVelocity().getValue();
   }
 
+  public double getHotdogRollersVoltage() {
+    return hotdogRollers.getMotorVoltage().getValueAsDouble();
+  }
+
   public void setTransferBeltVelocity(AngularVelocity velocity) {
     transferBelt.setControl(transferBeltVelocityRequest.withVelocity(velocity));
   }
@@ -125,6 +129,10 @@ public class FreeSpin extends SubsystemBase {
       return lastDesiredTransferBeltVelocity;
     }
     return transferBelt.getVelocity().getValue();
+  }
+
+  public double getTransferBeltVoltage() {
+    return transferBelt.getMotorVoltage().getValueAsDouble();
   }
 
   public void setAgitatorVelocity(AngularVelocity velocity) {
@@ -143,6 +151,10 @@ public class FreeSpin extends SubsystemBase {
     return agitator.getVelocity().getValue();
   }
 
+  public double getAgitatorVoltage() {
+    return agitator.getMotorVoltage().getValueAsDouble();
+  }
+
   public void setTransferRampVelocity(AngularVelocity velocity) {
     transferRamp.setControl(transferRampVelocityRequest.withVelocity(velocity));
   }
@@ -157,6 +169,10 @@ public class FreeSpin extends SubsystemBase {
       return lastDesiredTransferRampVelocity;
     }
     return transferRamp.getVelocity().getValue();
+  }
+
+  public double getTransferRampVoltage() {
+    return transferRamp.getMotorVoltage().getValueAsDouble();
   }
 
   public AngularVelocity getMappedFlywheelSpeed(Distance distance) {
