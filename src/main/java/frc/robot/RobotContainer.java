@@ -148,7 +148,7 @@ public class RobotContainer {
           conDriver.axis_LeftY,
           conDriver.axis_LeftX,
           conDriver.axis_RightX,
-          conDriver.btn_RightBumper),
+          conDriver.btn_RightBumper.or(() -> stateMachineInstance.getRobotState() == RobotState.SHOOTING_ON_FLY)),
       Set.of(driverStateMachineInstance));
 
   Command EXAMPLE_POSE_DRIVE = new DeferredCommand(
