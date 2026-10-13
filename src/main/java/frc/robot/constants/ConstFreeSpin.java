@@ -52,6 +52,9 @@ public class ConstFreeSpin {
   public static final AngularVelocity PREP_TOWER_FLYWHEEL = RPM.of(4000);// TODO: find actual value
   public static final AngularVelocity PREP_TRENCH_FLYWHEEL = RPM.of(4000);// TODO:find actual value
 
+  // Voltage Thresholds
+  public static final double MAX_VOLTAGE_THRESHOLD = 10.0;// TODO: find actual value
+
   // FREESPIN MECHANISM CONFIGURATIONS
   public static final TalonFXConfiguration FLYWHEEL_WEST_CONFIGURATION = new TalonFXConfiguration();
   public static final TalonFXConfiguration FLYWHEEL_EAST_CONFIGURATION = new TalonFXConfiguration();
