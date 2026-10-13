@@ -81,7 +81,6 @@ public class Vision extends SubsystemBase {
   private boolean useMegaTag2 = ConstVision.USE_MEGA_TAG_2;
 
   public Vision() {
-    setUpLLPoses();
   }
 
   public PoseEstimate[] getLastPoseEstimates() {

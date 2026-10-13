@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.RPM;
 
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
+import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
@@ -26,6 +27,7 @@ public class FreeSpin extends SubsystemBase {
   final TalonFX intakeRollerEastFollower = new TalonFX(DeviceIDs.freeSpinIDs.INTAKE_ROLLERS_EAST_CAN);
 
   final TalonFX hotdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.HOTDOG_ROLLERS_CAN);
+  final TalonFX topdogRollers = new TalonFX(DeviceIDs.freeSpinIDs.TOPDOG_ROLLERS_CAN);
   final TalonFX transferBelt = new TalonFX(DeviceIDs.freeSpinIDs.TRANSFER_BELT_CAN);
 
   final TalonFX westFlywheelLeader = new TalonFX(DeviceIDs.freeSpinIDs.FLYWHEEL_WEST_CAN);
@@ -37,6 +39,7 @@ public class FreeSpin extends SubsystemBase {
   public AngularVelocity lastDesiredFlywheelVelocity = RPM.zero();
   public AngularVelocity lastDesiredIntakeRollerVelocity = RPM.zero();
   public AngularVelocity lastDesiredHotdogRollersVelocity = RPM.zero();
+  public AngularVelocity lastDesiredTopdogRollersVelocity = RPM.zero();
   public AngularVelocity lastDesiredTransferBeltVelocity = RPM.zero();
   public AngularVelocity lastDesiredAgitatorVelocity = RPM.zero();
   public AngularVelocity lastDesiredTransferRampVelocity = RPM.zero();
@@ -44,6 +47,8 @@ public class FreeSpin extends SubsystemBase {
   Follower flywheelFollower = new Follower(westFlywheelLeader.getDeviceID(), MotorAlignmentValue.Opposed);
 
   Follower intakeFollower = new Follower(intakeRollerWestLeader.getDeviceID(), MotorAlignmentValue.Opposed);
+
+  Follower topdogFollower = new Follower(hotdogRollers.getDeviceID(), MotorAlignmentValue.Aligned);
 
   public FreeSpin() {
 
@@ -55,11 +60,13 @@ public class FreeSpin extends SubsystemBase {
     eastFlywheelFollower.getConfigurator().apply(ConstFreeSpin.FLYWHEEL_EAST_CONFIGURATION);
     agitator.getConfigurator().apply(ConstFreeSpin.AGITATOR_CONFIGURATION);
     transferRamp.getConfigurator().apply(ConstFreeSpin.TRANSFER_RAMP_CONFIGURATION);
+    topdogRollers.getConfigurator().apply(ConstFreeSpin.TOPDOG_ROLLERS_CONFIGURATION);
 
   }
 
-  final MotionMagicVelocityVoltage flywheelVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final VelocityVoltage flywheelVelocityRequest = new VelocityVoltage(0);
   final MotionMagicVelocityVoltage hotdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
+  final MotionMagicVelocityVoltage topdogRollersVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferBeltVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage agitatorVelocityRequest = new MotionMagicVelocityVoltage(0);
   final MotionMagicVelocityVoltage transferRampVelocityRequest = new MotionMagicVelocityVoltage(0);
@@ -80,6 +87,7 @@ public class FreeSpin extends SubsystemBase {
   public void setFlywheelVelocity(AngularVelocity velocity) {
     westFlywheelLeader.setControl(flywheelVelocityRequest.withVelocity(velocity));
     eastFlywheelFollower.setControl(flywheelFollower);
+    lastDesiredFlywheelVelocity = velocity;
   }
 
   public void setFlywheelPercentOutput(double percentOutput) {
@@ -97,11 +105,21 @@ public class FreeSpin extends SubsystemBase {
 
   public void setHotdogRollersVelocity(AngularVelocity velocity) {
     hotdogRollers.setControl(hotdogRollersVelocityRequest.withVelocity(velocity));
+    topdogRollers.setControl(topdogFollower);
+    lastDesiredHotdogRollersVelocity = velocity;
+    lastDesiredTopdogRollersVelocity = velocity;
   }
 
   public void setHotdogRollersPercentOutput(double percentOutput) {
     hotdogRollers.set(percentOutput);
+    topdogRollers.setControl(topdogFollower);
     lastDesiredHotdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
+    lastDesiredTopdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
+  }
+
+  public void setTopdogRollersPercentOutput(double percentOutput) {
+    topdogRollers.set(percentOutput);
+    lastDesiredTopdogRollersVelocity = Units.RPM.of(percentOutput * 6000);
   }
 
   public AngularVelocity getHotdogRollersVelocity() {
@@ -113,6 +131,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setTransferBeltVelocity(AngularVelocity velocity) {
     transferBelt.setControl(transferBeltVelocityRequest.withVelocity(velocity));
+    lastDesiredTransferBeltVelocity = velocity;
   }
 
   public void setTransferBeltPercentOutput(double percentOutput) {
@@ -129,6 +148,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setAgitatorVelocity(AngularVelocity velocity) {
     agitator.setControl(agitatorVelocityRequest.withVelocity(velocity));
+    lastDesiredAgitatorVelocity = velocity;
   }
 
   public void setAgitatorPercentOutput(double percentOutput) {
@@ -145,6 +165,7 @@ public class FreeSpin extends SubsystemBase {
 
   public void setTransferRampVelocity(AngularVelocity velocity) {
     transferRamp.setControl(transferRampVelocityRequest.withVelocity(velocity));
+    lastDesiredTransferRampVelocity = velocity;
   }
 
   public void setTransferRampPercentOutput(double percentOutput) {
@@ -161,6 +182,10 @@ public class FreeSpin extends SubsystemBase {
 
   public AngularVelocity getMappedFlywheelSpeed(Distance distance) {
     return Units.RPM.of(ConstFreeSpin.flywheelSpeedMap.get(distance.in(Units.Inches)));
+  }
+
+  public boolean isFlywheelUpToVelocity() {
+    return getFlywheelVelocity().isNear(lastDesiredFlywheelVelocity, ConstFreeSpin.FLYWHEEL_TOLERANCE);
   }
 
   @Override

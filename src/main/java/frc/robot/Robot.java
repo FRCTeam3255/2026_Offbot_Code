@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
         yaw, 0, 0, 0, 0, 0);
     LimelightHelpers.SetRobotOrientation(ConstVision.LIMELIGHT_FRONT_NAME,
         yaw, 0, 0, 0, 0, 0);
-
+    m_robotContainer.visionInstance.setUpLLPoses();
   }
 
   @Override

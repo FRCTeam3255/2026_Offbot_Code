@@ -69,7 +69,7 @@ public class ConstDrivetrain {
     public static final Angle BACK_RIGHT_ABS_ENCODER_OFFSET = Rotations.of(-0.3193359375);
   }
 
-  public static final double SLOW_MODE_MULTIPLIER = 0.5;
+  public static final double SLOW_MODE_MULTIPLIER = 0.25;
 
   // Physical dimensions
   // TODO: Confirm Gear Ratios

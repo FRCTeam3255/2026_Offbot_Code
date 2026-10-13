@@ -24,6 +24,7 @@ public class Intaking extends Command {
     RobotContainer.stateMachineInstance.setRobotState(RobotState.INTAKING);
     RobotContainer.positionalInstance.setIntakePosition(ConstPositional.DEPLOY_INTAKE_SLIDE_DISTANCE,
         ConstPositional.FAST_INTAKE_SLIDE_PID);
+    RobotContainer.freeSpinInstance.setTopdogRollersPercentOutput(ConstFreeSpin.TOP_DOG_INTAKING_PERCET_OUTPUT);
     RobotContainer.freeSpinInstance.setIntakeRollersPercentOutput(ConstFreeSpin.INTAKE_ROLLER_PERCENT_OUTPUT);
   }
 
